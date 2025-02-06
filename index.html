@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rodrigo Nickler's Portfolio Frontend Developer">
+    <link rel="shortcut icon" href="img/main.webp" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/78f1411366.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <script defer src="validation.js"></script>
+    <title>Rodrigo Nickler's Portfolio</title>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="#home" class="logo">Rodrigo <span>Nickler</span></a>
+        <i class="fa-solid fa-bars" id="open-menu-icon"></i>
+        
+        <nav class="navbar" id="nav">
+            <i class="fa-solid fa-xmark" id="close-menu-icon"></i>
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="home" id="home">
+        <article class="home-content">
+            <h1>Hi, It's <span>Rodrigo</span></h1>
+            <h3>I'm a <span>Frontend Developer</span></h3>
+            <p>I'm Rodrigo and this is my portfolio. Below you have multiple options to contact me.</p>
+            
+            <li class="social-icons">
+                <a rel="noopenner noreferrer" href="#"><i class="fa-brands fa-github"></i></a>
+                <a rel="noopenner noreferrer" href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a rel="noopenner noreferrer" href="mailto:rodrigofrontenddev@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </li>
+            
+            <div class="btn-group">
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </article>
+        
+        <figure class="home-img">
+            <img src="img/main.webp" alt="Icon img">
+        </figure>
+    </section>
+    
+    <section class="about" id="about">
+        <figure class="about-img">
+            <img src="img/main.webp" alt="Icon img">
+        </figure>
+
+        <article class="about-content">
+            <h2>About <span>Me</span></h2>
+            <p>I am Rodrigo, I am a self-taught frontend programming student. I am looking for an opportunity to apply my theoretical and practical knowledge in order to benefit a company and develop myself professionally and personally.</p>
+        </article>
+    </section>
+    
+    <section class="skills" id="skills">
+        <h2 class="skills-title subtitle">Skills</h2>
+        <div class="cards-container">
+
+            <article class="card">
+                <h3 class="card-tittle">HTML</h3>
+                <iconify-icon class="card-icon" icon="devicon:html5"></iconify-icon>
+            </article>
+
+            <article class="card">
+                <h3 class="card-tittle">CSS</h3>
+                <iconify-icon class="card-icon" icon="devicon:css3"></iconify-icon>
+            </article>
+
+            <article class="card">
+                <h3 class="card-tittle">JavaScript</h3>
+                <iconify-icon class="card-icon card-icon--js" icon="skill-icons:javascript"></iconify-icon>
+            </article>
+        </div>     
+    </section>
+    
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Some <span>Project</span></h2>
+        <div class="portfolio-container">
+
+            <article class="portfolio-box">
+                <img src="img/proyect1.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>First website. Worked only with html and css.</p>
+                    <a href="https://rodrigofirstwebsite.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect2.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>This website is about space. It was worked with html, css and js.</p>
+                    <a href="https://rodrigospaceweb.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect3.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Website about the solar system. Worked with html, css and js.</p>
+                    <a href="https://solarsystemweb.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect4.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Mario Bros website. Worked with html, css and js.</p>
+                    <a href="https://mariobrosweb.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect5.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Pokemon cards. Worked with html and css.</p>
+                    <a href="https://cardpokemmon.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect6.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Endless carousel of country flags. Worked with html and css.</p>
+                    <a href="https://infinitecarousel.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect7.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Form website. Worked with html and css.</p>
+                    <a href="https://formulariowebsite.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect8.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>Neon buttons. Worked with html and css.</p>
+                    <a href="https://neonbuttonswebsite.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+
+            <article class="portfolio-box">
+                <img src="img/proyect9.png" alt="Project image">
+                <div class="portfolio-layer">
+                    <h4>Frontend Dev</h4>
+                    <p>3D cards. Worked with html and css.</p>
+                    <a href="https://cards3dwebsite.netlify.app/" target="_blank"><i class="fa-duotone fa-solid fa-up-right-from-square"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+        <form id="form" name="form" action="email.php" autocomplete="off" method="post" netlify>
+            
+            <fieldset class="input-group">
+                <div class="input-box">
+                    <input type="text" pattern="[A-Za-z]+" title="Solo se permiten letras." name="name" placeholder="Name" required>
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="input-box">
+                    <input type="text" name="subject" placeholder="Subject" required>
+                </div>
+            </fieldset>
+            
+            <fieldset class="input-group-2">
+                <textarea name="message" id="" cols="30" rows="8" placeholder="Your Message" required></textarea>
+                <input type="submit" name="submit" value="Send Message" onclick="validate()" class="btn">
+            </fieldset>
+        </form>        
+    </section>
+    
+    <footer class="footer">
+        <li class="footer-social-icons">
+            <a rel="noopenner noreferrer" href="#" class="link-a"><i class="fa-brands fa-github"></i></a>
+            <a rel="noopenner noreferrer" href="#" class="link-a"><i class="fa-brands fa-linkedin"></i></a>
+            <a rel="noopenner noreferrer" href="mailto:rodrigofrontenddev@gmail.com" class="link-a"><i class="fa-solid fa-envelope"></i></a>
+        </li>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
