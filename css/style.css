@@ -311,10 +311,15 @@ ul { margin: 0; padding: 0; list-style: none; }
     transform: translate3d(105%, 0, 0);
     visibility: hidden;
     pointer-events: none;
+    /* Do not animate the desktop-to-mobile layout switch. */
+    transition: none;
+  }
+
+  .navbar.menu-ready {
     transition: transform .34s cubic-bezier(.22, .75, .25, 1), visibility 0s linear .34s;
   }
 
-  .navbar.visible {
+  .navbar.menu-ready.visible {
     transform: translate3d(0, 0, 0);
     visibility: visible;
     pointer-events: auto;
