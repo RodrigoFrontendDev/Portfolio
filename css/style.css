@@ -142,9 +142,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 3rem; margin-bottom: 4rem; }
 .section-heading > p, .section-heading div > p { max-width: 580px; margin: 1.7rem 0 0; }
 .skills-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.2rem; }
-.skill-item { display: flex; min-width: 0; align-items: center; gap: 1.3rem; min-height: 75px; padding: 1.6rem 1.8rem; border: 0; border-radius: 14px; background: rgba(255,255,255,.045); color: #d7deed; font-size: 1.45rem; font-weight: 600; transition: transform .2s ease, background .2s ease; }
-.skill-item:hover { transform: translateY(-3px); background: var(--accent-soft); }
-.skill-item iconify-icon { color: var(--accent-bright); font-size: 2.6rem; }
+.skill-item { display: flex; min-width: 0; align-items: center; gap: 1.3rem; min-height: 75px; padding: 1.6rem 1.8rem; border: 0; border-radius: 14px; background: rgba(255,255,255,.045); color: #d7deed; font-size: 1.45rem; font-weight: 600; cursor: pointer; transition: transform .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease; }
+.skill-item:hover { transform: translateY(-4px); color: #fff; background: rgba(87,155,255,.17); box-shadow: 0 0 0 1px rgba(121,179,255,.16), 0 10px 30px rgba(56,132,235,.2), inset 0 0 24px rgba(87,155,255,.07); }
+.skill-item iconify-icon { color: var(--accent-bright); font-size: 2.6rem; transition: filter .2s ease, transform .2s ease; }
+.skill-item:hover iconify-icon { filter: drop-shadow(0 0 9px rgba(121,179,255,.7)); transform: scale(1.08); }
 .skill-item span { min-width: 0; overflow-wrap: anywhere; }
 
 .portfolio { background: #0e1629; }
