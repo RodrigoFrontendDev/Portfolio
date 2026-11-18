@@ -164,6 +164,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 .project-content p { min-height: 8.4rem; margin: 0; color: var(--muted); font-size: 1.42rem; line-height: 1.75; }
 .project-tags { display: flex; flex-wrap: wrap; gap: .7rem; margin: 2rem 0 2.2rem; }
 .project-tags li { padding: .55rem .9rem; border: 0; border-radius: 999px; color: #b9c6dc; background: rgba(255,255,255,.065); font-size: 1.08rem; font-weight: 600; }
+
+/* Technology tags use their own recognizable color accents. */
+.project-tags li[data-tech="html"] { color: #ffb18e; background: rgba(240, 101, 41, .15); }
+.project-tags li[data-tech="css"] { color: #8fc5ff; background: rgba(38, 114, 200, .18); }
+.project-tags li[data-tech="javascript"] { color: #f7df70; background: rgba(247, 223, 30, .13); }
+.project-tags li[data-tech="typescript"] { color: #8dbdff; background: rgba(49, 120, 198, .2); }
+.project-tags li[data-tech="react"] { color: #8ce8ff; background: rgba(97, 218, 251, .14); }
+.project-tags li[data-tech="next"] { color: #e7ecf5; background: rgba(210, 220, 235, .11); }
+.project-tags li[data-tech="tailwind"] { color: #7ee5fb; background: rgba(56, 189, 248, .14); }
+.project-tags li[data-tech="supabase"] { color: #8ce9b8; background: rgba(62, 207, 142, .14); }
+.project-tags li[data-tech="audius"] { color: #ff9bc9; background: rgba(204, 12, 122, .15); }
+.project-tags li[data-tech="oauth"] { color: #c4b5fd; background: rgba(139, 92, 246, .16); }
+.project-tags li[data-tech="redis"] { color: #ff9c97; background: rgba(255, 68, 56, .14); }
+.project-tags li[data-tech="localstorage"] { color: #f5d28a; background: rgba(214, 168, 75, .14); }
 .project-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; padding-top: 1.6rem; }
 .project-link { display: inline-flex; align-items: center; gap: .8rem; color: var(--muted); font-size: 1.25rem; font-weight: 700; transition: color .2s ease; }
 .project-link:hover { color: var(--accent-bright); }
