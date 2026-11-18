@@ -97,15 +97,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { color: #061225; background: var(--accent-bright); box-shadow: 0 10px 28px rgba(65, 135, 235, .18); }
 .btn-primary:hover { background: #a1cbff; box-shadow: 0 13px 34px rgba(65, 135, 235, .28); }
-.btn-secondary { color: var(--text); border-color: var(--border); background: rgba(255, 255, 255, .025); }
-.btn-secondary:hover { border-color: rgba(121, 179, 255, .6); background: var(--accent-soft); }
+.btn-secondary { color: var(--text); border-color: transparent; background: rgba(255, 255, 255, .06); }
+.btn-secondary:hover { border-color: transparent; background: var(--accent-soft); }
 .btn-cv {
   color: var(--accent-bright);
-  border-color: rgba(121, 179, 255, .32);
-  background: linear-gradient(135deg, rgba(87, 155, 255, .1), rgba(255, 255, 255, .025));
+  border-color: transparent;
+  background: linear-gradient(135deg, rgba(87, 155, 255, .14), rgba(255, 255, 255, .045));
 }
 .btn-cv:hover {
-  border-color: var(--accent-bright);
+  border-color: transparent;
   color: #fff;
   background: rgba(87, 155, 255, .16);
   box-shadow: 0 10px 28px rgba(65, 135, 235, .12);
@@ -142,8 +142,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 3rem; margin-bottom: 4rem; }
 .section-heading > p, .section-heading div > p { max-width: 580px; margin: 1.7rem 0 0; }
 .skills-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.2rem; }
-.skill-item { display: flex; min-width: 0; align-items: center; gap: 1.3rem; min-height: 75px; padding: 1.6rem 1.8rem; border: 0; border-radius: 14px; background: rgba(255,255,255,.045); color: #d7deed; font-size: 1.45rem; font-weight: 600; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
-.skill-item:hover { transform: translateY(-3px); border-color: rgba(87,155,255,.48); background: var(--accent-soft); }
+.skill-item { display: flex; min-width: 0; align-items: center; gap: 1.3rem; min-height: 75px; padding: 1.6rem 1.8rem; border: 0; border-radius: 14px; background: rgba(255,255,255,.045); color: #d7deed; font-size: 1.45rem; font-weight: 600; transition: transform .2s ease, background .2s ease; }
+.skill-item:hover { transform: translateY(-3px); background: var(--accent-soft); }
 .skill-item iconify-icon { color: var(--accent-bright); font-size: 2.6rem; }
 .skill-item span { min-width: 0; overflow-wrap: anywhere; }
 
