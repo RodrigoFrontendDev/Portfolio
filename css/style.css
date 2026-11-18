@@ -225,6 +225,40 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer .logo { font-size: 2.4rem; }
 .footer p, .footer-copy { margin: 0; color: var(--muted-soft); font-size: 1.2rem; }
 
+/* Give wide desktop and 2K displays enough room for both hero columns. */
+@media (min-width: 1401px) {
+  .home {
+    max-width: 1840px;
+    grid-template-columns: minmax(0, 1.18fr) minmax(440px, .82fr);
+    gap: clamp(9rem, 8vw, 15rem);
+    padding-inline: clamp(7rem, 7vw, 12rem);
+  }
+
+  .home-content {
+    max-width: 720px;
+  }
+
+  .home-content h1 {
+    max-width: 760px;
+  }
+
+  .home-visual {
+    min-height: 520px;
+  }
+
+  .home-visual > img {
+    width: min(78%, 440px);
+  }
+
+  .floating-card-top {
+    right: 0;
+  }
+
+  .floating-card-bottom {
+    left: 0;
+  }
+}
+
 @media (max-width: 1050px) {
   .home { grid-template-columns: minmax(0, 1fr) minmax(280px, .82fr); gap: clamp(4.5rem, 6vw, 7rem); padding-inline: 6vw; }
   .section-shell { padding-inline: 6vw; }
