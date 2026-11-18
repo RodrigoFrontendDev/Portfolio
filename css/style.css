@@ -55,6 +55,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .language-link { display: inline-flex; align-items: center; gap: .7rem; color: var(--text); font-size: 1.35rem; font-weight: 700; letter-spacing: .06em; }
 .language-link span { color: var(--accent-bright); }
 .menu-toggle, .menu-close { display: none; }
+.menu-backdrop, .nav-panel-label, .nav-panel-footer { display: none; }
 
 .home {
   position: relative;
@@ -347,6 +348,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .menu-close:active { transform: scale(.96); }
 
   .nav-panel-label {
+    display: block;
     margin: 0 0 1.7rem;
     color: var(--accent-bright);
     font-size: 1.05rem;
