@@ -1,293 +1,255 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!--Meta tags-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Rodrigo Nickler - Desarrollador Frontend">
-    <meta name="keywords" content="rodrigo, nickler, frontend, desarrollador, sitio web, portafolio, proyectos, habilidades, html, css, javascript, git, github, linkedin, contacto, curriculum, descarga, español, ingles,">
-    <meta name="author" content="Rodrigo Nickler">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="language" content="Spanish">
-    <!--Facebook Meta Open Graph-->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rodrigoportfolio.free.nf/">
-    <meta property="og:title" content="Rodrigo Frontend Developer | Portfolio Profesional">
-    <meta property="og:description" content="Portafolio de Rodrigo Nickler | Desarrollador Frontend">
-    <meta property="og:image" content="https://rodrigoportfolio.free.nf/img/portfolio-meta.jpg">
-    <meta property="og:site_name" content="Portafolio de Rodrigo Nickler">
-    <meta property="og:locale" content="es_ES">
-    <!--Meta Twitter Card-->
-    <meta property="twitter:url" content="https://rodrigoportfolio.free.nf">
-    <meta property="twitter:domain" content="rodrigoportfolio.free.nf">
-    <meta name="twitter:site" content="@RodrigoNickler">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@RodrigoNickler">
-    <meta name="twitter:title" content="Rodrigo Frontend Developer | Portfolio Profesional">
-    <meta name="twitter:description" content="Portafolio profesional de Rodrigo Nickler con proyectos de desarrollo web frontend, especializado en HTML, CSS y JavaScript.">
-    <meta name="twitter:image" content="https://rodrigoportfolio.free.nf/img/portfolio-meta.jpg">
-    <!--Canonical URL-->
-    <link rel="canonical" href="https://rodrigoportfolio.free.nf/">
-    <!--Css link-->
-    <link rel="stylesheet" href="../css/style.css">
-    <!--Favicon link-->
-    <link rel="icon" href="../img/favicon32x32.webp" sizes="32x32" type="image/webp">
-    <link rel="icon" href="../img/favicon16x16.webp" sizes="16x16" type="image/webp">
-    <!--Script link-->
-    <script src="https://kit.fontawesome.com/78f1411366.js" crossorigin="anonymous" async></script>
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" async></script>
-    <script defer src="../js/validation.js"></script>
-    <title>Portafolio de Rodrigo Nickler</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rodrigo Nickler es desarrollador frontend de Argentina. Construye sitios web y aplicaciones con JavaScript, TypeScript y React.">
+  <meta name="keywords" content="Rodrigo Nickler, desarrollador frontend, desarrollo web, JavaScript, TypeScript, React, Next.js, portfolio">
+  <meta name="author" content="Rodrigo Nickler">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b1020">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rodrigoportfolio.free.nf/es/">
+  <meta property="og:title" content="Rodrigo Nickler | Desarrollador Frontend">
+  <meta property="og:description" content="Proyectos de desarrollo web de Rodrigo Nickler.">
+  <meta property="og:image" content="https://rodrigoportfolio.free.nf/img/portfolio-meta.jpg">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rodrigo Nickler | Desarrollador Frontend">
+  <meta name="twitter:description" content="Proyectos de desarrollo web de Rodrigo Nickler.">
+  <meta name="twitter:image" content="https://rodrigoportfolio.free.nf/img/portfolio-meta.jpg">
+  <link rel="canonical" href="https://rodrigoportfolio.free.nf/es/">
+  <link rel="alternate" hreflang="en" href="https://rodrigoportfolio.free.nf/">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../img/favicon32x32.webp" sizes="32x32" type="image/webp">
+  <link rel="icon" href="../img/favicon16x16.webp" sizes="16x16" type="image/webp">
+  <script src="https://kit.fontawesome.com/78f1411366.js" crossorigin="anonymous" defer></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+  <script src="../js/index.js" defer></script>
+  <script src="../js/contact-form.js" defer></script>
+  <title>Rodrigo Nickler | Desarrollador Frontend</title>
 </head>
-
 <body>
-    <header class="header" role="banner">
-        <a href="https://rodrigoportfolio.free.nf/es/index.html" class="logo" aria-label="Inicio">Portafolio</a>
-        <i class="fa-solid fa-bars" id="open-menu-icon" aria-label="Abrir-menu"></i>
-        
-        <nav class="navbar" id="nav" role="navigation" aria-label="Navegacion">
-            <i class="fa-solid fa-xmark" id="close-menu-icon" aria-label="Cerrar-menu"></i>
-            <ul class="nav-list">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Sobre Mi</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#portfolio">Proyectos</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="home" id="home" aria-labelledby="Inicio">
-        <div class="language" aria-label="Selector de idioma">
-            <img src="../img/estados-unidos.png" class="flag" alt="Imagen de la bandera de Estados Unidos">
-            <input type="checkbox" class="check" id="check" aria-label="Boton de idioma español o ingles" checked>
-            <img src="../img/argentina.png" class="flag" alt="Imagen de la bandera de España">
-        </div>
+  <header class="header">
+    <a class="logo" href="#home" aria-label="Inicio de Rodrigo Nickler">RN<span>.</span></a>
+    <button class="menu-toggle" id="open-menu-icon" type="button" aria-label="Abrir navegación" aria-expanded="false" aria-controls="nav">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+    <nav class="navbar" id="nav" aria-label="Navegación principal">
+      <button class="menu-close" id="close-menu-icon" type="button" aria-label="Cerrar navegación">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <ul class="nav-list">
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#skills">Tecnologías</a></li>
+        <li><a href="#portfolio">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="language-link" href="../index.html" lang="en" aria-label="View portfolio in English">EN <span>↗</span></a>
+  </header>
 
-        <article class="home-content">
-            <h1 id="inicio-titulo">Hola, Soy <span>Rodrigo</span></h1>
-            <h3>Desarrollador <span>Frontend</span></h3>
-            <p>Este es mi portafolio. Abajo tienes múltiples opciones para contactarme.</p>
-            
-            <ul role="list" aria-label="Links de redes sociales">
-                <li class="social-icons" role="listitem">
-                    <a rel="noopener noreferrer" aria-label="GitHub" target="_blank" href="https://github.com/RodrigoFrontendDev"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                    <a rel="noopener noreferrer" aria-label="Linkedin" target="_blank" href="https://www.linkedin.com/in/rodrigo-nickler-b8689b325/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-                    <a rel="noopener noreferrer" aria-label="Email" href="mailto:rodrigofrontenddev@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-                </li>
-            </ul>
-            
-            <div class="btn-group">
-                <a href="../cv/Curriculum.pdf" download class="btn" aria-label="Link to contact section"><i class="fas fa-download"></i>Descargar CV</a>
-                <a href="#contact" class="btn" aria-label="Enlace a la sección de contacto">Contacto</a>
+  <main>
+    <section class="home" id="home" aria-labelledby="home-title">
+      <div class="home-content">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Desarrollador frontend · Argentina</p>
+        <h1 id="home-title">Creo experiencias<br><span>digitales útiles.</span></h1>
+        <p class="hero-description">Soy Rodrigo, desarrollador autodidacta enfocado en crear interfaces responsive y aplicaciones web. Me gusta transformar ideas en productos prácticos y aprender construyendo proyectos reales.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#portfolio">Ver mis proyectos <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+          <a class="btn btn-secondary" href="#contact">Contactarme</a>
+        </div>
+        <div class="social-links" aria-label="Redes sociales">
+          <a href="https://github.com/RodrigoFrontendDev" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/rodrigo-nickler-b8689b325/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="mailto:rodrigofrontenddev@gmail.com" aria-label="Correo electrónico"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="home-visual">
+        <div class="visual-orbit visual-orbit-one"></div>
+        <div class="visual-orbit visual-orbit-two"></div>
+        <div class="visual-glow"></div>
+        <img src="../img/main640x640.webp" alt="Retrato ilustrado de Rodrigo Nickler" fetchpriority="high" decoding="async">
+        <div class="floating-card floating-card-top"><span class="floating-card-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span><span>Crear · Aprender · Mejorar</span></div>
+        <div class="floating-card floating-card-bottom"><span class="status-dot"></span><span>Siempre construyendo algo</span></div>
+      </div>
+    </section>
+
+    <section class="about section-shell" id="about" aria-labelledby="about-title">
+      <div class="section-label">01 / Sobre mí</div>
+      <div class="about-layout">
+        <div class="about-copy">
+          <h2 class="section-title" id="about-title">Un poco <span>sobre mí.</span></h2>
+          <p>Soy desarrollador de Argentina y estudio desarrollo web de manera autodidacta, aprendiendo a través de la práctica. Mi enfoque está en crear interfaces claras, adaptables y aplicaciones que resuelvan problemas reales.</p>
+          <p>Con el tiempo amplié mis conocimientos de HTML, CSS y JavaScript hacia TypeScript, React y Next.js, además de integrar servicios como Supabase y APIs externas. Valoro el código claro, la mejora continua y entender cómo funciona cada parte de una aplicación.</p>
+          <a class="text-link" href="../cv/Curriculum.pdf" target="_blank" rel="noopener noreferrer">Ver mi currículum <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+        <div class="about-note">
+          <span class="note-mark">“</span>
+          <p>La curiosidad convierte ideas en proyectos. La constancia convierte proyectos en progreso.</p>
+          <span class="note-caption">Una forma de encarar cada desarrollo.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills section-shell" id="skills" aria-labelledby="skills-title">
+      <div class="section-label">02 / Herramientas</div>
+      <div class="section-heading">
+        <h2 class="section-title" id="skills-title">Tecnologías con las que <span>trabajo.</span></h2>
+        <p>Un conjunto de herramientas que sigo ampliando con proyectos prácticos.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item"><iconify-icon icon="devicon:html5" aria-hidden="true"></iconify-icon><span>HTML</span></div>
+        <div class="skill-item"><iconify-icon icon="devicon:css3" aria-hidden="true"></iconify-icon><span>CSS</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:javascript" aria-hidden="true"></iconify-icon><span>JavaScript</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:typescript" aria-hidden="true"></iconify-icon><span>TypeScript</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:react-dark" aria-hidden="true"></iconify-icon><span>React</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:nextjs-dark" aria-hidden="true"></iconify-icon><span>Next.js</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:tailwindcss-dark" aria-hidden="true"></iconify-icon><span>Tailwind CSS</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:supabase-dark" aria-hidden="true"></iconify-icon><span>Supabase</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:git" aria-hidden="true"></iconify-icon><span>Git</span></div>
+        <div class="skill-item"><iconify-icon icon="skill-icons:github-dark" aria-hidden="true"></iconify-icon><span>GitHub</span></div>
+      </div>
+    </section>
+
+    <section class="portfolio section-shell" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-label">03 / Proyectos seleccionados</div>
+      <div class="section-heading projects-heading">
+        <div>
+          <h2 class="section-title" id="portfolio-title">Proyectos creados con <span>propósito.</span></h2>
+          <p>Una selección de proyectos personales, desde prácticas puntuales hasta aplicaciones web completas.</p>
+        </div>
+        <span class="project-count">07 proyectos</span>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card project-card-featured">
+          <div class="project-media project-art project-art-music" role="img" aria-label="Gráfica del proyecto de streaming musical Open Sound">
+            <div class="art-topline"><span class="art-brand"><span class="wave-mark"><i></i><i></i><i></i><i></i></span> OPEN SOUND</span><span class="art-status">DESCUBRÍ MÚSICA</span></div>
+            <div class="music-art-content"><span class="art-overline">TU SONIDO, TU ESPACIO</span><strong>Encontrá tu<br><em>próximo sonido.</em></strong><div class="music-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <span class="art-orb art-orb-one"></span><span class="art-orb art-orb-two"></span>
+          </div>
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Proyecto destacado</span><span class="project-year">Aplicación web</span></div>
+            <h3>Open Sound</h3>
+            <p>Una experiencia de streaming musical basada en el catálogo de Audius. Permite descubrir canciones y colecciones, escuchar música desde un reproductor compartido y gestionar una biblioteca personal con favoritos y playlists. Supabase se encarga de la autenticación y los datos de usuario.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind CSS</li><li>Supabase</li><li>Audius API</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://open-sound-music.vercel.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+
+        <article class="project-card project-card-featured">
+          <div class="project-media project-art project-art-price" role="img" aria-label="Gráfica del buscador y comparador Price Search">
+            <div class="price-art-window">
+              <div class="price-art-header"><span class="price-art-logo">price<span>search</span></span><span class="price-art-user"><i class="fa-regular fa-circle-user" aria-hidden="true"></i></span></div>
+              <div class="price-art-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Buscar productos...</span><kbd>↵</kbd></div>
+              <div class="price-art-label">RESULTADOS <span>COMPARÁ OPCIONES</span></div>
+              <div class="price-art-products"><div class="price-art-product"><span class="product-symbol product-symbol-one"><i class="fa-solid fa-headphones" aria-hidden="true"></i></span><span class="product-lines"><b>Auriculares inalámbricos</b><small>Mercado Libre</small></span><strong>$ 89.990</strong></div><div class="price-art-product"><span class="product-symbol product-symbol-two"><i class="fa-solid fa-camera" aria-hidden="true"></i></span><span class="product-lines"><b>Cámara digital</b><small>Amazon</small></span><strong>$ 124.50</strong></div><div class="price-art-product"><span class="product-symbol product-symbol-three"><i class="fa-solid fa-keyboard" aria-hidden="true"></i></span><span class="product-lines"><b>Teclado mecánico</b><small>AliExpress</small></span><strong>$ 42.99</strong></div></div>
             </div>
+          </div>
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Proyecto destacado</span><span class="project-year">Aplicación web</span></div>
+            <h3>Price Search</h3>
+            <p>Una plataforma para descubrir y comparar productos. Permite buscar en Mercado Libre, Amazon y AliExpress, consultar detalles y ajustar los resultados para comparar opciones disponibles. Las integraciones OAuth y las consultas a los marketplaces se gestionan desde el servidor.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind CSS</li><li>OAuth</li><li>Redis</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://price-search-three.vercel.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </div>
         </article>
-        
-        <picture class="home-img">
-            <img src="../img/main640x640.webp" alt="Imagen de Rodrigo Nickler, cabello largo negro, gafas, bigote y barba, con estilo Pixar" fetchpriority="high" decoding="async">
-        </picture>
-    </section>
-    
-    <section class="about" id="about" aria-labelledby="Sobre-mi">
-        <picture class="home-img">
-            <img src="../img/main640x640.webp" alt="Imagen de Rodrigo Nickler, cabello largo negro, gafas, bigote y barba, con estilo Pixar" loading="lazy" decoding="async">
-        </picture>
-    
-        <article class="about-content">
-            <h2 id="sobre-mi-titulo">Sobre <span>Mi</span></h2>
-            <p>Mi nombre es Rodrigo Nickler, soy de Argentina, estudio programación frontend de forma autodidacta.</p>
-            <p>Busco una oportunidad para aplicar mis conocimientos teóricos y prácticos con el fin de beneficiar a una empresa y desarrollarme más como profesional.</p>
-        </article>
-    </section>
-    
-    <section class="skills" id="skills" aria-labelledby="Habilidades">
-        <h2 class="skills-title" id="habilidades-titulo">Habilidades</h2>
-        <div class="cards-container">
-    
-            <article class="card" aria-labelledby="html-titulo">
-                <h3 class="card-tittle" id="html-titulo">HTML</h3>
-                <iconify-icon class="card-icon" icon="devicon:html5" aria-hidden="true"></iconify-icon>
-            </article>
-    
-            <article class="card" aria-labelledby="css-titulo">
-                <h3 class="card-tittle" id="css-titulo">CSS</h3>
-                <iconify-icon class="card-icon" icon="devicon:css3" aria-hidden="true"></iconify-icon>
-            </article>
-    
-            <article class="card" aria-labelledby="js-titulo">
-                <h3 class="card-tittle" id="js-titulo">JavaScript</h3>
-                <iconify-icon class="card-icon card-icon--js" icon="skill-icons:javascript" aria-hidden="true"></iconify-icon>
-            </article>
-        </div>     
-    </section>
-    
-    <section class="portfolio" id="portfolio" aria-labelledby="Portafolio">
-        <h2 class="heading" id="portfolio-heading">Algunos <span>Projectos</span></h2>
-        <div class="portfolio-container">
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 1 Titulo" aria-describedby="Projecto 1 Descripcion">
-                <img src="../img/proyect1.webp" alt="Imagen del proyecto noteapp" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 1 Titulo">Noteapp</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                        <li class="tag">JavaScript</li>
-                    </ul>
-                    <a href="https://rodnoteapp.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto restaurante de hamburguesas"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 2 Titulo" aria-describedby="Projecto 2 Descripcion">
-                <img src="../img/proyect2.webp" alt="Imagen del proyecto viaje por el espacio" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 2 Titulo">El Espacio</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                        <li class="tag">JavaScript</li>
-                    </ul>
-                    <a href="https://rodrigospaceweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto viaje por el espacio"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 3 Titulo" aria-describedby="Projecto 3 Descripcion">
-                <img src="../img/proyect3.webp" alt="Imagen del proyecto sistema solar" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 3 Titulo">Sistema Solar</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                        <li class="tag">JavaScript</li>
-                    </ul>
-                    <a href="https://solarsystemweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto sistema solar"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 4-Titulo" aria-describedby="Projecto 4 Descripcion">
-                <img src="../img/proyect4.png" alt="Imagen del proyecto mario bros web" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 4 Titulo">Mario Bros</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                        <li class="tag">JavaScript</li>
-                    </ul>
-                    <a href="https://mariobrosweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto mario bros web"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 5 Titulo" aria-describedby="Projecto 5 Descripcion">
-                <img src="../img/proyect5.webp" alt="Imagen del proyecto cartas pokemon" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 5 Titulo">Pokémon</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                    </ul>
-                    <a href="https://cardpokemmon.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto cartas pokemon"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 6 Titulo" aria-describedby="Projecto 6 Descripcion">
-                <img src="../img/proyect6.png" alt="Imagen del proyecto carrusel infinito con banderas de paises" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 6 Titulo">Carrusel Infinito</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                    </ul>
-                    <a href="https://infinitecarousel.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto carrusel infinito con banderas de paises"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 7 Titulo" aria-describedby="Projecto 7 Descripcion">
-                <img src="../img/proyect7.webp" alt="Imagen del proyecto formulario" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 7 Titulo">Formulario</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                    </ul>
-                    <a href="https://formulariowebsite.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto formulario"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 8 Titulo" aria-describedby="Projecto 8 Descripcion">
-                <img src="../img/proyect8.webp" alt="Imagen del proyecto botones de neon" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 8 Titulo">Botones de Neon</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                    </ul>
-                    <a href="https://neonbuttonswebsite.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto botones de neon"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
-    
-            <article class="portfolio-box" aria-labelledby="Projecto 9 Titulo" aria-describedby="Projecto 9 Descripcion">
-                <img src="../img/proyect9.webp" alt="Imagen del proyecto cartas 3d" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 9 Titulo">Cartas 3D</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                    </ul>
-                    <a href="https://cards3dwebsite.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto cartas 3d"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
 
-            <article class="portfolio-box" aria-labelledby="Projecto 10 Titulo" aria-describedby="Projecto 10 Descripcion">
-                <img src="../img/proyect10.webp" alt="Imagen del proyecto calculadora de edad" loading="lazy" decoding="async">
-                <div class="portfolio-layer">
-                    <h4 id="Projecto 10 Titulo">Calculadora de Edad</h4>
-                    <ul class="tags">
-                        <li class="tag">HTML</li>
-                        <li class="tag">CSS</li>
-                        <li class="tag">JavaScript</li>
-                    </ul>
-                    <a href="https://rodcalculadoraedad.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Link del proyecto calculadora de edad"><i class="fa-duotone fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
-                </div>
-            </article>
+        <article class="project-card">
+          <img class="project-media" src="../img/proyect1.webp" alt="Vista previa de la interfaz de notas de Noteapp" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Productividad</span><span class="project-year">JavaScript</span></div>
+            <h3>Noteapp</h3>
+            <p>Una aplicación sencilla para tomar notas. Permite crear, editar y eliminar notas; los cambios se guardan automáticamente en LocalStorage y se recuperan al volver a entrar.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>LocalStorage</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://rodnoteapp.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/noteapp" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img class="project-media" src="../img/proyect2.webp" alt="Vista previa de la landing page The Space" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Landing page</span><span class="project-year">Diseño responsive</span></div>
+            <h3>The Space</h3>
+            <p>Un sitio conceptual sobre exploración espacial y turismo futurista. La landing presenta destinos, servicios y productos mediante una composición visual adaptable a diferentes pantallas.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>HTML</li><li>CSS</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://rodrigospaceweb.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/space-web" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img class="project-media" src="../img/proyect3.webp" alt="Vista previa del sitio Sistema Solar" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Proyecto educativo</span><span class="project-year">Experiencia visual</span></div>
+            <h3>Sistema Solar</h3>
+            <p>Una exploración visual del Sistema Solar, organizada alrededor de imágenes de los planetas y paneles informativos, con navegación responsive y una transición de carga.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://solarsystemweb.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/sistema-solar" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img class="project-media" src="../img/proyect4.png" alt="Vista previa de la galería de personajes de Mario Bros" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Sitio temático</span><span class="project-year">Galería interactiva</span></div>
+            <h3>Mario Bros</h3>
+            <p>Un sitio inspirado en el universo de Mario. Incluye una galería de personajes donde se puede seleccionar uno para actualizar la imagen principal, además de un menú responsive.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://mariobrosweb.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/mario-bros" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img class="project-media" src="../img/proyect10.webp" alt="Vista previa de la interfaz de Age Calculator" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Utilidad</span><span class="project-year">Cálculo de fechas</span></div>
+            <h3>Age Calculator</h3>
+            <p>Una calculadora de edad que recibe una fecha de nacimiento y devuelve los años cumplidos, teniendo en cuenta si el cumpleaños ya ocurrió durante el año actual.</p>
+            <ul class="project-tags" aria-label="Tecnologías"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="https://rodcalculadoraedad.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/age-calculator" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+      <div class="section-label">04 / Contacto</div>
+      <div class="contact-layout">
+        <div class="contact-copy">
+          <h2 class="section-title" id="contact-title">¿Tenés un proyecto<br>en <span>mente?</span></h2>
+          <p>Contame un poco de qué se trata. Estoy abierto a oportunidades, colaboraciones y conversaciones interesantes.</p>
+          <a class="contact-email" href="mailto:rodrigofrontenddev@gmail.com">rodrigofrontenddev@gmail.com <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
         </div>
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <div class="form-row">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Tu nombre" minlength="2" maxlength="80" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="tu@correo.com" maxlength="254" required>
+          </div>
+          <div class="form-row">
+            <label for="subject">Asunto</label>
+            <input type="text" id="subject" name="subject" placeholder="¿Sobre qué te gustaría hablar?" minlength="3" maxlength="120" required>
+          </div>
+          <div class="form-row">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escribí tu mensaje..." minlength="10" maxlength="4000" required></textarea>
+          </div>
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary form-submit" id="submit-btn" type="submit">Enviar mensaje <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
-    
-    <section class="contact" id="contact">
-        <h2 class="heading" id="Formulario de contacto">Contactame</h2>
-        <form id="form" name="form" action="../email.php" autocomplete="on" method="post" aria-labelledby="Formulario de contacto">
-            
-            <fieldset class="input-group" aria-labelledby="Campos de contacto">
-                <div class="input-box">
-                    <input type="text" pattern="[A-Za-zÀ-ÿ\s]+" title="Letras y espacios solamente" name="name" id="name" autocomplete="on" placeholder="Nombre" aria-label="Nombre" aria-required="true" required>
-                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Formato de correo electrónico" name="email" id="email" autocomplete="on" placeholder="Correo" aria-label="Email" aria-required="true" required>
-                </div>
-                
-                <div class="input-box">
-                    <input type="text" pattern="[A-Za-zÀ-ÿ0-9\s.,!?&()@#$%^*+=-]+" title="Letras, números y caracteres especiales" name="subject" id="subject" placeholder="Asunto" aria-label="Asunto" aria-required="true" required>
-                </div>
-            </fieldset>
-            
-            <fieldset class="input-group-2">
-                <textarea name="message" id="message" cols="30" rows="8" placeholder="Tu mensaje" aria-label="Mensaje" aria-required="true" required></textarea>
-                <input type="submit" name="submit" value="Enviar Mensaje" class="btn" aria-label="Enviar Mensaje">
-            </fieldset>
-        </form>        
-    </section>
-    
-    <footer class="footer">
-        <ul role="list" aria-label="Links de redes sociales">
-            <li class="footer-social-icons" role="listitem">
-                <a rel="noopener noreferrer" aria-label="GitHub" target="_blank" href="https://github.com/RodrigoFrontendDev" class="link-a"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                <a rel="noopener noreferrer" aria-label="Linkedin" target="_blank" href="https://www.linkedin.com/in/rodrigo-nickler-b8689b325/" class="link-a"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-                <a rel="noopener noreferrer" aria-label="Email" href="mailto:rodrigofrontenddev@gmail.com" class="link-a"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-            </li>
-        </ul>
-    </footer>
-    
-    <script defer src="../js/index.js"></script>    
-    <script defer src="../js/disableButton.js"></script>
-    <script defer src="../js/languaje.js"></script>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="#home">RN<span>.</span></a>
+    <p>Diseñado y desarrollado por Rodrigo Nickler.</p>
+    <span class="footer-copy">© <span id="current-year">2026</span> Todos los derechos reservados.</span>
+  </footer>
 </body>
 </html>

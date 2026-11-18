@@ -1,41 +1,23 @@
 const nav = document.querySelector("#nav");
-const open = document.querySelector("#open-menu-icon");
-const close = document.querySelector("#close-menu-icon");
-const menuLinks = document.querySelectorAll('.nav-list a');
+const openButton = document.querySelector("#open-menu-icon");
+const closeButton = document.querySelector("#close-menu-icon");
 
-const isMobile = () => window.innerWidth <= 1024;
+function setMenuOpen(isOpen) {
+  if (!nav || !openButton) return;
+  nav.classList.toggle("visible", isOpen);
+  openButton.setAttribute("aria-expanded", String(isOpen));
+}
 
-const toggleMenu = (show) => {
-    if (isMobile()) {
-        nav.classList.toggle('visible', show);
-        open.style.display = show ? 'none' : 'block';
-        close.style.display = show ? 'block' : 'none';
-    }
-};
+openButton?.addEventListener("click", () => setMenuOpen(true));
+closeButton?.addEventListener("click", () => setMenuOpen(false));
 
-open.addEventListener("click", () => toggleMenu(true));
-close.addEventListener("click", () => toggleMenu(false));
-
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (isMobile()) {
-            toggleMenu(false);
-        }
-    });
+nav?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => setMenuOpen(false));
 });
 
-document.addEventListener('click', (e) => {
-    if (isMobile() && nav.classList.contains('visible') && !nav.contains(e.target) && !open.contains(e.target)) {
-        toggleMenu(false);
-    }
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenuOpen(false);
 });
 
-window.addEventListener('resize', () => {
-    if (!isMobile()) {
-        nav.classList.remove('visible');
-        open.style.display = 'none';
-        close.style.display = 'none';
-    } else {
-        open.style.display = nav.classList.contains('visible') ? 'none' : 'block';
-    }
-});
+const year = document.querySelector("#current-year");
+if (year) year.textContent = String(new Date().getFullYear());
