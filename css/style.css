@@ -171,13 +171,26 @@ ul { margin: 0; padding: 0; list-style: none; }
 .project-tags li[data-tech="javascript"] { color: #f7df70; background: rgba(247, 223, 30, .13); }
 .project-tags li[data-tech="typescript"] { color: #8dbdff; background: rgba(49, 120, 198, .2); }
 .project-tags li[data-tech="react"] { color: #8ce8ff; background: rgba(97, 218, 251, .14); }
-.project-tags li[data-tech="next"] { color: #e7ecf5; background: rgba(210, 220, 235, .11); }
+.project-tags li[data-tech="next"] { color: #d8b4ff; background: rgba(162, 92, 255, .18); }
 .project-tags li[data-tech="tailwind"] { color: #7ee5fb; background: rgba(56, 189, 248, .14); }
 .project-tags li[data-tech="supabase"] { color: #8ce9b8; background: rgba(62, 207, 142, .14); }
 .project-tags li[data-tech="audius"] { color: #ff9bc9; background: rgba(204, 12, 122, .15); }
 .project-tags li[data-tech="oauth"] { color: #c4b5fd; background: rgba(139, 92, 246, .16); }
 .project-tags li[data-tech="redis"] { color: #ff9c97; background: rgba(255, 68, 56, .14); }
 .project-tags li[data-tech="localstorage"] { color: #f5d28a; background: rgba(214, 168, 75, .14); }
+.project-tags li[data-tech="postgresql"] { color: #a9c6ff; background: rgba(51, 103, 145, .2); }
+.project-tags li[data-tech="zustand"] { color: #ffbb83; background: rgba(230, 126, 34, .15); }
+.project-tags li[data-tech="baseui"] { color: #b7dcff; background: rgba(72, 143, 210, .16); }
+.project-tags li[data-tech="shadcn"] { color: #e5d9ff; background: rgba(151, 119, 220, .16); }
+.project-tags li[data-tech="lucide"] { color: #9fe8f5; background: rgba(56, 189, 208, .14); }
+.project-tags li[data-tech="sonner"] { color: #ffd0a0; background: rgba(238, 145, 61, .14); }
+.project-tags li[data-tech="playwright"] { color: #9be3b1; background: rgba(45, 165, 96, .15); }
+.project-tags li[data-tech="mercadolibre"] { color: #ffe083; background: rgba(245, 196, 42, .15); }
+.project-tags li[data-tech="amazon"] { color: #ffc27d; background: rgba(255, 153, 0, .14); }
+.project-tags li[data-tech="aliexpress"] { color: #ff9e92; background: rgba(255, 71, 56, .14); }
+.project-tags li[data-tech="reefapi"] { color: #8be2ff; background: rgba(32, 165, 205, .14); }
+.project-tags li[data-tech="pkce"] { color: #c8b6ff; background: rgba(139, 92, 246, .14); }
+.project-tags li[data-tech="aes"] { color: #becce4; background: rgba(132, 154, 190, .16); }
 .project-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; padding-top: 1.6rem; }
 .project-link { display: inline-flex; align-items: center; gap: .8rem; color: var(--muted); font-size: 1.25rem; font-weight: 700; transition: color .2s ease; }
 .project-link:hover { color: var(--accent-bright); }
