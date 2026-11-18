@@ -184,6 +184,61 @@ const characters = [
   {id:"toadsworth",name:"Toadsworth",role:"ally",roleLabel:"ALIADO · MAYORDOMO",first:"Super Mario Sunshine",year:2002,color:"#d0b26e",symbol:"T",bio:"El mayordomo de Peach, de bigote blanco y gran experiencia. Acompaña a la princesa en varias aventuras."}
 ];
 
+// Retratos complementarios: ilustraciones identificables para el resto del elenco.
+const supplementalPortraits = {
+  "toadette": "https://www.mariowiki.com/images/thumb/1/14/MTF_Toadette_artwork.png/200px-MTF_Toadette_artwork.png",
+  "pauline": "https://www.mariowiki.com/images/thumb/0/00/SMO_Art_-_Pauline.png/200px-SMO_Art_-_Pauline.png",
+  "birdo": "https://www.mariowiki.com/images/thumb/4/4d/MTF_Birdo_artwork.png/200px-MTF_Birdo_artwork.png",
+  "geno": "https://www.mariowiki.com/images/thumb/9/96/SMRPG_NS_Geno.png/200px-SMRPG_NS_Geno.png",
+  "mallow": "https://www.mariowiki.com/images/thumb/5/53/SMRPG_NS_Mallow.png/200px-SMRPG_NS_Mallow.png",
+  "captain-toad": "https://www.mariowiki.com/images/thumb/9/9d/Captain_Toad_TT_artwork02.png/200px-Captain_Toad_TT_artwork02.png",
+  "e-gadd": "https://play.nintendo.com/images/PLAY-6540-ProfessorEGadd-FriendPage-Masthead_v01.b19a16e5.ed4a1562.png",
+  "cappy": "https://www.mariowiki.com/images/thumb/1/1a/SMO_Cappy.png/200px-SMO_Cappy.png",
+  "kamek": "https://www.mariowiki.com/images/thumb/6/63/MTF_Kamek_artwork.png/200px-MTF_Kamek_artwork.png",
+  "goomba": "https://www.mariowiki.com/images/thumb/3/34/Goomba_SMR.png/200px-Goomba_SMR.png",
+  "koopa-troopa": "https://www.mariowiki.com/images/thumb/d/df/MTF_Koopa_Troopa_artwork.png/200px-MTF_Koopa_Troopa_artwork.png",
+  "piranha-plant": "https://www.mariowiki.com/images/thumb/4/44/PN_Piranha_Plant_artwork.png/200px-PN_Piranha_Plant_artwork.png",
+  "lakitu": "https://www.mariowiki.com/images/thumb/c/c0/MKT_Lakitu_Artwork.png/200px-MKT_Lakitu_Artwork.png",
+  "shy-guy": "https://www.mariowiki.com/images/thumb/b/b2/MPS_Shy_Guy_Artwork.png/200px-MPS_Shy_Guy_Artwork.png",
+  "bob-omb": "https://www.mariowiki.com/images/thumb/8/8b/SMG_Bob-Omb_Artwork.png/200px-SMG_Bob-Omb_Artwork.png",
+  "dry-bones": "https://www.mariowiki.com/images/thumb/4/40/MTF_Dry_Bones_artwork.png/200px-MTF_Dry_Bones_artwork.png",
+  "chain-chomp": "https://www.mariowiki.com/images/thumb/e/e2/MTF_Chain_Chomp_artwork.png/200px-MTF_Chain_Chomp_artwork.png",
+  "hammer-bro": "https://www.mariowiki.com/images/thumb/3/35/NSMBDS_Hammer_Bro_Artwork.png/200px-NSMBDS_Hammer_Bro_Artwork.png",
+  "monty-mole": "https://www.mariowiki.com/images/thumb/6/61/MontymolesNSMBU.png/200px-MontymolesNSMBU.png",
+  "petey-piranha": "https://www.mariowiki.com/images/thumb/5/5e/MTF_Petey_Piranha_artwork.png/200px-MTF_Petey_Piranha_artwork.png",
+  "nabbit": "https://www.mariowiki.com/images/thumb/2/24/MTF_Nabbit_artwork.png/200px-MTF_Nabbit_artwork.png",
+  "wart": "https://www.mariowiki.com/images/thumb/6/65/SMB2_Solo_Wart_Artwork.png/200px-SMB2_Solo_Wart_Artwork.png",
+  "tatanga": "https://www.mariowiki.com/images/thumb/9/90/Club_Nintendo_Classic_Tatanga.jpg/200px-Club_Nintendo_Classic_Tatanga.jpg",
+  "larry": "https://www.mariowiki.com/images/thumb/1/18/NSMBU_Larry_Koopa_Artwork.png/200px-NSMBU_Larry_Koopa_Artwork.png",
+  "morton": "https://www.mariowiki.com/images/thumb/4/47/Morton_Koopa_Jr._SMW_artwork.jpg/200px-Morton_Koopa_Jr._SMW_artwork.jpg",
+  "wendy": "https://www.mariowiki.com/images/thumb/a/a7/SMB3_WendyO.Koopa.jpg/200px-SMB3_WendyO.Koopa.jpg",
+  "iggy": "https://www.mariowiki.com/images/thumb/6/65/Mk8iggy.png/200px-Mk8iggy.png",
+  "roy": "https://www.mariowiki.com/images/thumb/6/67/NSMBW_Roy_Artwork.png/200px-NSMBW_Roy_Artwork.png",
+  "lemmy": "https://www.mariowiki.com/images/thumb/2/25/MK8_Lemmy_Artwork.png/200px-MK8_Lemmy_Artwork.png",
+  "ludwig": "https://www.mariowiki.com/images/thumb/c/c8/NSMBW_Ludwig_Artwork.png/200px-NSMBW_Ludwig_Artwork.png",
+  "boom-boom": "https://www.mariowiki.com/images/thumb/c/ca/MTF_Boom_Boom_artwork.png/200px-MTF_Boom_Boom_artwork.png",
+  "king-k-rool": "https://www.mariowiki.com/images/thumb/0/09/K_Rool_artwork_DKC1.jpg/200px-K_Rool_artwork_DKC1.jpg",
+  "cranky-kong": "https://www.mariowiki.com/images/thumb/2/2e/DKC-Cranky_Kong.png/200px-DKC-Cranky_Kong.png",
+  "dixie-kong": "https://www.mariowiki.com/images/thumb/e/ee/Dixie_updated_art.png/200px-Dixie_updated_art.png",
+  "poochy": "https://www.mariowiki.com/images/thumb/1/14/Poochy.jpg/200px-Poochy.jpg",
+  "genie": "https://www.mariowiki.com/images/thumb/b/bc/SyrupNintendoCharacterManual.png/200px-SyrupNintendoCharacterManual.png",
+  "cackletta": "https://www.mariowiki.com/images/thumb/f/f2/Cackletta.png/200px-Cackletta.png",
+  "fawful": "https://www.mariowiki.com/images/thumb/4/43/Fawful_artwork_MLBiS.png/200px-Fawful_artwork_MLBiS.png",
+  "count-bleck": "https://www.mariowiki.com/images/thumb/4/42/Bleck_SPM_art.jpg/200px-Bleck_SPM_art.jpg",
+  "dimentio": "https://www.mariowiki.com/images/thumb/a/a0/DimentioSuperPaperMario.png/200px-DimentioSuperPaperMario.png",
+  "olivia": "https://www.mariowiki.com/images/thumb/2/21/PMTOK_Olivia_Artwork.png/200px-PMTOK_Olivia_Artwork.png",
+  "king-olly": "https://www.mariowiki.com/images/thumb/5/52/PMTOK_King_Olly_Artwork.png/200px-PMTOK_King_Olly_Artwork.png",
+  "stella": "https://www.mariowiki.com/images/thumb/9/93/PPS_Stella.png/200px-PPS_Stella.png",
+  "toadsworth": "https://www.mariowiki.com/images/thumb/5/5b/SMS_Toadsworth_Artwork.png/200px-SMS_Toadsworth_Artwork.png",
+  "king-boo": "https://www.mariowiki.com/images/thumb/b/bf/MKWorld_King_Boo_artwork.png/200px-MKWorld_King_Boo_artwork.png"
+};
+
+characters.forEach((character) => {
+  const portrait = supplementalPortraits[character.id];
+  if (portrait) character.portrait = portrait;
+});
+
+
 const seriesNames = {platform:"PLATAFORMAS",kart:"KART",party:"PARTY",rpg:"RPG",sports:"DEPORTES",other:"OTROS"};
 const roleNames = {hero:"HÉROE",ally:"ALIADO",rival:"RIVAL",villain:"VILLANO",enemy:"ENEMIGO"};
 const gameGrid = document.getElementById("games-grid");
@@ -251,7 +306,7 @@ function renderGames() {
 
 function characterOption(character, index) {
   const portrait = character.portrait
-    ? `<img src="${character.portrait}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false">`
+    ? `<img src="${character.portrait}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false">`
     : "";
   const fallback = `<span class="character-thumb-fallback" ${character.portrait ? "hidden" : ""}>${escapeHTML(character.symbol)}</span>`;
   const selected = character.id === activeCharacterId;
@@ -297,6 +352,7 @@ function selectCharacter(id) {
   if (character.portrait) {
     image.onerror = () => { image.hidden = true; initials.hidden = false; };
     image.onload = () => { image.hidden = false; initials.hidden = true; };
+    image.referrerPolicy = "no-referrer";
     image.src = character.portrait;
     image.alt = character.name;
     image.hidden = false;
