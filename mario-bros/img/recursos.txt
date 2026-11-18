@@ -1,0 +1,54 @@
+fuente:
+	https://fonts.google.com/specimen/DynaPuff?vfonly=true
+
+Pagina generador Background:
+	https://10015.io/tools/css-background-pattern-generator
+
+svg generador:
+	https://bgjar.com/cloudy
+
+Nubes svg:
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1440" height="150" preserveAspectRatio="none" viewBox="0 0 1440 150">
+            <g mask="url(&quot;#SvgjsMask1045&quot;)" fill="none">
+                <path d="M1560 150L0 150 L0 91.97Q57.02 28.98, 120 86Q160.7 54.7, 192 95.41Q218.16 49.57, 264 75.73Q326.7 18.43, 384 81.13Q429.71 54.84, 456 100.55Q484.38 56.92, 528 85.3Q590.7 28, 648 90.69Q689.14 59.83, 720 100.97Q743.75 52.72, 792 76.46Q833.87 46.32, 864 88.19Q905.32 57.5, 936 98.82Q984.29 27.11, 1056 75.4Q1098.1 45.5, 1128 87.59Q1193.69 33.28, 1248 98.98Q1296.63 27.61, 1368 76.23Q1410.37 46.6, 1440 88.97Q1505.55 34.52, 1560 100.07z" fill="rgba(93, 24, 24, 1)"></path>
+                <path d="M1536 150L0 150 L0 96.07Q36.9 60.97, 72 97.86Q118.67 72.53, 144 119.21Q202.03 57.25, 264 115.28Q290.03 69.31, 336 95.35Q398.07 37.42, 456 99.49Q499.83 71.32, 528 115.16Q554.21 69.37, 600 95.58Q642.02 65.6, 672 107.62Q737.46 53.08, 792 118.54Q815.95 70.49, 864 94.43Q930.04 40.47, 984 106.51Q1049.11 51.62, 1104 116.72Q1153.71 46.44, 1224 96.15Q1265.12 65.27, 1296 106.38Q1361.81 52.19, 1416 117.99Q1469.27 51.26, 1536 104.53z" fill="rgba(125, 37, 37, 1)"></path>
+                <path d="M1464 150L0 150 L0 136.02Q49.88 65.91, 120 115.79Q156.21 80, 192 116.22Q235.5 87.72, 264 131.21Q300.37 95.58, 336 131.95Q365.86 89.8, 408 119.66Q441.01 80.68, 480 113.69Q527.98 89.67, 552 137.65Q581.84 95.49, 624 125.33Q677.82 59.15, 744 112.97Q791.55 88.53, 816 136.08Q846.26 94.34, 888 124.6Q942.4 59, 1008 113.41Q1078.63 64.05, 1128 134.68Q1158.26 92.94, 1200 123.2Q1243.3 94.5, 1272 137.79Q1322.96 68.76, 1392 119.72Q1435.56 91.28, 1464 134.84z" fill="rgba(177, 53, 53, 1)"></path>
+                <path d="M1464 150L0 150 L0 156.57Q32.36 116.93, 72 149.29Q102.84 108.13, 144 138.96Q180.52 103.48, 216 139.99Q257.38 109.37, 288 150.75Q320.72 111.47, 360 144.18Q390.5 102.68, 432 133.18Q479.99 109.17, 504 157.15Q534.13 115.28, 576 145.41Q629.91 79.32, 696 133.23Q743.76 109, 768 156.76Q798.91 115.68, 840 146.59Q869.71 104.3, 912 134.01Q976.95 78.96, 1032 143.92Q1098.44 90.37, 1152 156.81Q1175.98 108.79, 1224 132.77Q1289.96 78.74, 1344 144.7Q1409.58 90.28, 1464 155.86z" fill="white"></path>
+            </g>
+            <defs>
+                <mask id="SvgjsMask1045">
+                    <rect width="1440" height="150" fill="#ffffff"></rect>
+                </mask>
+            </defs>
+        </svg>
+
+Background menu puntos obscuros:
+    background-image: radial-gradient(#2a2929 2px, transparent 2px), radial-gradient(#2a2929 2px, transparent 2px);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 16px;
+    background-color: #302f2f;
+
+Background simulador de ladrillos rojos:
+	background-image: linear-gradient(45deg, #ff4747 50%, transparent 50%);
+    background-size: 20px 20px;
+    background-color: #E70112;
+
+Background puntos obscuros:
+	background-image: radial-gradient(rgba(41, 40, 40, 0.15) 2px, transparent 2px);
+    	background-size: 32px 32px;
+    	background-color: #ffffff;
+
+Background cruces obscuros:
+    background:
+      	conic-gradient(at 10% 50%,#0000 75%,#302f2f 0),
+      	conic-gradient(at 10% 50%,#0000 75%,#302f2f 0) calc(1*32px) calc(3*32px),
+      	conic-gradient(at 10% 50%,#0000 75%,#302f2f 0) calc(2*32px) calc(1*32px),
+      	conic-gradient(at 10% 50%,#0000 75%,#302f2f 0) calc(3*32px) calc(4*32px),
+      	conic-gradient(at 10% 50%,#0000 75%,#302f2f 0) calc(4*32px) calc(2*32px),
+      	conic-gradient(at 50% 10%,#0000 75%,#302f2f 0) 0 calc(4*32px),
+      	conic-gradient(at 50% 10%,#0000 75%,#302f2f 0) calc(1*32px) calc(2*32px),
+      	conic-gradient(at 50% 10%,#0000 75%,#302f2f 0) calc(2*32px) 0,
+      	conic-gradient(at 50% 10%,#0000 75%,#302f2f 0) calc(3*32px) calc(3*32px),
+      	conic-gradient(at 50% 10%,#0000 75%,#302f2f 0) calc(4*32px) calc(1*32px),
+      	#2a2929;
+    background-size: 160px 160px;
