@@ -1,5 +1,5 @@
 // Replace this placeholder with the public access key generated in your Web3Forms dashboard.
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const WEB3FORMS_ACCESS_KEY = "12ec6bb2-a75f-4f22-aead-63619c6114dd";
 
 const contactForm = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
