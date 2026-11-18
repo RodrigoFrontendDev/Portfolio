@@ -184,14 +184,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .price-art-search kbd { margin-left: auto; padding: .1rem .45rem; border: 1px solid rgba(255,255,255,.12); border-radius: 4px; color: #b0bdd0; }
 .price-art-label { display: flex; justify-content: space-between; margin: 1.5rem 0 .8rem; color: #dce7f7; font-size: .8rem; letter-spacing: .1em; }
 .price-art-label span { color: #75b5ff; }
-.price-art-products { display: grid; gap: .6rem; }
-.price-art-product { display: flex; align-items: center; gap: .9rem; min-height: 48px; padding: .7rem; border: 1px solid rgba(142,166,205,.1); border-radius: 9px; background: rgba(255,255,255,.025); }
-.product-symbol { display: grid; flex: 0 0 34px; height: 34px; place-items: center; border-radius: 8px; color: #d8ebff; background: #1b4779; font-size: 1.25rem; }
-.product-symbol-two { color: #f9dfb2; background: #604a2d; } .product-symbol-three { color: #d4c7ff; background: #443766; }
-.product-lines { display: grid; min-width: 0; gap: .15rem; }
-.product-lines b { overflow: hidden; color: #e8eef9; font-size: .95rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
-.product-lines small { color: #7f8ea7; font-size: .8rem; }
-.price-art-product strong { margin-left: auto; color: #8fc2ff; font-size: .95rem; white-space: nowrap; }
+.marketplace-badges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin-top: 1.7rem; }
+.marketplace-badges span { display: flex; min-height: 63px; flex-direction: column; align-items: center; justify-content: center; gap: .55rem; padding: .7rem .4rem; border: 1px solid rgba(142,166,205,.14); border-radius: 9px; color: #dce7f7; background: rgba(255,255,255,.035); font-size: .85rem; font-weight: 600; text-align: center; }
+.marketplace-badges i { color: #8fc2ff; font-size: 1.45rem; }
+.price-art-footnote { display: flex; align-items: center; gap: .8rem; margin-top: 1.1rem; color: #8797b1; font-size: .88rem; }
+.price-art-footnote i { color: #8fc2ff; }
 
 .contact { background: var(--bg); }
 .contact-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 8rem; align-items: start; }
