@@ -1,0 +1,66 @@
+name: Capture Mario Index portfolio image
+
+on:
+  push:
+    branches:
+      - fix/mario-bros-project-card
+    paths:
+      - "mario-bros/**"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture the redesigned site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory . >/tmp/mario-preview-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          node <<'NODE'
+          const { chromium } = require("playwright");
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage({
+              viewport: { width: 1600, height: 900 },
+              deviceScaleFactor: 1
+            });
+            await page.goto("http://127.0.0.1:4173/mario-bros/", {
+              waitUntil: "domcontentloaded",
+              timeout: 30000
+            });
+            await page.waitForTimeout(5500);
+            await page.screenshot({
+              path: "img/mario-index-preview.jpg",
+              type: "jpeg",
+              quality: 88
+            });
+            await browser.close();
+          })().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Commit the screenshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/mario-index-preview.jpg
+          git commit -m "Add Mario Index portfolio screenshot"
+          git push
