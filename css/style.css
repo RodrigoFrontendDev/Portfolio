@@ -47,6 +47,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   -webkit-backdrop-filter: blur(18px);
 }
 .logo { flex: 0 0 auto; font-family: 'Manrope', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -.08em; }
+.header .logo { display: inline-flex; align-items: center; justify-content: center; }
+.header .logo img { display: block; width: 56px; height: 44px; object-fit: contain; filter: drop-shadow(0 0 9px rgba(87,155,255,.16)); transition: transform .22s ease, filter .22s ease; }
+.header .logo:hover img, .header .logo:focus-visible img { transform: translateY(-1px) scale(1.04); filter: drop-shadow(0 0 9px rgba(54,216,255,.38)) drop-shadow(0 0 18px rgba(134,85,255,.24)); }
+.header .logo:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 5px; border-radius: 5px; }
 .logo span, .section-title span, .home-content h1 span { color: var(--accent-bright); }
 .navbar { margin-left: auto; }
 .nav-list { display: flex; align-items: center; gap: 3.2rem; }
@@ -527,6 +531,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 760px) {
   .header { min-height: 70px; gap: 1.6rem; padding-inline: 5vw; }
   .logo { font-size: 2.5rem; }
+  .header .logo img { width: 49px; height: 39px; }
   .menu-toggle { display: inline-grid; }
 
   .home { grid-template-columns: minmax(0, 1fr); gap: 3.8rem; min-height: auto; padding: 6.5rem 6vw 6rem; }
