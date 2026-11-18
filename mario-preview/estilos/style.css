@@ -181,8 +181,7 @@ img { display: block; max-width: 100%; }
 .characters-footnote a { color: var(--lime); text-decoration: underline; text-decoration-color: rgba(197,232,79,.5); text-underline-offset: 3px; }
 .character-empty { margin: 10px; border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.55); }
 .character-empty b { color: #fff; }
-.archive-section { position: relative; display: grid; grid-template-columns: 80px minmax(0,1fr) minmax(250px,.65fr); align-items: center; gap: 35px; padding: 75px clamp(24px, 7vw, 112px); overflow: hidden; background: var(--yellow); }
-.archive-number { align-self: start; color: rgba(23,27,36,.18); font: 105px/.75 var(--font-display); }
+.archive-section { position: relative; display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.65fr); align-items: center; gap: 35px; padding: 75px clamp(24px, 7vw, 112px); overflow: hidden; background: var(--yellow); }
 .archive-copy { position: relative; z-index: 1; }
 .archive-copy .section-kicker { color: var(--red-dark); }
 .archive-copy .section-kicker span { color: var(--ink); }
@@ -204,7 +203,7 @@ img { display: block; max-width: 100%; }
 .footer-right { display: flex; justify-content: end; gap: 22px; color: rgba(255,255,255,.56); font: 8px var(--font-mono); letter-spacing: .07em; }
 .footer-right a { color: var(--yellow); }
 .legal-note { grid-column: 1/-1; margin: 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.32); font: 8px/1.6 var(--font-mono); }
-.game-dialog { position: fixed; width: min(660px,calc(100% - 32px)); max-width: 660px; max-height: min(620px,calc(100% - 32px)); padding: 0; overflow: auto; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); box-shadow: 12px 12px 0 rgba(0,0,0,.25); }
+.game-dialog { position: fixed; inset: 0; margin: auto; width: min(660px,calc(100% - 32px)); max-width: 660px; max-height: min(620px,calc(100% - 32px)); padding: 0; overflow: auto; border: 1px solid var(--ink); color: var(--ink); background: var(--paper); box-shadow: 12px 12px 0 rgba(0,0,0,.25); }
 .game-dialog::backdrop { background: rgba(13,17,24,.78); backdrop-filter: blur(4px); }
 .game-dialog form { position: absolute; z-index: 5; top: 10px; right: 10px; }
 .dialog-close { display: grid; place-items: center; width: 37px; height: 37px; border: 0; background: var(--yellow); color: var(--ink); font: 29px/.8 var(--font-display); cursor: pointer; }
@@ -283,8 +282,7 @@ img { display: block; max-width: 100%; }
   .profile-art { height: 220px; }
   .character-selector { grid-row: 2; }
   .character-empty { margin: 8px; }
-  .archive-section { grid-template-columns: 40px 1fr; gap: 15px; padding: 60px 22px; }
-  .archive-number { font-size: 70px; }
+  .archive-section { grid-template-columns: 1fr; gap: 15px; padding: 60px 22px; }
   .archive-copy h2 { font-size: clamp(55px,13vw,68px); }
   .archive-stats { grid-column: 2; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 22px; }
   .archive-stats div:last-child { grid-column: auto; }
@@ -308,7 +306,6 @@ img { display: block; max-width: 100%; }
   .game-info-bottom { font-size: 7px; }
   .character-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .profile-copy h3 { font-size: 49px; }
-  .archive-number { font-size: 56px; }
   .archive-section { gap: 9px; }
   .archive-stats strong { font-size: 33px; }
   .archive-stats div > span { letter-spacing: 0; }

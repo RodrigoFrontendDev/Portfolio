@@ -244,19 +244,20 @@ function filteredGames() {
 function renderGames() {
   const list = filteredGames();
   gameGrid.innerHTML = list.map(gameCard).join("");
-  gameCount.textContent = `${String(list.length).padStart(2,"0")} DE ${String(games.length).padStart(2,"0")} JUEGOS ENCONTRADOS`;
+  gameCount.textContent = `${list.length} DE ${games.length} JUEGOS ENCONTRADOS`;
   gamesEmpty.hidden = list.length > 0;
-  document.getElementById("archive-game-total").textContent = String(games.length).padStart(2,"0");
+  document.getElementById("archive-game-total").textContent = String(games.length);
 }
 
 function characterOption(character, index) {
   const portrait = character.portrait
-    ? `<img src="${character.portrait}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`
-    : `<span class="character-thumb-fallback">${escapeHTML(character.symbol)}</span>`;
+    ? `<img src="${character.portrait}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false">`
+    : "";
+  const fallback = `<span class="character-thumb-fallback" ${character.portrait ? "hidden" : ""}>${escapeHTML(character.symbol)}</span>`;
   const selected = character.id === activeCharacterId;
   return `
     <button class="character-option${selected ? " is-selected" : ""}" type="button" data-character-id="${character.id}" aria-pressed="${selected}" aria-label="Ver ficha de ${escapeHTML(character.name)}" style="--character-color:${character.color}">
-      <span class="character-thumb">${portrait}</span>
+      <span class="character-thumb">${portrait}${fallback}</span>
       <span class="character-option-name">${escapeHTML(character.name)}</span>
       <span class="character-option-type">${roleNames[character.role]}</span>
     </button>`;
@@ -274,9 +275,9 @@ function filteredCharacters() {
 function renderCharacters() {
   const list = filteredCharacters();
   characterGrid.innerHTML = list.map((character) => characterOption(character)).join("");
-  characterCount.textContent = `${String(list.length).padStart(2,"0")} PERSONAJES`;
+  characterCount.textContent = `${list.length} PERSONAJES`;
   charactersEmpty.hidden = list.length > 0;
-  document.getElementById("archive-character-total").textContent = String(characters.length).padStart(2,"0");
+  document.getElementById("archive-character-total").textContent = String(characters.length);
 }
 
 function selectCharacter(id) {
@@ -285,7 +286,6 @@ function selectCharacter(id) {
   activeCharacterId = id;
   const image = document.getElementById("profile-image");
   const initials = document.getElementById("profile-initials");
-  document.getElementById("profile-number").textContent = `N.º ${String(characters.indexOf(character) + 1).padStart(3,"0")}`;
   document.getElementById("profile-role").textContent = character.roleLabel;
   document.getElementById("profile-name").textContent = character.name;
   document.getElementById("profile-bio").textContent = character.bio;
