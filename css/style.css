@@ -60,9 +60,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
   align-items: center;
-  gap: 6rem;
+  gap: clamp(6rem, 7.5vw, 10rem);
   max-width: 1440px;
   min-height: min(780px, calc(100svh - 82px));
   margin: 0 auto;
@@ -80,7 +80,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: radial-gradient(circle, rgba(33, 94, 180, .2), transparent 68%);
   content: '';
 }
-.home-content { max-width: 650px; }
+.home-content { max-width: 650px; min-width: 0; }
 .eyebrow, .section-label, .project-type, .project-year, .art-overline, .art-status, .price-art-label {
   font-size: 1.15rem;
   font-weight: 700;
@@ -102,7 +102,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .social-links a { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--muted); font-size: 1.8rem; transition: color .2s ease, border-color .2s ease, transform .2s ease; }
 .social-links a:hover { color: var(--accent-bright); border-color: var(--accent); transform: translateY(-3px); }
 
-.home-visual { position: relative; display: grid; min-height: 440px; place-items: center; }
+.home-visual { position: relative; display: grid; min-width: 0; min-height: 440px; place-items: center; }
 .home-visual > img { position: relative; z-index: 2; width: min(78%, 390px); aspect-ratio: 1; object-fit: cover; border: 8px solid rgba(255,255,255,.045); border-radius: 50%; box-shadow: 0 25px 100px rgba(0,0,0,.35), 0 0 60px rgba(87,155,255,.16); }
 .visual-glow { position: absolute; width: 68%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(70, 139, 237, .28), transparent 68%); filter: blur(8px); }
 .visual-orbit { position: absolute; width: 92%; aspect-ratio: 1; border: 1px solid rgba(121,179,255,.16); border-radius: 50%; transform: rotate(-22deg) scaleY(.52); }
@@ -214,7 +214,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer p, .footer-copy { margin: 0; color: var(--muted-soft); font-size: 1.2rem; }
 
 @media (max-width: 1050px) {
-  .home { gap: 3rem; padding-inline: 6vw; }
+  .home { grid-template-columns: minmax(0, 1fr) minmax(280px, .82fr); gap: 4.5rem; padding-inline: 6vw; }
   .section-shell { padding-inline: 6vw; }
   .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .about-layout, .contact-layout { gap: 4rem; }
@@ -231,13 +231,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav-list a { color: var(--text); font-size: 1.8rem; }
   .menu-close { position: absolute; top: 2rem; right: 2rem; display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--text); background: transparent; font-size: 1.8rem; }
   .language-link { margin-left: 0; }
-  .home { grid-template-columns: 1fr; gap: 2rem; min-height: auto; padding: 8rem 6vw 7rem; }
-  .home-content { order: 2; }
-  .home-visual { order: 1; min-height: 300px; }
-  .home-visual > img { width: min(58%, 270px); }
-  .floating-card-top { top: 10%; right: 2%; }
-  .floating-card-bottom { bottom: 7%; left: 0; }
-  .home-content h1 { font-size: clamp(4.6rem, 11vw, 6.8rem); }
+  .home { grid-template-columns: minmax(0, 1fr); gap: 3.8rem; min-height: auto; padding: 6.5rem 6vw 6rem; }
+  .home-content { order: 1; width: 100%; max-width: 680px; }
+  .home-visual { order: 2; min-height: clamp(250px, 70vw, 340px); margin-top: .5rem; }
+  .home-visual > img { width: clamp(210px, 58%, 280px); }
+  .floating-card-top { top: 8%; right: 0; }
+  .floating-card-bottom { bottom: 6%; left: 0; }
+  .home-content h1 { font-size: clamp(3.8rem, 9.2vw, 5.8rem); }
   .hero-description { font-size: 1.6rem; }
   .section-shell { padding: 7.5rem 6vw; }
   .about-layout, .contact-layout { grid-template-columns: 1fr; }
@@ -254,8 +254,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 430px) {
   .header { gap: 1.1rem; }
   .language-link { font-size: 1.2rem; }
-  .home-visual { min-height: 260px; }
-  .floating-card { padding: .8rem 1rem; font-size: 1rem; }
+  .home-visual { min-height: 250px; }
+  .floating-card { max-width: calc(100% - 1.2rem); padding: .8rem 1rem; font-size: 1rem; }
   .floating-card-icon { width: 26px; height: 26px; }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-actions .btn { width: 100%; }
