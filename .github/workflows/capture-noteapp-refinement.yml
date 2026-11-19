@@ -1,0 +1,127 @@
+name: Capture Noteapp editor refinement
+
+on:
+  push:
+    branches:
+      - preview/noteapp-workspace
+    paths:
+      - .github/workflows/capture-noteapp-refinement.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out preview
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Validate note editor and capture desktop/mobile
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const context = await browser.newContext({
+                viewport: { width: 1440, height: 1000 },
+                deviceScaleFactor: 1,
+                colorScheme: 'light'
+              });
+              const page = await context.newPage();
+              const errors = [];
+              page.on('pageerror', error => errors.push(error.message));
+
+              await page.addInitScript(() => {
+                if (!localStorage.getItem('note-app')) {
+                  localStorage.setItem('note-app', JSON.stringify([
+                    {id:'editor-1',title:'Ideas para el próximo proyecto',content:'Explorar una identidad visual más simple.\n\nDefinir los objetivos principales, preparar referencias y dedicar tiempo a desarrollar las mejores ideas.',color:'lavender',pinned:true,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()},
+                    {id:'editor-2',title:'Cosas para recordar',content:'Comprar café, terminar el libro y ordenar las tareas pendientes de esta semana.',color:'peach',pinned:false,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()},
+                    {id:'editor-3',title:'Inspiración',content:'Menos ruido. Más intención. Crear un espacio para pensar con claridad y escribir sin apuros.',color:'mint',pinned:false,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()}
+                  ]));
+                }
+              });
+
+              const response = await page.goto('https://preview-noteapp-workspace.rodrigonickler.pages.dev/noteapp-preview/', {waitUntil:'domcontentloaded',timeout:120000});
+              assert.ok(response && response.ok(), 'Preview must return HTTP 200');
+              await page.locator('.note-card').first().waitFor({state:'visible',timeout:20000});
+
+              const desktop = await page.locator('.note-card').first().evaluate(card => {
+                const grid = document.querySelector('.notes-grid');
+                const editor = card.querySelector('.note-body');
+                const title = card.querySelector('.note-title');
+                return {
+                  columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+                  cardHeight: Math.round(card.getBoundingClientRect().height),
+                  editorFont: parseFloat(getComputedStyle(editor).fontSize),
+                  editorMinHeight: parseFloat(getComputedStyle(editor).minHeight),
+                  titleFont: parseFloat(getComputedStyle(title).fontSize),
+                  editorBackground: getComputedStyle(editor).backgroundColor
+                };
+              });
+              assert.equal(desktop.columns, 2, 'Desktop should use two wider note columns');
+              assert.ok(desktop.editorFont >= 15, 'Desktop writing text should be at least 15px');
+              assert.ok(desktop.editorMinHeight >= 180, 'Desktop writing area should be spacious');
+              assert.ok(desktop.cardHeight >= 340, 'Desktop note cards should be taller');
+              console.log('Desktop editor metrics:', JSON.stringify(desktop));
+              await page.screenshot({path:'noteapp-preview/.qa-editor-desktop.png',fullPage:true});
+
+              await page.setViewportSize({width:390,height:844});
+              await page.waitForTimeout(200);
+              const mobile = await page.locator('.note-card').first().evaluate(card => {
+                const grid = document.querySelector('.notes-grid');
+                const editor = card.querySelector('.note-body');
+                return {
+                  columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+                  cardWidth: Math.round(card.getBoundingClientRect().width),
+                  editorFont: parseFloat(getComputedStyle(editor).fontSize),
+                  editorMinHeight: parseFloat(getComputedStyle(editor).minHeight),
+                  documentWidth: document.documentElement.scrollWidth
+                };
+              });
+              assert.equal(mobile.columns, 1, 'Mobile should use one wide note column');
+              assert.ok(mobile.editorFont >= 15, 'Mobile writing text should be at least 15px');
+              assert.ok(mobile.editorMinHeight >= 155, 'Mobile writing area should remain spacious');
+              assert.ok(mobile.documentWidth <= 391, 'Mobile should not overflow horizontally');
+              console.log('Mobile editor metrics:', JSON.stringify(mobile));
+              await page.screenshot({path:'noteapp-preview/.qa-editor-mobile.png',fullPage:true});
+
+              await page.locator('#create-note').click();
+              const newId = await page.evaluate(() => JSON.parse(localStorage.getItem('note-app'))[0].id);
+              await page.locator('.note-card[data-id="' + newId + '"] .note-title').fill('Prueba de escritura');
+              await page.locator('.note-card[data-id="' + newId + '"] .note-body').fill('El editor conserva el texto y lo guarda automáticamente.');
+              await page.reload({waitUntil:'domcontentloaded'});
+              assert.equal(await page.locator('.note-card[data-id="' + newId + '"] .note-title').inputValue(),'Prueba de escritura');
+              assert.match(await page.locator('.note-card[data-id="' + newId + '"] .note-body').inputValue(),/guarda automáticamente/);
+              assert.deepEqual(errors,[], 'No JavaScript runtime errors');
+              console.log('PASS: editor size, desktop columns, mobile layout, no overflow, create and LocalStorage persistence.');
+              await context.close();
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => {console.error(error);process.exit(1);});
+          NODE
+
+      - name: Commit screenshots for inspection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add noteapp-preview/.qa-editor-desktop.png noteapp-preview/.qa-editor-mobile.png
+          git commit -m "Capture refined Noteapp editing experience"
+          git push origin HEAD:refs/heads/preview/noteapp-workspace
