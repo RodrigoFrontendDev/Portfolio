@@ -94,7 +94,7 @@ jobs:
               await page.locator('#search-input').fill('');
 
               // Pin, color, and view controls should work.
-              const firstCard = page.locator('.note-card').filter({ has: page.locator('.note-title[value="Ideas para el próximo proyecto"]') }).first();
+              const firstCard = page.locator('.note-card[data-id="sample-1"]');
               await firstCard.locator('[data-action="pin"]').click();
               await firstCard.locator('[data-color="blue"]').click();
               await page.locator('#view-toggle').click();
