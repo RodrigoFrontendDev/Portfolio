@@ -58,14 +58,19 @@ const year = document.querySelector("#current-year");
 if (year) year.textContent = String(new Date().getFullYear());
 
 
-// Keep the desktop navigation indicator in sync with the section in view.
+// Track the section crossing a fixed viewport line.
+// This is reliable for tall sections (such as the projects grid), where
+// IntersectionObserver ratios can be misleading.
 const sectionLinks = [...(nav?.querySelectorAll('.nav-list a[href^="#"]') ?? [])];
-const observedSections = sectionLinks
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
+const sectionTargets = sectionLinks
+  .map((link) => ({
+    link,
+    section: document.querySelector(link.getAttribute("href")),
+  }))
+  .filter((item) => item.section);
 
 function setActiveSection(sectionId) {
-  for (const link of sectionLinks) {
+  for (const { link } of sectionTargets) {
     if (link.hash === `#${sectionId}`) {
       link.setAttribute("aria-current", "location");
     } else {
@@ -74,16 +79,45 @@ function setActiveSection(sectionId) {
   }
 }
 
-if ("IntersectionObserver" in window && observedSections.length) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-    if (visible[0]) setActiveSection(visible[0].target.id);
-  }, {
-    rootMargin: "-30% 0px -55% 0px",
-    threshold: [0, .15, .35, .6],
-  });
+function updateActiveSection() {
+  if (!sectionTargets.length) return;
 
-  observedSections.forEach((section) => sectionObserver.observe(section));
+  const activationLine = Math.min(window.innerHeight * 0.42, window.innerHeight - 120);
+  let active = null;
+  let lastPassed = null;
+
+  for (const item of sectionTargets) {
+    const rect = item.section.getBoundingClientRect();
+    if (rect.top <= activationLine) lastPassed = item.section;
+    if (rect.top <= activationLine && rect.bottom > activationLine) {
+      active = item.section;
+      break;
+    }
+  }
+
+  // Keep the last section selected near the page bottom, after its lower
+  // edge has passed the activation line.
+  active ??= lastPassed;
+
+  if (active) {
+    setActiveSection(active.id);
+  } else {
+    for (const { link } of sectionTargets) link.removeAttribute("aria-current");
+  }
 }
+
+let activeSectionFrame = 0;
+function scheduleActiveSectionUpdate() {
+  if (activeSectionFrame) return;
+  activeSectionFrame = window.requestAnimationFrame(() => {
+    activeSectionFrame = 0;
+    updateActiveSection();
+  });
+}
+
+window.addEventListener("scroll", scheduleActiveSectionUpdate, { passive: true });
+window.addEventListener("resize", scheduleActiveSectionUpdate, { passive: true });
+sectionLinks.forEach((link) => {
+  link.addEventListener("click", () => setActiveSection(link.hash.slice(1)));
+});
+updateActiveSection();
