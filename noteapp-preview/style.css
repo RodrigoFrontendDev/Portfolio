@@ -273,3 +273,85 @@ button{border:0}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+ 
+/* Spacious note editor: larger writing canvas and clearer type scale. */
+body{font-size:16px}
+.intro-subtitle{font-size:14px}
+.nav-item{font-size:13px}
+.storage-card p{font-size:10px}
+.search-box input{font-size:13px}
+.filter-tab{font-size:12px}
+.stat-card span:not(.stat-icon){font-size:11px}
+.note-date{font-size:10px}
+.note-word-count{font-size:9px}
+
+.notes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.note-card{min-height:360px;padding:20px 21px 17px;border-radius:17px}
+.note-card-top{min-height:30px}
+.icon-button{width:32px;height:32px}
+.icon-button svg{width:18px;height:18px}
+.note-title{margin:15px 0 12px;font-size:20px;letter-spacing:-.5px}
+.note-body{
+  min-height:190px;
+  padding:16px 17px;
+  border:1px solid rgba(61,71,104,.1);
+  border-radius:12px;
+  background:rgba(255,255,255,.53);
+  color:#404b65;
+  font-size:16px;
+  line-height:1.85;
+  resize:vertical;
+  transition:background .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.note-body::placeholder{color:#8992a8;opacity:1}
+.note-body:focus{
+  border-color:rgba(124,104,224,.5);
+  background:rgba(255,255,255,.88);
+  box-shadow:0 0 0 4px rgba(140,120,246,.1);
+}
+.note-card-bottom{padding-top:14px;margin-top:13px}
+.color-dot{width:13px;height:13px}
+.note-word-count{font-size:9px;letter-spacing:.4px}
+
+.notes-grid.is-list .note-card{
+  min-height:132px;
+  padding:17px 19px;
+}
+.notes-grid.is-list .note-title{font-size:18px}
+.notes-grid.is-list .note-body{
+  min-height:76px;
+  max-height:88px;
+  padding:9px 12px;
+  font-size:14px;
+  line-height:1.65;
+  resize:vertical;
+}
+.notes-grid.is-list .note-card-bottom{padding-top:6px;margin-top:0}
+
+@media(max-width:980px){
+  .notes-grid{gap:16px}
+  .note-card{min-height:340px;padding:18px}
+  .note-body{min-height:175px;font-size:15px}
+}
+@media(max-width:760px){
+  .intro-subtitle{font-size:13px}
+  .notes-grid{grid-template-columns:1fr;gap:14px}
+  .note-card{min-height:320px;padding:17px 18px 15px;border-radius:15px}
+  .note-title{font-size:19px}
+  .note-body{min-height:170px;padding:15px;font-size:15px;line-height:1.8}
+  .note-card-bottom{padding-top:12px;margin-top:11px}
+  .color-dot{width:13px;height:13px}
+  .notes-grid.is-list .note-card{grid-template-columns:minmax(90px,.65fr) minmax(130px,1.35fr) auto;min-height:120px}
+  .notes-grid.is-list .note-title{font-size:17px}
+  .notes-grid.is-list .note-body{grid-column:1/3;grid-row:2;min-height:66px;max-height:78px;font-size:14px}
+}
+@media(max-width:430px){
+  .note-card{min-height:310px;padding:16px}
+  .note-title{font-size:18px}
+  .note-body{min-height:165px;padding:14px;font-size:15px}
+  .notes-grid.is-list .note-card{grid-template-columns:1fr auto;min-height:unset;padding:14px}
+  .notes-grid.is-list .note-title{grid-column:1;grid-row:2;font-size:17px}
+  .notes-grid.is-list .note-body{grid-column:1/-1;grid-row:3;min-height:90px;max-height:110px}
+  .notes-grid.is-list .note-card-bottom{grid-column:1/-1;grid-row:4;flex-direction:row;align-items:center;padding-top:8px;margin-top:4px}
+}
