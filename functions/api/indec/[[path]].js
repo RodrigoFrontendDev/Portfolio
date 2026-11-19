@@ -84,12 +84,44 @@ export async function onRequest({ request, params }) {
   }
 
   try {
-    // No registrar ni persistir Authorization: solo se reenvía a la API oficial.
-    const upstream = await fetch(upstreamUrl.toString(), {
-      method: "GET",
-      headers: upstreamHeaders,
-      redirect: "error"
-    });
+    // Cloudflare Workers no admite redirect: "error". Seguimos manualmente
+    // y solo aceptamos destinos HTTPS dentro del /v1/ oficial del INDEC.
+    const trustedOrigin = new URL(API_BASE).origin;
+    let currentUrl = upstreamUrl;
+    let upstream;
+
+    for (let redirects = 0; redirects <= 3; redirects++) {
+      upstream = await fetch(currentUrl.toString(), {
+        method: "GET",
+        headers: upstreamHeaders,
+        redirect: "manual"
+      });
+
+      const isRedirect = [301, 302, 303, 307, 308].includes(upstream.status);
+      if (!isRedirect) break;
+
+      const location = upstream.headers.get("Location");
+      if (!location) {
+        throw new Error("El INDEC respondió con una redirección sin encabezado Location.");
+      }
+
+      const nextUrl = new URL(location, currentUrl);
+      if (
+        nextUrl.protocol !== "https:" ||
+        nextUrl.origin !== trustedOrigin ||
+        !nextUrl.pathname.startsWith("/v1/") ||
+        nextUrl.username ||
+        nextUrl.password
+      ) {
+        throw new Error("Se bloqueó una redirección fuera de https://api.indec.gob.ar/v1/.");
+      }
+
+      if (redirects === 3) {
+        throw new Error("La API del INDEC superó el máximo de 3 redirecciones.");
+      }
+
+      currentUrl = nextUrl;
+    }
 
     const responseHeaders = new Headers({
       "Content-Type": upstream.headers.get("Content-Type") || "application/json",
