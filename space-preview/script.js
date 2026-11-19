@@ -162,39 +162,70 @@
   let canvasContext = null;
   let starData = [];
 
-  const setLayerScene = (layer, scene) => {
-    if (!layer) return;
+  let sceneTransitionId = 0;
+
+  const setLayerScene = async (layer, scene) => {
+    if (!layer) return false;
     const fallback = layer.querySelector(".journey-scene-fallback");
     const photo = layer.querySelector(".journey-scene-photo");
-    if (!fallback || !photo) return;
+    if (!fallback || !photo) return false;
+
     layer.dataset.scene = scene;
     layer.classList.remove("has-photo");
-    photo.removeAttribute("src");
     photo.onload = null;
+    photo.onerror = null;
+    photo.removeAttribute("src");
     fallback.src = makeFallbackImage(scene);
-    loadSceneImage(scene).then(url => {
-      if (!url || layer.dataset.scene !== scene) return;
-      photo.onload = () => {
-        if (layer.dataset.scene === scene) layer.classList.add("has-photo");
+
+    const url = await loadSceneImage(scene);
+    if (layer.dataset.scene !== scene) return false;
+    if (!url) return true;
+
+    const imageReady = new Promise(resolve => {
+      let settled = false;
+      const finish = loaded => {
+        if (settled) return;
+        settled = true;
+        photo.onload = null;
+        photo.onerror = null;
+        resolve(loaded);
       };
-      photo.onerror = () => layer.classList.remove("has-photo");
+      photo.onload = () => finish(true);
+      photo.onerror = () => finish(false);
       photo.src = url;
-      if (photo.complete && photo.naturalWidth > 0) layer.classList.add("has-photo");
+      if (photo.complete) finish(photo.naturalWidth > 0);
+    });
+
+    let loaded = await imageReady;
+    if (loaded && typeof photo.decode === "function") {
+      try {
+        await photo.decode();
+      } catch {
+        loaded = photo.complete && photo.naturalWidth > 0;
+      }
+    }
+    if (layer.dataset.scene !== scene) return false;
+    if (loaded && photo.complete && photo.naturalWidth > 0) layer.classList.add("has-photo");
+    return true;
+  };
+
+  const preloadNearbyScenes = index => {
+    [index - 1, index + 1].forEach(neighborIndex => {
+      const neighbor = entries[neighborIndex];
+      if (neighbor) loadSceneImage(neighbor.dataset.scene || "");
     });
   };
 
   const activateMission = index => {
     if (index < 0 || index >= entries.length || index === activeIndex) return;
     activeIndex = index;
+    const transitionId = ++sceneTransitionId;
     const entry = entries[index];
     const scene = entry.dataset.scene || "sputnik";
     const nextLayerIndex = 1 - activeLayer;
     const nextLayer = sceneLayers[nextLayerIndex];
     const previousLayer = sceneLayers[activeLayer];
-    setLayerScene(nextLayer, scene);
-    nextLayer.classList.add("is-visible");
-    if (previousLayer) previousLayer.classList.remove("is-visible");
-    activeLayer = nextLayerIndex;
+
     entries.forEach((item, itemIndex) => {
       const active = itemIndex === index;
       item.classList.toggle("is-active", active);
@@ -205,7 +236,20 @@
     if (hudTitle) hudTitle.textContent = (entry.dataset.title || "").toUpperCase();
     if (hudYear) hudYear.textContent = (entry.dataset.year || "").replace(/[^0-9]/g, "").slice(-4);
     if (hudProgress) hudProgress.style.width = ((index + 1) / entries.length * 100) + "%";
-    if (entries[index + 1]) loadSceneImage(entries[index + 1].dataset.scene || "");
+
+    if (nextLayer) {
+      nextLayer.classList.remove("is-visible");
+      setLayerScene(nextLayer, scene).then(ready => {
+        if (!ready || transitionId !== sceneTransitionId || activeIndex !== index) return;
+        requestAnimationFrame(() => {
+          if (transitionId !== sceneTransitionId || activeIndex !== index) return;
+          nextLayer.classList.add("is-visible");
+          if (previousLayer) previousLayer.classList.remove("is-visible");
+          activeLayer = nextLayerIndex;
+        });
+      });
+    }
+    preloadNearbyScenes(index);
   };
 
   const resizeStarfield = () => {
@@ -338,7 +382,9 @@
 
   if (stage && entries.length) {
     resizeStarfield();
+    activeIndex = 0;
     setLayerScene(sceneLayers[0], entries[0].dataset.scene || "sputnik");
+    preloadNearbyScenes(0);
     window.addEventListener("resize", () => {
       resizeStarfield();
       scheduleScrollUpdate();
