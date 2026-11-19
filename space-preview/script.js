@@ -161,6 +161,11 @@
   let canvasHeight = 0;
   let canvasContext = null;
   let starData = [];
+  let starTravel = 0;
+  let starCameraX = 0;
+  let lastStarFrame = 0;
+  let starAnimationFrame = 0;
+  let cosmosVisible = false;
 
   let sceneTransitionId = 0;
 
@@ -276,18 +281,21 @@
     });
   };
 
-  const drawStarfield = (travel, velocity) => {
+  const drawStarfield = (travel, velocity, time = 0, cameraOffsetX = 0) => {
     if (!canvasContext || !canvasWidth || !canvasHeight) return;
     const ctx = canvasContext;
+    const seconds = reducedMotion ? 0 : time * 0.001;
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     const warp = reducedMotion ? 0 : clamp(velocity / 24, 0, 1);
     for (const star of starData) {
-      const distance = star.depth;
-      const rawY = star.y * canvasHeight + travel * distance * 1.7;
+      const depth = star.depth;
+      const rawY = star.y * canvasHeight + travel * depth * 1.7 + seconds * depth * 0.62;
       const y = ((rawY % (canvasHeight + 80)) + (canvasHeight + 80)) % (canvasHeight + 80) - 40;
-      const x = star.x * canvasWidth + Math.sin(travel * 0.0008 + star.phase) * 22 * distance;
-      const alpha = 0.3 + Math.min(distance * 0.19, 0.55);
-      const streak = warp * (8 + distance * 86);
+      const driftX = reducedMotion ? 0 : Math.cos(seconds * 0.12 + star.phase) * 7 * depth;
+      const x = star.x * canvasWidth + Math.sin(travel * 0.0008 + star.phase) * 22 * depth + cameraOffsetX * depth * 0.075 + driftX;
+      const twinkle = reducedMotion ? 1 : 0.68 + (Math.sin(seconds * 1.35 + star.phase) + 1) * 0.16;
+      const alpha = (0.3 + Math.min(depth * 0.19, 0.55)) * twinkle;
+      const streak = warp * (8 + depth * 86);
       ctx.beginPath();
       ctx.moveTo(x, y);
       ctx.lineTo(x + star.drift * streak * 0.38, y + streak);
@@ -296,13 +304,69 @@
       ctx.stroke();
       if (warp < 0.25) {
         ctx.beginPath();
-        ctx.arc(x, y, star.radius * (0.8 + distance * 0.28), 0, Math.PI * 2);
+        ctx.arc(x, y, star.radius * (0.8 + depth * 0.28), 0, Math.PI * 2);
         ctx.fillStyle = "rgba(235,245,255," + (alpha + 0.08) + ")";
+        ctx.fill();
+      }
+    }
+    if (!reducedMotion) {
+      const meteorPeriod = 14200;
+      const cycle = Math.floor(time / meteorPeriod);
+      const progress = (time % meteorPeriod) / meteorPeriod;
+      if (progress < 0.085) {
+        const flight = progress / 0.085;
+        const sx = canvasWidth * (0.12 + (cycle * 23 % 58) / 100);
+        const sy = canvasHeight * (0.12 + (cycle * 13 % 38) / 100);
+        const x = sx + flight * canvasWidth * 0.34;
+        const y = sy + flight * canvasHeight * 0.2;
+        const tail = 120 * (1 - flight * 0.35);
+        const gradient = ctx.createLinearGradient(x - tail, y - tail * 0.58, x, y);
+        gradient.addColorStop(0, "rgba(151,205,255,0)");
+        gradient.addColorStop(0.72, "rgba(151,205,255,0.13)");
+        gradient.addColorStop(1, "rgba(235,248,255,0.9)");
+        ctx.beginPath();
+        ctx.moveTo(x - tail, y - tail * 0.58);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, 2.1, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(239,249,255," + (0.25 + Math.sin(flight * Math.PI) * 0.75) + ")";
         ctx.fill();
       }
     }
   };
 
+  const stopStarfieldAnimation = () => {
+    if (starAnimationFrame) cancelAnimationFrame(starAnimationFrame);
+    starAnimationFrame = 0;
+  };
+  const animateStarfield = timestamp => {
+    starAnimationFrame = 0;
+    if (!cosmosVisible || document.hidden || reducedMotion) return;
+    if (timestamp - lastStarFrame >= 40) {
+      drawStarfield(starTravel, scrollVelocity, timestamp, starCameraX);
+      lastStarFrame = timestamp;
+    }
+    starAnimationFrame = requestAnimationFrame(animateStarfield);
+  };
+  const setCosmosVisibility = visible => {
+    cosmosVisible = visible;
+    if (visible && !document.hidden && !reducedMotion) {
+      if (!starAnimationFrame) starAnimationFrame = requestAnimationFrame(animateStarfield);
+    } else stopStarfieldAnimation();
+  };
+  if (journey && !reducedMotion && "IntersectionObserver" in window) {
+    const cosmosObserver = new IntersectionObserver(changes => {
+      setCosmosVisibility(changes.some(change => change.isIntersecting));
+    }, { rootMargin: "120px 0px" });
+    cosmosObserver.observe(journey);
+  } else setCosmosVisibility(Boolean(journey) && !reducedMotion);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopStarfieldAnimation();
+    else setCosmosVisibility(cosmosVisible);
+  });
   const updateFlight = () => {
     if (!journey || !entries.length) return;
     const viewportHeight = window.innerHeight || 1;
@@ -352,7 +416,9 @@
     }
     const sectionTop = journey.getBoundingClientRect().top + window.scrollY;
     const distanceTravelled = window.scrollY - sectionTop;
-    drawStarfield(distanceTravelled + p * viewportHeight, scrollVelocity);
+    starTravel = distanceTravelled + p * viewportHeight;
+    starCameraX = travelX;
+    if (reducedMotion) drawStarfield(starTravel, 0, 0, starCameraX);
     if (hudProgress) hudProgress.style.width = ((nearestIndex + p) / entries.length * 100) + "%";
     if (hudIndex) hudIndex.textContent = pad(nearestIndex + 1);
   };
