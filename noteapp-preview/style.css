@@ -355,3 +355,71 @@ body{font-size:16px}
   .notes-grid.is-list .note-body{grid-column:1/-1;grid-row:3;min-height:90px;max-height:110px}
   .notes-grid.is-list .note-card-bottom{grid-column:1/-1;grid-row:4;flex-direction:row;align-items:center;padding-top:8px;margin-top:4px}
 }
+
+ 
+/* Interface typography: larger UI labels and supporting copy; note title/body entry sizes stay untouched. */
+body{font-size:16px}
+.workspace-copy strong{font-size:14px}
+.workspace-copy small{font-size:9px}
+.create-note-button{font-size:15px}
+.create-note-button kbd{font-size:11px}
+.nav-caption,.section-overline,.eyebrow{font-size:10px;letter-spacing:1.25px}
+.nav-item{font-size:14px}
+.nav-count{font-size:12px}
+.storage-card strong{font-size:12px}
+.storage-card p{font-size:11px;line-height:1.55}
+.sidebar-meta{font-size:9px;letter-spacing:.85px}
+.date-label{font-size:11px}
+.search-box input{font-size:15px}
+.search-box kbd{font-size:10px}
+.intro-subtitle{font-size:16px;line-height:1.8}
+.stat-card strong{font-size:23px}
+.stat-card span:not(.stat-icon){font-size:12px}
+.stats-note{font-size:12px;line-height:1.7}
+.notes-heading-group h2{font-size:24px}
+.notes-heading-group h2 span{font-size:12px}
+.sort-control select{font-size:12px}
+.filter-tab{font-size:14px}
+.filter-tab span{font-size:11px}
+.note-date{font-size:11px}
+.note-word-count{font-size:10px}
+.empty-kicker{font-size:10px}
+.empty-state h3{font-size:22px}
+.empty-state>p:not(.empty-kicker){font-size:14px;line-height:1.8}
+.empty-create-button{font-size:13px}
+.main-footer{font-size:9px;letter-spacing:1px}
+
+@media(max-width:980px){
+  .intro-subtitle{font-size:15px}
+  .stat-card strong{font-size:21px}
+  .stat-card span:not(.stat-icon){font-size:11px}
+}
+@media(max-width:760px){
+  .workspace-copy strong{font-size:14px}
+  .workspace-copy small{font-size:9px}
+  .create-note-button{font-size:15px}
+  .nav-caption,.section-overline,.eyebrow{font-size:10px}
+  .nav-item{font-size:14px}
+  .nav-count{font-size:12px}
+  .storage-card strong{font-size:12px}
+  .storage-card p{font-size:11px}
+  .intro-subtitle{font-size:15px;line-height:1.75}
+  .stat-card strong{font-size:20px}
+  .stat-card span:not(.stat-icon){font-size:10px}
+  .notes-heading-group h2{font-size:21px}
+  .sort-control select{font-size:11px}
+  .filter-tab{font-size:13px}
+  .filter-tab span{font-size:10px}
+  .empty-state h3{font-size:21px}
+  .empty-state>p:not(.empty-kicker){font-size:14px}
+  .empty-create-button{font-size:13px}
+  .main-footer{font-size:8px;letter-spacing:.7px}
+}
+@media(max-width:430px){
+  .intro-subtitle{font-size:14px}
+  .stat-card strong{font-size:19px}
+  .stat-card span:not(.stat-icon){font-size:10px}
+  .notes-heading-group h2{font-size:20px}
+  .filter-tab{font-size:13px}
+  .empty-state>p:not(.empty-kicker){font-size:14px}
+}
