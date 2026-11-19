@@ -63,29 +63,29 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .home {
   position: relative;
-  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
   align-items: center;
   gap: clamp(10rem, 10vw, 15rem);
-  max-width: 1440px;
+  width: 100%;
+  max-width: none;
   min-height: min(780px, calc(100svh - 82px));
-  margin: 0 auto;
+  background: var(--bg);
+  margin: 0;
   padding: 9rem max(7vw, calc((100vw - var(--content)) / 2)) 10rem;
-  overflow: hidden;
 }
 .home::before {
   position: absolute;
-  z-index: -2;
-  top: -28rem;
-  left: -18rem;
-  width: 72rem;
-  height: 72rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(33, 94, 180, .2), transparent 68%);
+  z-index: 0;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: radial-gradient(ellipse 72rem 58rem at 16% 36%, rgba(33, 94, 180, .16) 0%, rgba(33, 94, 180, .07) 43%, transparent 78%);
   content: '';
+  pointer-events: none;
 }
-.home-content { max-width: 650px; min-width: 0; }
+.home-content { position: relative; z-index: 1; max-width: 650px; min-width: 0; }
 .eyebrow, .section-label, .project-type, .project-year, .art-overline, .art-status, .price-art-label {
   font-size: 1.15rem;
   font-weight: 700;
@@ -123,7 +123,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .visual-glow { position: absolute; width: 68%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(70, 139, 237, .28), transparent 68%); filter: blur(8px); }
 .visual-orbit { position: absolute; width: 92%; aspect-ratio: 1; border: 1px solid rgba(121,179,255,.16); border-radius: 50%; transform: rotate(-22deg) scaleY(.52); }
 .visual-orbit-two { width: 105%; transform: rotate(58deg) scaleY(.58); border-color: rgba(121,179,255,.1); }
-.floating-card { position: absolute; z-index: 3; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border: 0; border-radius: 14px; background: rgba(18, 29, 51, .88); box-shadow: 0 16px 44px rgba(0,0,0,.24); color: var(--muted); font-size: 1.2rem; font-weight: 600; backdrop-filter: blur(14px); }
+.floating-card { position: absolute; z-index: 3; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border: 0; border-radius: 14px; background: rgba(18, 29, 51, .88); box-shadow: 0 16px 44px rgba(0,0,0,.24); color: var(--muted); font-size: 1.2rem; font-weight: 600; }
 .floating-card-top { top: 13%; right: -1rem; }
 .floating-card-bottom { bottom: 12%; left: -1rem; }
 .floating-card-icon { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; color: var(--accent-bright); background: var(--accent-soft); font-size: 1.5rem; }
@@ -582,299 +582,119 @@ ul { margin: 0; padding: 0; list-style: none; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Liquid-glass finish for the technology chips inside project cards. */
-.project-tags li[data-tech] {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border: 1px solid rgba(218, 234, 255, .2);
-  background-image:
-    radial-gradient(ellipse at 18% -22%, rgba(255, 255, 255, .28), transparent 68%),
-    linear-gradient(138deg, rgba(255, 255, 255, .13), transparent 48%, rgba(255, 255, 255, .055));
-  -webkit-backdrop-filter: blur(16px) saturate(175%);
-  backdrop-filter: blur(16px) saturate(175%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .28),
-    inset 0 -1px 0 rgba(255, 255, 255, .045),
-    0 5px 14px rgba(0, 0, 0, .14);
-  text-shadow: 0 1px 10px currentColor;
-  transition:
-    transform .28s cubic-bezier(.2, .8, .2, 1),
-    border-color .28s ease,
-    box-shadow .28s ease,
-    filter .28s ease;
+
+/* Nordify Liquid Glass hosts: preserve the live backdrop for SVG refraction. */
+.lg-host {
+  overflow: visible !important;
+  isolation: auto !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 
-.project-tags li[data-tech]:hover {
-  z-index: 1;
-  border-color: rgba(225, 240, 255, .42);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .36),
-    inset 0 -1px 0 rgba(255, 255, 255, .07),
-    0 7px 20px rgba(0, 0, 0, .2),
-    0 0 16px color-mix(in srgb, currentColor 18%, transparent);
-  filter: brightness(1.12) saturate(1.08);
-  transform: translateY(-2px) scale(1.035);
+.lg-host[data-lg-dark] {
+  --lg-tint: rgba(20, 31, 52, .06);
+  --lg-rim-w: 1px;
+  --lg-rim-fade: 3px;
 }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .project-tags li[data-tech] {
-    background-image:
-      radial-gradient(ellipse at 18% -22%, rgba(255, 255, 255, .2), transparent 68%),
-      linear-gradient(138deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .055));
-  }
+.lg-host[data-lg-dark] + .lg-cover {
+  --lg-underlay: .035;
+  --lg-spec: .3;
 }
 
-.skill-item:hover {
-  border-color: rgba(180, 216, 255, .34);
-  background:
-    radial-gradient(ellipse at 16% -24%, rgba(255, 255, 255, .23), transparent 64%),
-    linear-gradient(138deg, rgba(87, 155, 255, .2), rgba(255, 255, 255, .055) 54%, rgba(121, 179, 255, .12));
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .32),
-    inset 0 -1px 0 rgba(255, 255, 255, .07),
-    0 12px 30px rgba(18, 86, 170, .2),
-    0 0 22px rgba(87, 155, 255, .09);
-  transform: translateY(-4px);
-}
-
-.skill-item iconify-icon {
-  filter: drop-shadow(0 2px 7px rgba(121, 179, 255, .12));
-}
-
-.project-card,
-.about-note,
-.contact-form,
-.price-art-window {
-  overflow: hidden;
-}
-
+/* Project cards: glass is translucent, while the project screenshot remains crisp. */
 .project-card {
-  background-color: rgba(17, 27, 48, .66);
-  transition:
-    transform .3s cubic-bezier(.2, .8, .2, 1),
-    border-color .3s ease,
-    box-shadow .3s ease,
-    background-color .3s ease;
+  overflow: visible;
+  border: 1px solid rgba(196, 216, 248, .16);
+  background: rgba(17, 27, 48, .23);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 12px 34px rgba(0,0,0,.18);
+  transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
+}
+
+.project-card > .project-media {
+  border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
 }
 
 .project-card:hover,
 .project-card:focus-within {
-  border-color: rgba(180, 216, 255, .34);
-  background-color: rgba(24, 42, 70, .72);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .3),
-    0 22px 54px rgba(0, 0, 0, .28),
-    0 0 26px rgba(87, 155, 255, .17);
+  transform: none;
+  border-color: rgba(196, 216, 248, .3);
+  background-color: rgba(25, 40, 66, .3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.19), 0 18px 44px rgba(0,0,0,.24);
 }
 
-.project-content {
-  position: relative;
-  z-index: 2;
-}
-
+/* Technology tiles receive the same refractive material. */
 .skill-item {
-  border-radius: 18px;
-  color: #e4edff;
-  background-color: rgba(20, 32, 55, .48);
-}
-
-.skill-item:hover {
-  border-color: rgba(180, 216, 255, .38);
-  background-color: rgba(39, 75, 125, .48);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .32),
-    0 12px 30px rgba(18, 86, 170, .2),
-    0 0 22px rgba(87, 155, 255, .1);
-}
-
-.about-note,
-.contact-form {
-  background-color: rgba(17, 27, 48, .58);
-}
-
-.floating-card {
-  border-radius: 16px;
-  background-color: rgba(18, 29, 51, .58);
-}
-
-.price-art-window {
-  background-color: rgba(9, 17, 31, .72);
-}
-
-.marketplace-badges span {
-  background-color: rgba(255, 255, 255, .045);
-}
-
-.project-count {
-  background-color: rgba(255, 255, 255, .055);
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .project-card,
-  .skill-item,
-  .about-note,
-  .contact-form,
-  .floating-card,
-  .price-art-window,
-  .marketplace-badges span,
-  .project-count {
-    background-color: rgba(22, 34, 57, .96);
-  }
-}
-
-
-/* Keep the hero full-bleed and make its glow fade without a visible box edge. */
-.home {
-  width: 100%;
-  max-width: none;
-  margin-inline: 0;
-  border: 0;
-  background: var(--bg);
-}
-
-.home::before {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse 72rem 58rem at 16% 36%,
-    rgba(33, 94, 180, .16) 0%,
-    rgba(33, 94, 180, .07) 43%,
-    transparent 78%
-  );
-}
-
-/* Preserve the hero chips' absolute anchors and clip their moving glass highlights. */
-.floating-card {
-  overflow: hidden;
-  isolation: isolate;
-}
-
-
-/* Refined glass hover: ambient edge light and depth, never a travelling shine. */
-.project-tags li[data-tech]::after,
-.skill-item::before,
-.skill-item::after,
-.project-card::after,
-.about-note::after,
-.contact-form::after,
-.floating-card::after,
-.price-art-window::after,
-.marketplace-badges span::after {
-  content: none;
-  display: none;
-}
-
-.project-card,
-.skill-item,
-.about-note,
-.contact-form,
-.floating-card,
-.price-art-window,
-.marketplace-badges span {
-  transition:
-    transform .32s cubic-bezier(.2, .8, .2, 1),
-    border-color .32s ease,
-    background-color .32s ease,
-    box-shadow .32s ease,
-    filter .32s ease;
-}
-
-.project-card:hover,
-.project-card:focus-within {
-  transform: translateY(-5px);
-  border-color: rgba(153, 195, 255, .34);
-  background-color: rgba(23, 39, 65, .76);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .28),
-    inset 0 -1px 0 rgba(125, 174, 255, .06),
-    0 22px 54px rgba(0, 0, 0, .28),
-    0 0 0 1px rgba(112, 169, 255, .08),
-    0 12px 38px rgba(58, 128, 230, .13);
+  overflow: visible;
+  border: 1px solid rgba(196, 216, 248, .17);
+  background: rgba(255,255,255,.035);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 8px 22px rgba(0,0,0,.13);
+  transition: border-color .28s ease, background-color .28s ease, box-shadow .28s ease, color .28s ease;
 }
 
 .skill-item:hover,
 .skill-item:focus-visible {
-  transform: translateY(-3px);
-  border-color: rgba(153, 195, 255, .4);
-  background-color: rgba(45, 76, 122, .46);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .31),
-    inset 0 -1px 0 rgba(125, 174, 255, .07),
-    0 12px 28px rgba(0, 0, 0, .2),
-    0 0 26px rgba(75, 145, 245, .13);
+  transform: none;
+  border-color: rgba(196, 216, 248, .32);
+  background: rgba(87, 155, 255, .075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 10px 26px rgba(0,0,0,.18);
 }
 
-.project-tags li[data-tech]:hover {
-  transform: translateY(-1px);
-  border-color: rgba(225, 240, 255, .46);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .34),
-    inset 0 -1px 0 rgba(255, 255, 255, .06),
-    0 5px 14px rgba(0, 0, 0, .2),
-    0 0 14px color-mix(in srgb, currentColor 14%, transparent);
-  filter: brightness(1.08) saturate(1.06);
-}
-
-.about-note:hover {
-  transform: translateY(-3px);
-  border-color: rgba(153, 195, 255, .32);
-  background-color: rgba(34, 57, 91, .56);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .28),
-    0 18px 44px rgba(0, 0, 0, .2),
-    0 0 30px rgba(75, 145, 245, .12);
-}
-
-.contact-form:focus-within {
-  border-color: rgba(153, 195, 255, .32);
-  background-color: rgba(28, 44, 70, .72);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .28),
-    0 18px 48px rgba(0, 0, 0, .2),
-    0 0 30px rgba(75, 145, 245, .12);
+/* Supporting cards and the hero's floating chips. */
+.about-note,
+.contact-form,
+.floating-card {
+  overflow: visible;
+  border: 1px solid rgba(196, 216, 248, .17);
+  background: rgba(20, 31, 52, .32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 12px 32px rgba(0,0,0,.17);
+  transition: border-color .28s ease, background-color .28s ease, box-shadow .28s ease;
 }
 
 .floating-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(178, 211, 255, .38);
-  background-color: rgba(30, 47, 76, .76);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .3),
-    0 16px 38px rgba(0, 0, 0, .28),
-    0 0 24px rgba(75, 145, 245, .14);
+  transform: none;
+  border-color: rgba(196, 216, 248, .34);
+  background: rgba(35, 53, 82, .42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 14px 34px rgba(0,0,0,.22);
 }
 
-.price-art-window:hover {
-  transform: translateY(-3px) rotate(-1deg);
-  border-color: rgba(153, 195, 255, .3);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .26),
-    0 26px 66px rgba(0, 0, 0, .38),
-    0 0 28px rgba(75, 145, 245, .13);
+.about-note:hover,
+.contact-form:focus-within {
+  border-color: rgba(196, 216, 248, .3);
+  background: rgba(28, 43, 68, .38);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 40px rgba(0,0,0,.2);
 }
 
-.marketplace-badges span:hover {
-  transform: translateY(-2px);
-  border-color: rgba(153, 195, 255, .32);
-  background-color: rgba(87, 155, 255, .11);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .24),
-    0 8px 20px rgba(0, 0, 0, .2),
-    0 0 18px rgba(75, 145, 245, .1);
+/* Subtle color fields behind the glass make its refraction visible without a shine animation. */
+.skills {
+  background:
+    radial-gradient(ellipse at 18% 34%, rgba(87,155,255,.075), transparent 42%),
+    radial-gradient(ellipse at 84% 72%, rgba(123,92,255,.045), transparent 40%),
+    var(--bg);
+}
+
+.portfolio {
+  background:
+    radial-gradient(ellipse at 13% 24%, rgba(87,155,255,.065), transparent 37%),
+    radial-gradient(ellipse at 88% 76%, rgba(123,92,255,.04), transparent 39%),
+    #0e1629;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card,
-  .skill-item,
-  .about-note,
-  .contact-form,
-  .floating-card,
-  .price-art-window,
-  .marketplace-badges span,
-  .project-tags li[data-tech] {
+  .project-card, .skill-item, .about-note, .contact-form, .floating-card {
     transition: none;
   }
+}
+
+.home {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  overflow: visible;
+  isolation: auto;
+}
+.home-content,
+.home-visual {
+  position: relative;
+  z-index: 1;
 }
