@@ -659,3 +659,78 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
 }
 
+/* Liquid-glass cards for the main technology toolkit. */
+.skill-item {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(218, 234, 255, .16);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 16% -24%, rgba(255, 255, 255, .17), transparent 64%),
+    linear-gradient(138deg, rgba(255, 255, 255, .105), rgba(255, 255, 255, .028) 54%, rgba(87, 155, 255, .07));
+  -webkit-backdrop-filter: blur(18px) saturate(175%);
+  backdrop-filter: blur(18px) saturate(175%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .23),
+    inset 0 -1px 0 rgba(255, 255, 255, .045),
+    0 8px 24px rgba(0, 0, 0, .13);
+  transition:
+    transform .3s cubic-bezier(.2, .8, .2, 1),
+    border-color .3s ease,
+    background .3s ease,
+    box-shadow .3s ease,
+    color .3s ease;
+}
+
+.skill-item::before {
+  position: absolute;
+  z-index: -1;
+  inset: -30% -65%;
+  border-radius: inherit;
+  background: linear-gradient(
+    108deg,
+    transparent 38%,
+    rgba(255, 255, 255, .2) 50%,
+    transparent 62%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-30%);
+  transition: transform .75s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
+}
+
+.skill-item:hover {
+  border-color: rgba(180, 216, 255, .34);
+  background:
+    radial-gradient(ellipse at 16% -24%, rgba(255, 255, 255, .23), transparent 64%),
+    linear-gradient(138deg, rgba(87, 155, 255, .2), rgba(255, 255, 255, .055) 54%, rgba(121, 179, 255, .12));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .32),
+    inset 0 -1px 0 rgba(255, 255, 255, .07),
+    0 12px 30px rgba(18, 86, 170, .2),
+    0 0 22px rgba(87, 155, 255, .09);
+  transform: translateY(-4px);
+}
+
+.skill-item:hover::before {
+  opacity: .85;
+  transform: translateX(30%);
+}
+
+.skill-item iconify-icon {
+  filter: drop-shadow(0 2px 7px rgba(121, 179, 255, .12));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-item,
+  .skill-item::before {
+    transition: none;
+  }
+
+  .skill-item:hover {
+    transform: none;
+  }
+}
+
