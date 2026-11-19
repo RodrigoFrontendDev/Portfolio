@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   capture:
@@ -94,6 +94,21 @@ jobs:
             if (failures.length) throw new Error(failures.join("\\n"));
           })().catch(error => { console.error(error); process.exit(1); });
           NODE
+
+      - name: Commit screenshots to the PR branch
+        if: success()
+        env:
+          PR_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "${PR_BRANCH}:refs/remotes/origin/${PR_BRANCH}"
+          git switch --force-create "${PR_BRANCH}" "refs/remotes/origin/${PR_BRANCH}"
+          cp artifacts/open-sound-preview.jpg img/open-sound-preview.jpg
+          cp artifacts/price-search-preview.jpg img/price-search-preview.jpg
+          git add img/open-sound-preview.jpg img/price-search-preview.jpg
+          git commit -m "Add live Open Sound and Price Search screenshots"
+          git push origin "HEAD:${PR_BRANCH}"
 
       - name: Upload screenshots
         if: always()
