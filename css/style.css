@@ -12,7 +12,7 @@
   --accent: #B7D96B;
   --accent-bright: #D9EE91;
   --accent-soft: rgba(183, 217, 107, .14);
-  --border: rgba(173, 194, 230, .09);
+  --border: rgba(195, 204, 166, .12);
   --radius-lg: 24px;
   --radius-md: 16px;
   --content: 1180px;
@@ -41,7 +41,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: 3.2rem;
   min-height: 82px;
   padding: 1.4rem max(5vw, calc((100vw - var(--content)) / 2));
-  border-bottom: 1px solid rgba(173, 194, 230, .1);
+  border-bottom: 1px solid rgba(195, 204, 166, .1);
   background: rgba(11, 16, 32, .88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -265,7 +265,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: .9rem;
   min-height: 42px;
   padding: .85rem 1.3rem .85rem 1.6rem;
-  border: 1px solid rgba(173, 194, 230, .17);
+  border: 1px solid rgba(195, 204, 166, .19);
   border-radius: 999px;
   color: #dce8fb;
   background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(183,217,107,.07));
@@ -647,7 +647,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .lg-host[data-lg-dark] {
-  --lg-tint: rgba(20, 31, 52, .06);
+  --lg-tint: rgba(27, 35, 24, .06);
   --lg-rim-w: 1px;
   --lg-rim-fade: 3px;
 }
@@ -660,7 +660,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Project cards: glass is translucent, while the project screenshot remains crisp. */
 .project-card {
   overflow: visible;
-  border: 1px solid rgba(196, 216, 248, .16);
+  border: 1px solid rgba(204, 218, 169, .19);
   background: rgba(17, 27, 48, .23);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 12px 34px rgba(0,0,0,.18);
   transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease;
@@ -673,7 +673,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .project-card:hover,
 .project-card:focus-within {
   transform: none;
-  border-color: rgba(196, 216, 248, .3);
+  border-color: rgba(204, 218, 169, .34);
   background-color: rgba(25, 40, 66, .3);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.19), 0 18px 44px rgba(0,0,0,.24);
 }
@@ -681,7 +681,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Technology tiles receive the same refractive material. */
 .skill-item {
   overflow: visible;
-  border: 1px solid rgba(196, 216, 248, .17);
+  border: 1px solid rgba(204, 218, 169, .2);
   background: rgba(255,255,255,.035);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 8px 22px rgba(0,0,0,.13);
   transition: border-color .28s ease, background-color .28s ease, box-shadow .28s ease, color .28s ease;
@@ -690,7 +690,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .skill-item:hover,
 .skill-item:focus-visible {
   transform: none;
-  border-color: rgba(196, 216, 248, .32);
+  border-color: rgba(204, 218, 169, .36);
   background: rgba(183, 217, 107, .075);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 10px 26px rgba(0,0,0,.18);
 }
@@ -700,23 +700,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 .contact-form,
 .floating-card {
   overflow: visible;
-  border: 1px solid rgba(196, 216, 248, .17);
-  background: rgba(20, 31, 52, .32);
+  border: 1px solid rgba(204, 218, 169, .2);
+  background: rgba(27, 35, 24, .38);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 12px 32px rgba(0,0,0,.17);
   transition: border-color .28s ease, background-color .28s ease, box-shadow .28s ease;
 }
 
 .floating-card:hover {
   transform: none;
-  border-color: rgba(196, 216, 248, .34);
-  background: rgba(35, 53, 82, .42);
+  border-color: rgba(204, 218, 169, .38);
+  background: rgba(43, 57, 34, .46);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 14px 34px rgba(0,0,0,.22);
 }
 
 .about-note:hover,
 .contact-form:focus-within {
-  border-color: rgba(196, 216, 248, .3);
-  background: rgba(28, 43, 68, .38);
+  border-color: rgba(204, 218, 169, .34);
+  background: rgba(34, 44, 29, .42);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 40px rgba(0,0,0,.2);
 }
 
@@ -846,3 +846,16 @@ ul { margin: 0; padding: 0; list-style: none; }
   --lg-rim-w: 1px;
   --lg-rim-fade: 3px;
 }
+
+
+/* Copper is a restrained secondary note, not another dominant accent. */
+.eyebrow-dot {
+  background: #C8835E;
+  box-shadow: 0 0 14px rgba(200, 131, 94, .55);
+}
+
+.project-type,
+.section-label {
+  color: var(--accent-bright);
+}
+
