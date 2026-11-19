@@ -19,13 +19,198 @@ button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{ma
 @media(max-width:780px){.shell{padding:12px}.topbar{padding-bottom:14px}.top-link{font-size:0;gap:0}.top-link svg{width:17px;height:17px}.hero{padding:25px 22px 20px;border-radius:19px}.orbit{width:90px;height:90px;right:19px;bottom:18px;opacity:.35}.hero-copy{max-width:90%}.metrics{gap:13px;margin-top:19px}.metric strong{font-size:20px}.metric span{font-size:9px}.token-card{align-items:flex-start;flex-direction:column;gap:11px;padding:14px}.token-intro{min-width:0}.token-field-wrap{width:100%;max-width:none}.register{white-space:normal;align-self:center}.workspace{grid-template-columns:1fr;gap:12px}.sidebar{position:static;max-height:none;padding:12px}.endpoint-list{display:flex;overflow-x:auto;gap:5px;padding-bottom:3px}.group-label{display:none}.endpoint-item{flex:0 0 210px;margin:0;border-color:var(--line)}.sidebar-footer{display:none}.panel{padding:15px}.request-head{flex-direction:column}.method-route{max-width:100%}.route-text{overflow-wrap:anywhere;white-space:normal}}
 @media(max-width:540px){.brand-mark{width:37px;height:37px}.brand-name{font-size:14px}.pill{padding:6px 8px;font-size:9px}.top-actions{gap:3px}h1{font-size:33px}.hero-copy{font-size:12px;max-width:100%}.metrics{flex-wrap:wrap;gap:9px 14px}.metric-divider{display:none}.orbit{display:none}.token-field-wrap{display:grid;grid-template-columns:1fr 42px}.register{grid-column:1/-1}.query-grid{grid-template-columns:1fr 1fr}.query-grid .field:first-child,.query-grid .field:nth-child(2){grid-column:span 2}.filter-row{grid-template-columns:minmax(0,1fr) 86px 34px}.filter-row input{grid-column:1/3;grid-row:2}.filter-row .remove-filter{grid-column:3;grid-row:1/3;height:100%}.inline-actions{align-items:flex-start;flex-direction:column}.request-controls{align-items:stretch;flex-direction:column}.button-group .button{flex:1}.result-toolbar{align-items:flex-start;flex-direction:column}.pagination{align-items:flex-start;flex-direction:column}.footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Readability: comfortable default sizes, 16px base with 14px+ secondary text. */
+html { font-size: 16px; }
+body { font-size: 16px; }
+.brand-name { font-size: 16px; }
+.brand-sub { font-size: 11px; }
+.top-link { font-size: 13px; }
+.pill { font-size: 12px; }
+.hero-copy { font-size: 16px; }
+.metric span { font-size: 13px; }
+.token-title { font-size: 14px; }
+.token-note { font-size: 13px; }
+.sidebar-heading { font-size: 14px; }
+.count { font-size: 12px; }
+.search { font-size: 14px; }
+.group-label { font-size: 11px; }
+.endpoint-label { font-size: 13px; }
+.endpoint-route { font-size: 11px; }
+.sidebar-footer { font-size: 12px; }
+.overline { font-size: 11px; }
+h2 { font-size: clamp(23px, 2.2vw, 29px); }
+.description { font-size: 15px; }
+.method-badge { font-size: 12px; }
+.route-text { font-size: 12px; }
+.primary-key strong { font-size: 11px; }
+.key-chip { font-size: 11px; }
+.section-title { font-size: 15px; }
+.section-hint { font-size: 13px; }
+.field label { font-size: 12px; }
+.control { font-size: 14px; }
+.filter-row select, .filter-row input { font-size: 13px; }
+.text-button { font-size: 13px; }
+.switch-row { font-size: 13px; }
+.request-url-head { font-size: 11px; }
+.request-url { font-size: 12px; }
+.request-note { font-size: 12px; }
+.button { font-size: 13px; }
+.result-title { font-size: 16px; }
+.result-subtitle { font-size: 12px; }
+.meta-chip { font-size: 11px; }
+.tab { font-size: 13px; }
+.result-toolbar p { font-size: 12px; }
+.small-action { font-size: 12px; }
+.empty-state h3 { font-size: 15px; }
+.empty-state p { font-size: 13px; }
+th { font-size: 12px; }
+td { font-size: 13px; }
+.json-view { font-size: 12px; }
+.pagination-text { font-size: 12px; }
+.pagination .button { font-size: 12px; }
+.curl-code { font-size: 11px; }
+.footer { font-size: 12px; }
+
+/* Theme control */
+.theme-toggle {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:38px;
+  padding:0 12px; border:1px solid var(--line); border-radius:9px; color:var(--soft);
+  background:var(--surface); font-size:12px; font-weight:800; transition:background .15s,border-color .15s,color .15s;
+}
+.theme-toggle:hover { color:var(--green); border-color:#abd8ca; background:var(--greenSoft); }
+.theme-toggle svg { width:16px; height:16px; }
+.theme-sun { display:none; }
+html[data-theme="dark"] .theme-sun { display:block; }
+html[data-theme="dark"] .theme-moon { display:none; }
+
+/* Quick-start guide */
+.guide-panel {
+  margin-top:16px; padding:19px 21px 16px; border:1px solid var(--line); border-radius:18px;
+  background:var(--surface); box-shadow:0 5px 18px #1826300e;
+}
+.guide-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:15px; }
+.guide-kicker { margin:0 0 5px; color:var(--green); font-size:11px; font-weight:850; letter-spacing:.13em; }
+.guide-title { margin:0; font-size:22px; line-height:1.2; letter-spacing:-.04em; }
+.guide-intro { margin:5px 0 0; color:var(--soft); font-size:14px; line-height:1.55; }
+.guide-docs { flex:0 0 auto; color:var(--green); text-decoration:none; font-size:13px; font-weight:800; }
+.guide-docs:hover { text-decoration:underline; }
+.guide-steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; list-style:none; padding:0; margin:0; }
+.guide-step { display:flex; gap:11px; padding:13px 12px; border:1px solid var(--line); border-radius:12px; background:var(--surface2); min-width:0; }
+.guide-number { display:grid; place-items:center; flex:0 0 29px; width:29px; height:29px; border-radius:9px; color:var(--green); background:var(--greenSoft); font:850 11px var(--mono); }
+.guide-step h3 { margin:1px 0 5px; font-size:14px; font-weight:850; letter-spacing:-.02em; }
+.guide-step p { margin:0; color:var(--soft); font-size:13px; line-height:1.55; }
+.guide-step a { display:inline-block; margin-top:7px; color:var(--green); font-size:12px; font-weight:800; text-decoration:none; }
+.guide-step a:hover { text-decoration:underline; }
+.guide-step code { padding:2px 4px; border-radius:4px; background:var(--surface3); color:var(--green2); font:11px var(--mono); }
+.guide-tip { display:flex; align-items:flex-start; gap:9px; margin-top:12px; padding:10px 12px; border:1px solid #e7eee9; border-radius:10px; color:var(--soft); background:var(--surface2); font-size:13px; line-height:1.5; }
+.guide-tip strong { color:var(--ink); }
+.guide-tip-icon { color:var(--orange); font-size:16px; line-height:1; }
+
+/* Dark theme */
+html[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#0e1518; --surface:#151f23; --surface2:#1a272b; --ink:#e7efec; --soft:#bdcbc6;
+  --muted:#91a19b; --line:#2a393b; --green:#50c6a4; --green2:#70dbb9; --greenSoft:#173b34;
+  --orangeSoft:#3c2d1e; --redSoft:#3d2525;
+}
+html[data-theme="dark"] body {
+  background:radial-gradient(ellipse at 8% 0%,rgba(18,131,107,.14),transparent 28rem),
+  radial-gradient(ellipse at 92% 7%,rgba(217,128,50,.07),transparent 25rem),var(--bg);
+}
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .guide-panel { background:var(--surface); border-color:var(--line); box-shadow:0 8px 24px #0000001f; }
+html[data-theme="dark"] .search,
+html[data-theme="dark"] .control,
+html[data-theme="dark"] .filter-row select,
+html[data-theme="dark"] .filter-row input { color:var(--ink); background:var(--surface2); border-color:var(--line); }
+html[data-theme="dark"] .search::placeholder,
+html[data-theme="dark"] .control::placeholder { color:#81918c; }
+html[data-theme="dark"] .endpoint-item { color:var(--soft); }
+html[data-theme="dark"] .endpoint-item:hover { color:var(--ink); background:#213137; }
+html[data-theme="dark"] .endpoint-item.active { color:#8be4c7; background:#173b34; border-color:#285e50; }
+html[data-theme="dark"] .endpoint-route { color:#93a49e; }
+html[data-theme="dark"] .method-route { background:#173b34; border-color:#285e50; }
+html[data-theme="dark"] .method-badge { color:#8be4c7; background:#214d40; }
+html[data-theme="dark"] .route-text { color:#b7d8cd; }
+html[data-theme="dark"] .primary-key { background:#182428; border-color:var(--line); }
+html[data-theme="dark"] .key-chip { color:#c4d2cd; background:#263438; }
+html[data-theme="dark"] .remove-filter,
+html[data-theme="dark"] .button,
+html[data-theme="dark"] .small-action,
+html[data-theme="dark"] .theme-toggle { color:var(--soft); background:var(--surface2); border-color:var(--line); }
+html[data-theme="dark"] .remove-filter:hover { color:#ff9993; background:#3d2525; border-color:#663b3b; }
+html[data-theme="dark"] .button.primary { color:#062b22; background:linear-gradient(135deg,#65d6b4,#38a98b); border-color:#50c6a4; }
+html[data-theme="dark"] .button.primary:hover { background:#7ae0c0; }
+html[data-theme="dark"] .text-button { color:var(--green); }
+html[data-theme="dark"] .text-button:hover { background:#1d3d36; }
+html[data-theme="dark"] .switch-row { color:var(--soft); }
+html[data-theme="dark"] .request-url-box,
+html[data-theme="dark"] .json-view,
+html[data-theme="dark"] .curl-code { background:#091115; border-color:#26373a; color:#d5e8e1; }
+html[data-theme="dark"] .request-url { color:#a9efd7; }
+html[data-theme="dark"] .result-icon { color:#70dbb9; background:#173b34; }
+html[data-theme="dark"] .meta-chip { color:#bdcbc6; background:#1b292d; border-color:#304044; }
+html[data-theme="dark"] .meta-chip.success { color:#82e2be; background:#173b34; border-color:#285e50; }
+html[data-theme="dark"] .meta-chip.error { color:#ffaaa3; background:#3d2525; border-color:#663b3b; }
+html[data-theme="dark"] .tab { color:#9aaba5; }
+html[data-theme="dark"] .tab.active { color:#79dbba; border-bottom-color:#50c6a4; }
+html[data-theme="dark"] .empty-state { background:#182428; border-color:#354649; }
+html[data-theme="dark"] .empty-art { color:#70dbb9; background:#173b34; }
+html[data-theme="dark"] .empty-art:after { border-color:#285e50; }
+html[data-theme="dark"] .table-wrap { border-color:var(--line); }
+html[data-theme="dark"] th { color:#b8c8c2; background:#1b292d; border-color:var(--line); }
+html[data-theme="dark"] td { color:#d4dfda; border-color:#263539; }
+html[data-theme="dark"] tbody tr:hover td { background:#1c302d; }
+html[data-theme="dark"] .null-value { color:#84958e; }
+html[data-theme="dark"] .guide-step { background:var(--surface2); border-color:var(--line); }
+html[data-theme="dark"] .guide-step code { color:#87e1c2; background:#26383a; }
+html[data-theme="dark"] .guide-tip { color:var(--soft); background:#182428; border-color:var(--line); }
+html[data-theme="dark"] .guide-tip strong { color:var(--ink); }
+html[data-theme="dark"] .token-toggle { border-color:#ffffff3b; }
+html[data-theme="dark"] .register { color:#b7efdd; }
+html[data-theme="dark"] .pill { color:#f4c18e; }
+html[data-theme="dark"] .footer { color:#91a19b; }
+html[data-theme="dark"] .footer a,
+html[data-theme="dark"] .guide-docs,
+html[data-theme="dark"] .guide-step a { color:var(--green); }
+@media(max-width:1050px) {
+  .guide-steps { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:780px) {
+  .theme-label { display:none; }
+  .theme-toggle { width:39px; min-height:38px; padding:0; }
+  .guide-heading { align-items:flex-start; flex-direction:column; }
+  .guide-panel { padding:16px; }
+}
+@media(max-width:540px) {
+  .guide-steps { grid-template-columns:1fr; }
+  .guide-title { font-size:20px; }
+  .guide-intro { font-size:14px; }
+  .hero-copy { font-size:15px; }
+  .guide-step p { font-size:14px; }
+  .guide-tip { font-size:13px; }
+}
+
 </style>
+<script>
+try {
+  if (localStorage.getItem("indec-explorer-theme") === "dark") {
+    document.documentElement.dataset.theme = "dark";
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0e1518");
+  }
+} catch (error) {}
+</script>
 </head>
 <body>
 <div class="shell">
 <header class="topbar">
 <a class="brand" href="./" aria-label="INDEC Explorer"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg></span><span class="brand-copy"><span class="brand-name">INDEC Explorer</span><span class="brand-sub">API Workbench</span></span></a>
-<div class="top-actions"><span class="pill"><span class="dot"></span>BETA</span><a class="top-link" href="https://api.indec.gob.ar/docs" target="_blank" rel="noreferrer">Documentación oficial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m-11 4L20 4"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></a><a class="top-link" href="https://api.indec.gob.ar" target="_blank" rel="noreferrer">Portal INDEC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m-11 4L20 4"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></a></div>
+<div class="top-actions"><span class="pill"><span class="dot"></span>BETA</span><a class="top-link" href="https://api.indec.gob.ar/docs" target="_blank" rel="noreferrer">Documentación oficial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m-11 4L20 4"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></a><a class="top-link" href="https://api.indec.gob.ar" target="_blank" rel="noreferrer">Portal INDEC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m-11 4L20 4"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg></a><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">
+<svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z"/></svg>
+<svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+<span class="theme-label">Modo oscuro</span></button></div>
 </header>
 <section class="hero">
 <div class="hero-content"><div class="eyebrow">Datos públicos · Argentina</div><h1>Estadísticas oficiales.<br>Consultas a tu manera.</h1><p class="hero-copy">Un espacio de trabajo para explorar los servicios del Catálogo API-INDEC. Elegí un conjunto de datos, construí una consulta y recibí la respuesta directamente desde la API oficial.</p>
@@ -33,6 +218,36 @@ button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{ma
 <div class="orbit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-8"/><path d="M16 5h4v4"/></svg></div>
 <div class="token-card"><div class="token-intro"><span class="token-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7 2 2-2 2 1.5 1.5-2.1 2.1-1.5-1.5-2.3 2.3"/></svg></span><div><p class="token-title">Tu token de acceso</p><p class="token-note">Se usa solo para llamar a INDEC desde tu navegador. No se guarda ni se envía a otro servidor.</p></div></div>
 <div class="token-field-wrap"><input id="token-input" class="token-input" type="password" placeholder="Pegá tu JWT token de INDEC" autocomplete="off" spellcheck="false" aria-label="Token API-INDEC"><button id="token-toggle" class="token-toggle" type="button" aria-label="Mostrar token"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button><a class="register" href="https://api.indec.gob.ar/register" target="_blank" rel="noreferrer">¿Todavía no tenés token? Crear cuenta ↗</a></div></div>
+</section>
+
+<section class="guide-panel" aria-labelledby="guide-title">
+  <div class="guide-heading">
+    <div>
+      <p class="guide-kicker">GUÍA RÁPIDA · 1 MINUTO</p>
+      <h2 id="guide-title" class="guide-title">Tu primera consulta, paso a paso</h2>
+      <p class="guide-intro">No necesitás conocer toda la API. Seguí estos cuatro pasos para empezar a explorar datos oficiales.</p>
+    </div>
+    <a class="guide-docs" href="https://api.indec.gob.ar/docs" target="_blank" rel="noreferrer">Ver documentación oficial ↗</a>
+  </div>
+  <ol class="guide-steps">
+    <li class="guide-step">
+      <span class="guide-number">01</span>
+      <div><h3>Generá tu token</h3><p>Creá una cuenta en el portal del INDEC, verificá tu correo y generá el JWT desde tu perfil. Guardalo en un lugar seguro: el portal lo muestra una sola vez.</p><a href="https://api.indec.gob.ar" target="_blank" rel="noreferrer">Ir al portal INDEC ↗</a></div>
+    </li>
+    <li class="guide-step">
+      <span class="guide-number">02</span>
+      <div><h3>Conectá tu sesión</h3><p>Pegá el token en el campo verde de arriba. El explorador lo mantiene solo en memoria durante esta sesión; no lo almacena.</p></div>
+    </li>
+    <li class="guide-step">
+      <span class="guide-number">03</span>
+      <div><h3>Elegí y filtrá los datos</h3><p>Seleccioná un servicio, por ejemplo IPC nacional. Agregá filtros como <code>anio · gte · 2024</code> y ajustá columnas, orden y límite.</p></div>
+    </li>
+    <li class="guide-step">
+      <span class="guide-number">04</span>
+      <div><h3>Ejecutá y explorá</h3><p>Presioná “Ejecutar consulta”. Revisá la tabla o el JSON, avanzá con la paginación o descargá la respuesta.</p></div>
+    </li>
+  </ol>
+  <div class="guide-tip"><span class="guide-tip-icon">✦</span><span><strong>Consejo:</strong> empezá con un límite de 20–100 filas. La API permite hasta 1.000 por respuesta y los conjuntos grandes conviene recorrerlos por páginas.</span></div>
 </section>
 <div class="workspace">
 <aside class="sidebar"><div class="sidebar-top"><span class="sidebar-heading">Servicios de datos</span><span class="count" id="service-count">19 / 19</span></div>
@@ -81,6 +296,24 @@ const state={datasets:[],selectedPath:"",filters:[],result:null,activeTab:"table
 const el=id=>document.getElementById(id);
 const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let toastTimer=0;
+
+function applyTheme(theme, persist) {
+  const dark = theme === "dark";
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  const button = el("theme-toggle");
+  if (button) {
+    button.setAttribute("aria-pressed", dark ? "true" : "false");
+    button.setAttribute("aria-label", dark ? "Activar modo claro" : "Activar modo oscuro");
+    button.title = dark ? "Activar modo claro" : "Activar modo oscuro";
+    button.querySelector(".theme-label").textContent = dark ? "Modo claro" : "Modo oscuro";
+  }
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", dark ? "#0e1518" : "#f3f5f7");
+  if (persist) {
+    try { localStorage.setItem("indec-explorer-theme", dark ? "dark" : "light"); } catch (error) {}
+  }
+}
+
 function toast(message){el("toast-message").textContent=message;el("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el("toast").classList.remove("show"),2300)}
 async function copyText(value,message){try{await navigator.clipboard.writeText(value);toast(message||"Copiado al portapapeles")}catch(e){const t=document.createElement("textarea");t.value=value;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();const ok=document.execCommand("copy");t.remove();toast(ok?(message||"Copiado"):"No se pudo copiar")}}
 function current(){return state.datasets.find(d=>d.path===state.selectedPath)}
@@ -104,6 +337,8 @@ async function run(){if(state.busy)return;const token=el("token-input").value.tr
 function page(direction){const offset=Math.max(0,Number(el("offset").value)||0),limit=Math.min(1000,Math.max(1,Number(el("limit").value)||100));el("offset").value=String(Math.max(0,offset+direction*limit));preview();run()}
 function download(){if(state.result===null)return;const blob=new Blob([JSON.stringify(state.result,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="indec-"+(current()?.path||"response").replace(/^\//,"").replace(/[^a-z0-9-_]/gi,"-")+".json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
 function reset(){const d=current();if(!d)return;state.filters=[];el("select-columns").value="";el("order-by").value=d.primaryKey?.length?d.primaryKey[0]+".desc":"";el("limit").value="100";el("offset").value="0";el("count-exact").checked=false;renderFilters();preview()}
+applyTheme(document.documentElement.dataset.theme || "light", false);
+el("theme-toggle").addEventListener("click",()=>applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark",true));
 el("token-toggle").addEventListener("click",()=>{const i=el("token-input"),show=i.type==="text";i.type=show?"password":"text";el("token-toggle").setAttribute("aria-label",show?"Mostrar token":"Ocultar token")});
 el("endpoint-search").addEventListener("input",renderList);el("add-filter").addEventListener("click",addFilter);el("refresh-catalog").addEventListener("click",refreshCatalog);el("run-request").addEventListener("click",run);el("clear-result").addEventListener("click",clearResult);el("reset-query").addEventListener("click",reset);
 el("copy-url").addEventListener("click",()=>{const r=buildRequest();if(r)copyText(r.url.toString(),"URL de consulta copiada")});el("copy-curl").addEventListener("click",()=>copyText(curl(),"Comando cURL copiado"));el("copy-json").addEventListener("click",()=>{if(state.result!==null)copyText(JSON.stringify(state.result,null,2),"JSON copiado")});el("download-json").addEventListener("click",download);el("prev-page").addEventListener("click",()=>page(-1));el("next-page").addEventListener("click",()=>page(1));
