@@ -110,8 +110,8 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
 .mission-image { height: 220px; background-size: cover; background-position: center; position: relative; }
 .mission-image::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(0deg, #0e1725, transparent); }
 .image-artemis { background-image: url("https://images-assets.nasa.gov/image/art002e015231/art002e015231~large.jpg"); background-position: center 48%; }
-.image-roman { background-image: url("https://cdn.esawebb.org/archives/images/wallpaper2/weic2216b.jpg"); background-color: #111d32; }
-.image-mmx { background-image: url("https://d2pn8kiwq2w21t.cloudfront.net/original_images/1-MMX.jpg"); background-position: center; background-color: #1a2034; }
+.image-roman { background-image: url("https://stsci-opo.org/STScI-01EVSTEFYZD1CP2186PZF37KM6.jpg"); background-color: #111d32; }
+.image-mmx { background-image: url("https://www.isas.jaxa.jp/topics/assets_c/2022/10/topics_20221024-thumb-700xauto-11670.png"); background-position: center; background-color: #1a2034; }
 .image-starship { background-image: radial-gradient(ellipse at 50% 100%, rgba(237,128,69,.5), transparent 35%), linear-gradient(145deg, #283043, #080e1a 65%); background-color: #151b29; }
 .image-starship::before { content: ""; position: absolute; z-index: 1; width: 29px; height: 145px; left: calc(50% - 14px); top: 28px; background: linear-gradient(90deg, #8292a4, #e8edf3 45%, #74869c); clip-path: polygon(50% 0, 68% 19%, 79% 82%, 100% 100%, 0 100%, 21% 82%, 32% 19%); filter: drop-shadow(0 0 16px rgba(244,180,126,.24)); }
 .image-starship::after { content: ""; position: absolute; inset: 30% 0 0; background: linear-gradient(0deg, #0e1725, transparent); }
