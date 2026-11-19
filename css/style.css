@@ -734,3 +734,160 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
 }
 
+
+
+/* Unified liquid-glass treatment across every card-like surface. */
+.project-card,
+.skill-item,
+.about-note,
+.contact-form,
+.floating-card,
+.price-art-window,
+.marketplace-badges span,
+.project-count {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(218, 234, 255, .17);
+  background-color: rgba(20, 32, 55, .52);
+  background-image:
+    radial-gradient(ellipse at 14% -18%, rgba(255, 255, 255, .17), transparent 62%),
+    linear-gradient(138deg, rgba(255, 255, 255, .095), rgba(255, 255, 255, .025) 56%, rgba(87, 155, 255, .075));
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .24),
+    inset 0 -1px 0 rgba(255, 255, 255, .045),
+    0 12px 34px rgba(0, 0, 0, .16);
+}
+
+.project-card,
+.about-note,
+.contact-form,
+.price-art-window {
+  overflow: hidden;
+}
+
+.project-card::after,
+.skill-item::after,
+.about-note::after,
+.contact-form::after,
+.floating-card::after,
+.price-art-window::after,
+.marketplace-badges span::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    112deg,
+    transparent 18%,
+    rgba(255, 255, 255, .105) 38%,
+    rgba(255, 255, 255, .025) 49%,
+    transparent 68%
+  );
+  content: "";
+  opacity: .42;
+  pointer-events: none;
+  transform: translateX(-115%);
+  transition: transform .85s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
+}
+
+.project-card:hover::after,
+.project-card:focus-within::after,
+.skill-item:hover::after,
+.about-note:hover::after,
+.contact-form:focus-within::after,
+.floating-card:hover::after,
+.price-art-window:hover::after,
+.marketplace-badges span:hover::after {
+  opacity: .9;
+  transform: translateX(115%);
+}
+
+.project-card {
+  background-color: rgba(17, 27, 48, .66);
+  transition:
+    transform .3s cubic-bezier(.2, .8, .2, 1),
+    border-color .3s ease,
+    box-shadow .3s ease,
+    background-color .3s ease;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  border-color: rgba(180, 216, 255, .34);
+  background-color: rgba(24, 42, 70, .72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    0 22px 54px rgba(0, 0, 0, .28),
+    0 0 26px rgba(87, 155, 255, .17);
+}
+
+.project-content {
+  position: relative;
+  z-index: 2;
+}
+
+.skill-item {
+  border-radius: 18px;
+  color: #e4edff;
+  background-color: rgba(20, 32, 55, .48);
+}
+
+.skill-item:hover {
+  border-color: rgba(180, 216, 255, .38);
+  background-color: rgba(39, 75, 125, .48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .32),
+    0 12px 30px rgba(18, 86, 170, .2),
+    0 0 22px rgba(87, 155, 255, .1);
+}
+
+.about-note,
+.contact-form {
+  background-color: rgba(17, 27, 48, .58);
+}
+
+.floating-card {
+  border-radius: 16px;
+  background-color: rgba(18, 29, 51, .58);
+}
+
+.price-art-window {
+  background-color: rgba(9, 17, 31, .72);
+}
+
+.marketplace-badges span {
+  background-color: rgba(255, 255, 255, .045);
+}
+
+.project-count {
+  background-color: rgba(255, 255, 255, .055);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .project-card,
+  .skill-item,
+  .about-note,
+  .contact-form,
+  .floating-card,
+  .price-art-window,
+  .marketplace-badges span,
+  .project-count {
+    background-color: rgba(22, 34, 57, .96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card::after,
+  .skill-item::after,
+  .about-note::after,
+  .contact-form::after,
+  .floating-card::after,
+  .price-art-window::after,
+  .marketplace-badges span::after {
+    transition: none;
+    transform: none;
+    opacity: .18;
+  }
+}
