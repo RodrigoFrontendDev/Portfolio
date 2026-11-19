@@ -29,6 +29,7 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const sceneAssets = {
+    "sputnik": ["https://media.defense.gov/2023/Feb/21/2003165000/2000/2000/0/230221-F-IN811-001.JPG"],
     "luna3": [
       "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/f/First_Luna1-1.jpg?fit=clip&h=1200&w=1200",
       "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/f/First_Luna1-1.jpg"
@@ -75,6 +76,7 @@
 
   // Ilustración vectorial local por misión: el panel siempre conserva una imagen visible.
   const fallbackArt = {
+    "sputnik": '<g transform="translate(1060 450)"><path d="M-28-28L-255-255M25-28L255-255M-28 28L-255 255M28 28L255 255" stroke="#cbd8e2" stroke-width="12" stroke-linecap="round"/><circle r="138" fill="#718292" stroke="#d4dde4" stroke-width="12"/><ellipse cx="-42" cy="-50" rx="58" ry="72" fill="#e3ebef" opacity=".52"/><path d="M-100-65Q0-140 105-60" fill="none" stroke="#f5f8fa" stroke-width="14" opacity=".56"/><path d="M-120 68Q0 135 120 68" fill="none" stroke="#27394b" stroke-width="18" opacity=".66"/><circle r="12" fill="#f0f3f5" opacity=".6"/></g>',
     "luna3": '<circle cx="1100" cy="390" r="250" fill="#9ba8b5"/><path d="M920 230Q1100 100 1280 300Q1370 460 1180 600Q970 650 890 450Z" fill="#758595"/><g transform="translate(360 520) rotate(-18)"><path d="M-75-60H75L100 55H-100Z" fill="#c5a15f"/><circle r="35" fill="#263b4d" stroke="#e4d6b1" stroke-width="13"/><path d="M0-70V-210M-120 0H-220M120 0H220" stroke="#dce5ed" stroke-width="9"/><path d="M-220-24H-120V24H-220ZM120-24H220V24H120Z" fill="#547b98"/></g>',
     "vostok1": '<path d="M0 770Q450 630 900 760T1600 720V1000H0Z" fill="#17405f"/><path d="M0 810Q480 700 900 820T1600 770" fill="none" stroke="#7bb6d2" stroke-width="8"/><g transform="translate(850 420)"><path d="M-100 50Q-125-85 0-160Q125-85 100 50L65 150H-65Z" fill="#d6dce1" stroke="#889aa8" stroke-width="10"/><ellipse cy="-20" rx="55" ry="62" fill="#22394d" stroke="#e1c58a" stroke-width="14"/><path d="M-65 150H65L110 225H-110Z" fill="#aebbc5"/></g>',
     "apollo11": '<circle cx="1140" cy="390" r="260" fill="#8d99a6"/><path d="M0 780Q450 680 900 780T1600 740V1000H0Z" fill="#4f5964"/><g transform="translate(720 560)"><path d="M0-175L-72-65H72Z" fill="#dfca91"/><path d="M-72-65H72V5H-72Z" fill="#c9a766"/><path d="M-72 5L-150 95H150L72 5Z" fill="#a99b7c"/></g>',
