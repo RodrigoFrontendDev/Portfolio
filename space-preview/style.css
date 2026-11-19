@@ -1307,36 +1307,45 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
 .journey-scene-photo{z-index:1;opacity:0;filter:saturate(1.06) contrast(1.08);transition:opacity 1s ease}
 .journey-scene-layer.has-photo .journey-scene-photo{opacity:1}
 .journey-nebula{position:absolute;z-index:2;inset:-45%;pointer-events:none;mix-blend-mode:screen;will-change:transform}
+.journey-nebula{background:none}
+.journey-nebula::before{
+  content:"";position:absolute;inset:0;display:block;border-radius:50%;
+  background-repeat:no-repeat;transform:translate3d(0,0,0) scale(1);
+  will-change:transform,opacity;pointer-events:none
+}
 .journey-nebula-far{
-  transform:translate3d(var(--nebula-x),var(--nebula-y),0) rotate(-18deg) scale(1.22);opacity:.82;
+  transform:translate3d(var(--nebula-x),var(--nebula-y),0) rotate(-18deg) scale(1.22);opacity:.82
+}
+.journey-nebula-far::before{
   background:radial-gradient(ellipse at 18% 22%,rgba(48,105,190,.30),transparent 24%),radial-gradient(ellipse at 72% 35%,rgba(122,66,177,.24),transparent 28%),radial-gradient(ellipse at 44% 76%,rgba(43,157,197,.18),transparent 27%),radial-gradient(ellipse at 88% 82%,rgba(183,104,71,.14),transparent 23%);
-  background-size:135% 135%,125% 125%,145% 145%,130% 130%;background-position:18% 22%,72% 35%,44% 76%,88% 82%;
-  filter:blur(38px);animation:journey-nebula-drift-far 46s ease-in-out infinite alternate;will-change:background-position,opacity
+  filter:blur(30px);animation:journey-nebula-drift-far 46s ease-in-out infinite alternate
 }
 .journey-nebula-near{
-  transform:translate3d(calc(var(--nebula-x) * -1.25),calc(var(--nebula-y) * -1.15),0) rotate(22deg) scale(1.3);opacity:.46;
+  transform:translate3d(calc(var(--nebula-x) * -1.25),calc(var(--nebula-y) * -1.15),0) rotate(22deg) scale(1.3);opacity:.46
+}
+.journey-nebula-near::before{
   background:radial-gradient(ellipse at 70% 18%,rgba(152,209,255,.34),transparent 15%),radial-gradient(ellipse at 28% 66%,rgba(73,175,222,.22),transparent 16%);
-  background-size:145% 145%,135% 135%;background-position:70% 18%,28% 66%;
-  filter:blur(70px);animation:journey-nebula-drift-near 34s ease-in-out infinite alternate;will-change:background-position,opacity
+  filter:blur(46px);animation:journey-nebula-drift-near 34s ease-in-out infinite alternate
 }
 .journey-nebula-core{
   z-index:4;inset:-24%;opacity:.28;mix-blend-mode:screen;pointer-events:none;
-  transform:translate3d(calc(var(--nebula-x) * .48),calc(var(--nebula-y) * .62),0) rotate(-9deg) scale(1.08);
+  transform:translate3d(calc(var(--nebula-x) * .48),calc(var(--nebula-y) * .62),0) rotate(-9deg) scale(1.08)
+}
+.journey-nebula-core::before{
   background:radial-gradient(ellipse at 48% 45%,rgba(91,145,227,.23),transparent 26%),radial-gradient(ellipse at 76% 30%,rgba(165,94,202,.17),transparent 24%),radial-gradient(ellipse at 26% 74%,rgba(74,186,209,.18),transparent 22%);
-  background-size:150% 150%,135% 135%,145% 145%;background-position:50% 45%,76% 30%,26% 74%;
-  filter:blur(54px);animation:journey-nebula-core-breathe 40s ease-in-out infinite alternate;will-change:background-position,opacity
+  filter:blur(36px);animation:journey-nebula-core-breathe 40s ease-in-out infinite alternate
 }
 @keyframes journey-nebula-drift-far{
-  0%{background-position:18% 22%,72% 35%,44% 76%,88% 82%;opacity:.58}
-  100%{background-position:82% 72%,18% 68%,76% 18%,12% 24%;opacity:.9}
+  0%{transform:translate3d(-2%,-1%,0) scale(1);opacity:.58}
+  100%{transform:translate3d(3%,2%,0) scale(1.12);opacity:.9}
 }
 @keyframes journey-nebula-drift-near{
-  0%{background-position:70% 18%,28% 66%;opacity:.28}
-  100%{background-position:18% 78%,82% 22%;opacity:.62}
+  0%{transform:translate3d(2%,-2%,0) scale(1.02);opacity:.28}
+  100%{transform:translate3d(-3%,3%,0) scale(1.14);opacity:.62}
 }
 @keyframes journey-nebula-core-breathe{
-  0%{background-position:50% 45%,76% 30%,26% 74%;opacity:.18}
-  100%{background-position:72% 18%,24% 82%,78% 20%;opacity:.42}
+  0%{transform:translate3d(-2%,2%,0) scale(1);opacity:.18}
+  100%{transform:translate3d(3%,-2%,0) scale(1.1);opacity:.42}
 }
 .journey-orbit{
   position:absolute;z-index:3;top:50%;left:50%;width:min(130vw,1800px);aspect-ratio:1.86;border:1px solid rgba(209,231,255,.22);border-radius:50%;
@@ -1442,5 +1451,6 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
   .journey-scene-layer,.journey-nebula,.journey-orbit,.journey-warp-lines,.journey-lens-glow,.journey-entry-copy,.journey-entry-top{transform:none!important;will-change:auto!important;transition:none!important;filter:none!important;animation:none!important}
   .journey-scene-layer img{transform:none!important;transition:none!important}
   .journey-nebula{animation:none!important}
+  .journey-nebula::before{animation:none!important;transform:none!important;will-change:auto!important}
   .journey-warp-lines{display:none}
 }
