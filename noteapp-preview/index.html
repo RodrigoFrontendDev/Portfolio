@@ -5,25 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17233f">
   <meta name="description" content="Un espacio personal para capturar ideas, ordenar pensamientos y guardar notas.">
-  <title>Nota — Tu espacio para pensar</title>
+  <title>note-app — Tu espacio para pensar</title>
   <link rel="stylesheet" href="style.css">
   <script src="index.js" defer></script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
-      <a class="brand" href="#" aria-label="Nota, inicio">
+      <a class="brand" href="#" aria-label="note-app, inicio">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 32 32" fill="none"><path d="M8 5.5h10.5L24 11v15.5H8V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 5.8V12h5.8M12 17h8M12 21h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </span>
-        <span>nota<span class="brand-period">.</span></span>
+        <span>note-app</span>
       </a>
-
-      <div class="workspace-label">
-        <span class="workspace-avatar">R</span>
-        <span class="workspace-copy"><strong>Mi espacio</strong><small>PERSONAL WORKSPACE</small></span>
-        <svg class="workspace-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
 
       <button class="create-note-button" id="create-note" type="button">
         <span class="create-plus" aria-hidden="true">+</span>
@@ -62,14 +56,12 @@
         <button class="mobile-menu-button" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">
           <span></span><span></span>
         </button>
-        <div class="date-label" id="date-label">TU ESPACIO PERSONAL</div>
         <div class="topbar-actions">
           <label class="search-box" for="search-input">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             <input id="search-input" type="search" placeholder="Buscar una nota..." autocomplete="off">
             <kbd>⌘ K</kbd>
           </label>
-          <div class="profile-avatar" aria-label="Tu espacio personal">R</div>
         </div>
       </header>
 
