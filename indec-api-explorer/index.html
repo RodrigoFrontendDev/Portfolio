@@ -193,6 +193,129 @@ html[data-theme="dark"] .guide-step a { color:var(--green); }
   .guide-tip { font-size:13px; }
 }
 
+
+/* Servicios de datos: evita que títulos y rutas largos desborden la navegación. */
+.sidebar,
+.sidebar-top,
+.endpoint-list,
+.endpoint-item,
+.endpoint-label {
+  min-width: 0;
+}
+.sidebar {
+  overflow: hidden;
+}
+.sidebar-top {
+  gap: 10px;
+}
+.sidebar-heading {
+  min-width: 0;
+  line-height: 1.35;
+}
+.count {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.endpoint-list {
+  display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 3px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 3px 6px;
+}
+.group-label {
+  max-width: 100%;
+  margin: 12px 5px 5px;
+  padding: 8px 7px 4px;
+  border-top: 1px solid var(--line);
+  line-height: 1.45;
+  letter-spacing: .075em;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.group-label:first-child {
+  margin-top: 2px;
+  padding-top: 3px;
+  border-top: 0;
+}
+.endpoint-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 1px 0;
+  padding: 10px 9px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  text-align: left;
+  white-space: normal;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+.endpoint-item:hover {
+  border-color: var(--line);
+  transform: translateX(2px);
+}
+.endpoint-item.active {
+  box-shadow: inset 3px 0 var(--green);
+}
+.method-dot {
+  width: 34px;
+  height: 21px;
+  margin-top: 2px;
+}
+.endpoint-label {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.42;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.endpoint-route {
+  max-width: 100%;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+html[data-theme="dark"] .group-label {
+  color: #9aaba4;
+  border-color: var(--line);
+}
+html[data-theme="dark"] .endpoint-item:hover {
+  border-color: var(--line);
+}
+@media(max-width:780px) {
+  .sidebar {
+    overflow: visible;
+  }
+  .endpoint-list {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    padding: 0 2px 8px;
+  }
+  .endpoint-item {
+    flex: 0 0 min(78vw, 280px);
+    width: min(78vw, 280px);
+    max-width: 280px;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
 </style>
 <script>
 try {
