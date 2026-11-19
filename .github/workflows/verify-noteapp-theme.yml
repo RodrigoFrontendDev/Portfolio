@@ -1,0 +1,72 @@
+name: Verify Noteapp dark mode
+
+on:
+  push:
+    branches:
+      - preview/noteapp-workspace
+    paths:
+      - .github/workflows/verify-noteapp-theme.yml
+
+permissions:
+  contents: read
+
+jobs:
+  dark-mode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out preview
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test dark mode toggle and persistence
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+          (async () => {
+            const browser = await chromium.launch({headless:true});
+            try {
+              const context = await browser.newContext({viewport:{width:1280,height:900}});
+              const page = await context.newPage();
+              const errors=[];
+              page.on('pageerror',e=>errors.push(e.message));
+              await page.addInitScript(() => {
+                localStorage.setItem('note-app', JSON.stringify([{
+                  id:'theme-note',title:'Nota guardada',content:'Este texto no debe cambiar al alternar el tema.',
+                  color:'lavender',pinned:false,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()
+                }]));
+              });
+              const response=await page.goto('https://preview-noteapp-workspace.rodrigonickler.pages.dev/noteapp-preview/',{waitUntil:'domcontentloaded',timeout:120000});
+              assert.ok(response && response.ok(),'Preview should load');
+              const button=page.locator('#theme-toggle');
+              await button.waitFor({state:'visible',timeout:15000});
+              assert.equal(await page.locator('.note-card').count(),1);
+              const notesBefore=await page.evaluate(()=>localStorage.getItem('note-app'));
+              const lightBackground=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
+              await button.click();
+              assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+              assert.equal(await button.getAttribute('aria-pressed'),'true');
+              assert.equal(await button.getAttribute('aria-label'),'Activar modo claro');
+              const darkBackground=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
+              assert.notEqual(darkBackground,lightBackground,'Dark theme must change the page background');
+              assert.equal(await page.evaluate(()=>localStorage.getItem('note-app')),notesBefore,'Theme toggle must not modify notes');
+              await page.reload({waitUntil:'domcontentloaded'});
+              assert.equal(await page.locator('html').getAttribute('data-theme'),'dark','Dark theme must persist after reload');
+              assert.equal(await button.getAttribute('aria-pressed'),'true');
+              await button.click();
+              assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
+              await page.reload({waitUntil:'domcontentloaded'});
+              assert.equal(await page.locator('html').getAttribute('data-theme'),'light','Light theme selection must persist too');
+              assert.deepEqual(errors,[],'No browser runtime errors');
+              console.log('PASS: dark/light toggle, aria state, palette change, persistence after reload, and note storage preservation.');
+              await context.close();
+            } finally { await browser.close(); }
+          })().catch(e=>{console.error(e);process.exit(1);});
+          NODE
