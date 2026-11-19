@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17233f">
+  <script>
+    try {
+      if (localStorage.getItem("note-app-theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#101827");
+      }
+    } catch (error) {}
+  </script>
   <meta name="description" content="Un espacio personal para capturar ideas, ordenar pensamientos y guardar notas.">
   <title>note-app — Tu espacio para pensar</title>
   <link rel="stylesheet" href="style.css">
@@ -62,6 +70,10 @@
             <input id="search-input" type="search" placeholder="Buscar una nota..." autocomplete="off">
             <kbd>⌘ K</kbd>
           </label>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8a8.6 8.6 0 1 0 11.3 11.3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
         </div>
       </header>
 
