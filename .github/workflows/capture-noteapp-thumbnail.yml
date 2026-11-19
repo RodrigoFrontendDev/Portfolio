@@ -1,0 +1,144 @@
+name: Capture Noteapp dark mode portfolio thumbnail
+
+on:
+  push:
+    branches:
+      - capture/noteapp-thumbnail-20261119
+    paths:
+      - .github/workflows/capture-noteapp-thumbnail.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture-and-prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out capture branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Install browser tooling
+        run: |
+          npm install --no-save playwright sharp
+          npx playwright install --with-deps chromium
+
+      - name: Capture the published Noteapp in dark mode
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const sharp = require('sharp');
+          const assert = require('node:assert/strict');
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const context = await browser.newContext({
+                viewport: { width: 1600, height: 900 },
+                deviceScaleFactor: 1,
+                colorScheme: 'light',
+              });
+              const page = await context.newPage();
+              const pageErrors = [];
+              page.on('pageerror', error => pageErrors.push(error.message));
+
+              await page.addInitScript(() => {
+                localStorage.setItem('note-app', JSON.stringify([
+                  {
+                    id: 'portfolio-sample-1',
+                    title: 'Ideas para crear',
+                    content: 'Explorar nuevas referencias visuales.\n\nDefinir una dirección clara, ordenar las ideas y convertirlas en algo que valga la pena.',
+                    color: 'lavender',
+                    pinned: true,
+                    createdAt: new Date(Date.now() - 86400000).toISOString(),
+                    updatedAt: new Date(Date.now() - 3600000).toISOString(),
+                  },
+                  {
+                    id: 'portfolio-sample-2',
+                    title: 'Lista de pendientes',
+                    content: 'Terminar los detalles del proyecto.\nRevisar los próximos pasos y guardar un poco de tiempo para experimentar.',
+                    color: 'mint',
+                    pinned: false,
+                    createdAt: new Date(Date.now() - 172800000).toISOString(),
+                    updatedAt: new Date(Date.now() - 7200000).toISOString(),
+                  },
+                ]));
+                localStorage.removeItem('note-app-theme');
+              });
+
+              const response = await page.goto(
+                'https://preview-noteapp-workspace.rodrigonickler.pages.dev/noteapp-preview/',
+                { waitUntil: 'domcontentloaded', timeout: 120000 }
+              );
+              assert.ok(response && response.ok(), 'Published Noteapp preview must return HTTP 200');
+              await page.locator('.note-card').first().waitFor({ state: 'visible', timeout: 30000 });
+              assert.equal(await page.locator('.note-card').count(), 2, 'Expected two sample notes');
+              assert.equal(await page.locator('#stat-total').textContent(), '2');
+
+              await page.locator('#theme-toggle').click();
+              await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark', { timeout: 5000 });
+              await page.waitForTimeout(2400);
+
+              const state = await page.evaluate(() => ({
+                title: document.title,
+                theme: document.documentElement.dataset.theme,
+                brand: document.querySelector('.brand')?.innerText,
+                themeButton: document.querySelector('#theme-toggle')?.getAttribute('aria-pressed'),
+                notes: document.querySelectorAll('.note-card').length,
+                viewport: [innerWidth, innerHeight],
+                background: getComputedStyle(document.body).backgroundColor,
+              }));
+              console.log('Capture state:', JSON.stringify(state));
+              assert.equal(state.theme, 'dark');
+              assert.equal(state.brand, 'note-app');
+              assert.equal(state.themeButton, 'true');
+              assert.equal(state.notes, 2);
+              assert.deepEqual(pageErrors, [], 'No JavaScript runtime errors during capture');
+
+              const screenshot = await page.screenshot({
+                type: 'png',
+                animations: 'disabled',
+                fullPage: false,
+              });
+              await sharp(screenshot)
+                .resize(1280, 720, { fit: 'cover', position: 'attention' })
+                .webp({ quality: 90, effort: 6 })
+                .toFile('/tmp/noteapp-dark-preview.webp');
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Prepare portfolio thumbnail update branch
+        run: |
+          git fetch origin main
+          git switch --create update/noteapp-thumbnail-20261119 origin/main
+          cp /tmp/noteapp-dark-preview.webp img/proyect1.webp
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'index.html';
+          let html = fs.readFileSync(path, 'utf8');
+          const old = 'src="img/proyect1.webp" alt="Preview of Noteapp notes interface"';
+          const replacement = 'src="img/proyect1.webp" alt="Noteapp personal notes workspace in dark mode"';
+          const matches = html.split(old).length - 1;
+          if (matches !== 1) {
+            throw new Error('Expected exactly one Noteapp thumbnail reference; found ' + matches);
+          }
+          fs.writeFileSync(path, html.replace(old, replacement));
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/proyect1.webp index.html
+          git commit -m "Update Noteapp portfolio screenshot"
+          git push origin HEAD:refs/heads/update/noteapp-thumbnail-20261119
