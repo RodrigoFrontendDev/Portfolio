@@ -1,0 +1,113 @@
+name: Capture The Space portfolio preview
+
+on:
+  push:
+    branches:
+      - capture/the-space-thumbnail-20261119
+    paths:
+      - .github/workflows/capture-the-space-thumbnail.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out capture workflow branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Install browser tooling
+        run: |
+          npm install --no-save playwright sharp
+          npx playwright install --with-deps chromium
+
+      - name: Capture the deployed mission timeline
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const sharp = require('sharp');
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const page = await browser.newPage({
+                viewport: { width: 1600, height: 900 },
+                deviceScaleFactor: 1,
+                colorScheme: 'dark',
+              });
+
+              const response = await page.goto(
+                'https://preview-space-observatory.rodrigonickler.pages.dev/space-preview/#historia',
+                { waitUntil: 'domcontentloaded', timeout: 120000 }
+              );
+              if (!response || !response.ok()) {
+                throw new Error('Preview returned an unsuccessful response: ' + (response && response.status()));
+              }
+
+              await page.locator('#mission-journey').scrollIntoViewIfNeeded();
+              await page.waitForFunction(() => {
+                const entries = document.querySelectorAll('.journey-entry');
+                const scenes = [
+                  document.querySelector('#journey-scene-a'),
+                  document.querySelector('#journey-scene-b'),
+                ];
+                return entries.length === 19 && scenes.some(scene => scene && scene.classList.contains('is-visible'));
+              }, { timeout: 30000 });
+              await page.waitForTimeout(5500);
+
+              const pageInfo = await page.evaluate(() => ({
+                title: document.title,
+                url: location.href,
+                missions: document.querySelectorAll('.journey-entry').length,
+                visibleScene: Boolean(document.querySelector('.journey-scene-layer.is-visible')),
+              }));
+              console.log('Captured page:', JSON.stringify(pageInfo));
+              if (pageInfo.missions !== 19 || !pageInfo.visibleScene) {
+                throw new Error('Mission timeline is not ready for capture.');
+              }
+
+              const screenshot = await page.screenshot({ type: 'png', animations: 'disabled' });
+              await sharp(screenshot)
+                .resize(1280, 720, { fit: 'cover', position: 'attention' })
+                .webp({ quality: 86, effort: 6 })
+                .toFile('/tmp/space-preview.webp');
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Prepare a focused portfolio update from main
+        run: |
+          git fetch origin main
+          git switch --create update/the-space-thumbnail-20261119 origin/main
+          cp /tmp/space-preview.webp img/space-preview.webp
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'index.html';
+          let html = fs.readFileSync(path, 'utf8');
+          const old = 'src="img/proyect2.webp" alt="Preview of The Space landing page"';
+          const replacement = 'src="img/space-preview.webp" alt="Screenshot of The Space space exploration archive and mission timeline"';
+          const matches = html.split(old).length - 1;
+          if (matches !== 1) {
+            throw new Error('Expected exactly one The Space card image; found ' + matches);
+          }
+          fs.writeFileSync(path, html.replace(old, replacement));
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img/space-preview.webp index.html
+          git commit -m "Update The Space portfolio screenshot"
+          git push origin HEAD:refs/heads/update/the-space-thumbnail-20261119
