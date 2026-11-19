@@ -56,3 +56,34 @@ if (mobileMenu.matches) {
 
 const year = document.querySelector("#current-year");
 if (year) year.textContent = String(new Date().getFullYear());
+
+
+// Keep the desktop navigation indicator in sync with the section in view.
+const sectionLinks = [...(nav?.querySelectorAll('.nav-list a[href^="#"]') ?? [])];
+const observedSections = sectionLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+function setActiveSection(sectionId) {
+  for (const link of sectionLinks) {
+    if (link.hash === `#${sectionId}`) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  }
+}
+
+if ("IntersectionObserver" in window && observedSections.length) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible[0]) setActiveSection(visible[0].target.id);
+  }, {
+    rootMargin: "-30% 0px -55% 0px",
+    threshold: [0, .15, .35, .6],
+  });
+
+  observedSections.forEach((section) => sectionObserver.observe(section));
+}

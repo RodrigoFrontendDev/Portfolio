@@ -1264,3 +1264,121 @@ ul { margin: 0; padding: 0; list-style: none; }
     transition: none;
   }
 }
+
+
+/* Navigation: clean text links with a neon underline for the visible section. */
+.nav-list a {
+  position: relative;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline-offset: 6px;
+}
+.nav-list a::before {
+  content: "";
+}
+.nav-list a[aria-current="location"] {
+  color: #F1F5FF;
+  text-shadow: 0 0 14px rgba(83,246,255,.22);
+}
+@media (min-width: 901px) {
+  .nav-list a {
+    padding-block: .8rem;
+  }
+  .nav-list a::before {
+    position: absolute;
+    right: 0;
+    bottom: -.55rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #A855F7, #53F6FF);
+    box-shadow: 0 0 8px rgba(83,246,255,.7), 0 0 18px rgba(168,85,247,.38);
+    content: "";
+    opacity: 0;
+    transform: scaleX(.25);
+    transform-origin: center;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  .nav-list a[aria-current="location"]::before {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 900px) {
+  .nav-list a {
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .nav-list a[aria-current="location"] {
+    border-bottom-color: rgba(83,246,255,.72);
+  }
+}
+
+/* Fix the About glass panel sizing and keep its content above the glass layers. */
+.about-layout {
+  min-width: 0;
+}
+.about-note {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform-origin: center;
+}
+
+/* A restrained lift and scale makes the cards feel responsive without jumping. */
+.project-card,
+.skill-item,
+.about-note,
+.contact-form,
+.floating-card {
+  will-change: auto;
+  transition: transform .32s cubic-bezier(.2,.75,.25,1),
+    border-color .3s ease, background-color .3s ease, box-shadow .3s ease;
+}
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-3px) scale(1.006);
+}
+.skill-item:hover,
+.skill-item:focus-visible {
+  transform: translateY(-2px) scale(1.012);
+}
+.about-note:hover {
+  transform: translateY(-3px) scale(1.008) rotate(-.15deg);
+}
+.contact-form:hover,
+.contact-form:focus-within {
+  transform: translateY(-2px) scale(1.004);
+}
+.floating-card:hover {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-list a::before,
+  .project-card,
+  .skill-item,
+  .about-note,
+  .contact-form,
+  .floating-card {
+    transition: none !important;
+  }
+  .project-card:hover,
+  .project-card:focus-within,
+  .skill-item:hover,
+  .skill-item:focus-visible,
+  .about-note:hover,
+  .contact-form:hover,
+  .contact-form:focus-within,
+  .floating-card:hover {
+    transform: none !important;
+  }
+}
