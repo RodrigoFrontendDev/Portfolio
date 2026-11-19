@@ -1,0 +1,106 @@
+const API_BASE = "https://api.indec.gob.ar/v1/";
+
+const ALLOWED_ENDPOINTS = new Set([
+  "ipi_manufacturero",
+  "ipi_minero",
+  "estimaciones_poblacion_departamento_2022_2035",
+  "proyecciones_poblacion_jurisdiccion_2022_2040",
+  "proyecciones_poblacion_nacional_2022_2040",
+  "ipc_nacional",
+  "valorizacion_canastas_cba_cbt",
+  "indice_salarios",
+  "icc_precios_construccion",
+  "redeterminacion_precios_contratos_obras_publicas",
+  "sipm_precios_mayoristas",
+  "estimador-mensual-de-actividad-economica-nivel-general",
+  "estimador-mensual-de-actividad-economica-sectores",
+  "pobreza_eph",
+  "mercado_trabajo_eph",
+  "canasta-crianza",
+  "comercio_exterior_nomenclaturas",
+  "comercio_exterior_exportacion_bienes",
+  "comercio_exterior_importacion_bienes"
+]);
+
+function json(body, status, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      ...extraHeaders
+    }
+  });
+}
+
+export async function onRequest({ request, params }) {
+  if (request.method !== "GET") {
+    return json({ error: "Método no permitido. Este proxy solo admite GET." }, 405, {
+      Allow: "GET"
+    });
+  }
+
+  const incomingUrl = new URL(request.url);
+  const origin = request.headers.get("Origin");
+  if (origin && origin !== incomingUrl.origin) {
+    return json({ error: "Origen no permitido." }, 403);
+  }
+
+  const segments = Array.isArray(params.path)
+    ? params.path
+    : [params.path].filter(Boolean);
+
+  if (segments.length !== 1 || !ALLOWED_ENDPOINTS.has(segments[0])) {
+    return json({ error: "El servicio solicitado no forma parte del catálogo habilitado." }, 404);
+  }
+
+  const authorization = request.headers.get("Authorization") || "";
+  if (!/^Bearer\s+\S+$/i.test(authorization)) {
+    return json({ error: "Falta un token Bearer válido en el encabezado Authorization." }, 401);
+  }
+
+  const upstreamUrl = new URL(segments[0], API_BASE);
+  for (const [key, value] of incomingUrl.searchParams) {
+    upstreamUrl.searchParams.append(key, value);
+  }
+
+  const upstreamHeaders = new Headers({
+    Accept: "application/json",
+    Authorization: authorization
+  });
+  if (request.headers.get("Prefer") === "count=exact") {
+    upstreamHeaders.set("Prefer", "count=exact");
+  }
+
+  try {
+    // No registrar ni persistir Authorization: solo se reenvía a la API oficial.
+    const upstream = await fetch(upstreamUrl.toString(), {
+      method: "GET",
+      headers: upstreamHeaders,
+      redirect: "error"
+    });
+
+    const responseHeaders = new Headers({
+      "Content-Type": upstream.headers.get("Content-Type") || "application/json",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff"
+    });
+
+    for (const name of ["Content-Range", "Preference-Applied", "Retry-After"]) {
+      const value = upstream.headers.get(name);
+      if (value) responseHeaders.set(name, value);
+    }
+
+    return new Response(upstream.body, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers: responseHeaders
+    });
+  } catch {
+    return json({
+      error: "No se pudo establecer conexión con la API oficial del INDEC.",
+      details: "El proxy de Cloudflare no recibió una respuesta del servidor de INDEC."
+    }, 502);
+  }
+}
