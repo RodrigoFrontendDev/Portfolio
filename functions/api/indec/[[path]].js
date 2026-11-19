@@ -29,6 +29,7 @@ function json(body, status, extraHeaders = {}) {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
+      "X-INDEC-Proxy": "active",
       ...extraHeaders
     }
   });
@@ -50,6 +51,15 @@ export async function onRequest({ request, params }) {
   const segments = Array.isArray(params.path)
     ? params.path
     : [params.path].filter(Boolean);
+
+  if (segments.length === 1 && segments[0] === "health") {
+    return json({
+      ok: true,
+      service: "INDEC API proxy",
+      upstream: "https://api.indec.gob.ar/v1/",
+      endpoints: ALLOWED_ENDPOINTS.size
+    }, 200);
+  }
 
   if (segments.length !== 1 || !ALLOWED_ENDPOINTS.has(segments[0])) {
     return json({ error: "El servicio solicitado no forma parte del catálogo habilitado." }, 404);
@@ -84,7 +94,8 @@ export async function onRequest({ request, params }) {
     const responseHeaders = new Headers({
       "Content-Type": upstream.headers.get("Content-Type") || "application/json",
       "Cache-Control": "no-store",
-      "X-Content-Type-Options": "nosniff"
+      "X-Content-Type-Options": "nosniff",
+      "X-INDEC-Proxy": "active"
     });
 
     for (const name of ["Content-Range", "Preference-Applied", "Retry-After"]) {
@@ -97,10 +108,10 @@ export async function onRequest({ request, params }) {
       statusText: upstream.statusText,
       headers: responseHeaders
     });
-  } catch {
+  } catch (error) {
     return json({
       error: "No se pudo establecer conexión con la API oficial del INDEC.",
-      details: "El proxy de Cloudflare no recibió una respuesta del servidor de INDEC."
+      details: error instanceof Error ? error.message : "El proxy no recibió una respuesta del servidor de INDEC."
     }, 502);
   }
 }
