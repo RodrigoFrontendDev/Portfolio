@@ -1,0 +1,1382 @@
+{
+  "source": "Catálogo API-INDEC — especificación OpenAPI pública",
+  "openapiVersion": "3.1.0",
+  "baseUrl": "https://api.indec.gob.ar/v1/",
+  "datasets": [
+    {
+      "path": "/ipi_manufacturero",
+      "title": "Índice de producción industrial manufacturero",
+      "category": "Dirección de Estadísticas Mineras, Manufactureras, Energéticas y de la Construcción",
+      "description": "Índice de producción industrial manufacturero (IPI manufacturero), nivel general y aperturas por actividad económica, base 2004=100. Incluye las series original, desestacionalizada y tendencia-ciclo, expresadas como números índice y variaciones porcentuales.\n \nEste endpoint contiene información desde enero de 2016.\n \nPara más información, se puede consultar la metodología INDEC N° 31, Metodología del índice de producción industrial manufacturero, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/economia/metodologia_ipi_manufacturero_2019.pdf",
+      "primaryKey": [
+        "periodo",
+        "indicador",
+        "cuadro_web",
+        "codigo_CLaNAE_2004",
+        "descripcion",
+        "serie",
+        "tipo_de_indicador"
+      ],
+      "fields": [
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM para meses"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "cuadro_web",
+          "type": "string",
+          "description": "Número del cuadro estadístico publicado en el sitio web del INDEC al que corresponde el dato"
+        },
+        {
+          "name": "codigo_CLaNAE_2004",
+          "type": "string",
+          "description": "Código de Clasificación Nacional de Actividades Económicas 2004\n"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "serie",
+          "type": "string",
+          "description": "Tipo de serie estadística: original, desestacionalizada o tendencia-ciclo"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o peso promedio"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas."
+        }
+      ]
+    },
+    {
+      "path": "/ipi_minero",
+      "title": "Índice de producción industrial minero",
+      "category": "Dirección de Estadísticas Mineras, Manufactureras, Energéticas y de la Construcción",
+      "description": "IPI minero nivel general. Series original, desestacionalizada y tendencia-ciclo, base 2016=100. Este endpoint contiene información desde enero de 2017. Para más información, se puede consultar la metodología INDEC N° 41, Índice de producción industrial minero, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/economia/metodologia_ipi_minero.pdf",
+      "primaryKey": [
+        "periodo",
+        "anio",
+        "mes",
+        "indicador",
+        "cuadro_web",
+        "codigo_ClaNAE_2010",
+        "codigo_CPC_2_1",
+        "serie",
+        "descripcion",
+        "tipo_de_indicador",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM para meses"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "cuadro_web",
+          "type": "string",
+          "description": "Número del cuadro estadístico publicado en el sitio web del INDEC al que corresponde el dato"
+        },
+        {
+          "name": "codigo_ClaNAE_2010",
+          "type": "string",
+          "description": "Código ClaNAE 2010"
+        },
+        {
+          "name": "codigo_CPC_2_1",
+          "type": "string",
+          "description": "Código CPC 2.1"
+        },
+        {
+          "name": "serie",
+          "type": "string",
+          "description": "Tipo de serie estadística: original, desestacionalizada o tendencia-ciclo"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        }
+      ]
+    },
+    {
+      "path": "/estimaciones_poblacion_departamento_2022_2035",
+      "title": "Estimaciones de población por departamento y sexo",
+      "category": "Dirección de Estadísticas Poblacionales",
+      "description": "Estimaciones de población al 1° de julio de cada año calendario, por sexo y departamento, con base en el Censo Nacional de Población, Hogares y Viviendas 2022. Años 2022-2035.",
+      "primaryKey": [
+        "departamento_cod",
+        "sexo_cod",
+        "fecha"
+      ],
+      "fields": [
+        {
+          "name": "jurisdiccion_cod",
+          "type": "string",
+          "description": "Código de dos posiciones que identifica a la jurisdicción de la República Argentina"
+        },
+        {
+          "name": "jurisdiccion_nom",
+          "type": "string",
+          "description": "Nombre de la jurisdicción de la República Argentina"
+        },
+        {
+          "name": "departamento_cod",
+          "type": "string",
+          "description": "Código de cinco posiciones que identifica al departamento, partido o comuna. Las dos primeras corresponden a la jurisdicción y las tres restantes al departamento, partido o comuna"
+        },
+        {
+          "name": "departamento_nom",
+          "type": "string",
+          "description": "Nombre del departamento, partido o comuna"
+        },
+        {
+          "name": "rmba",
+          "type": "string",
+          "description": "Indica si la jurisdicción, el departamento o el partido pertenece a la Región Metropolitana de Buenos Aires (RMBA)"
+        },
+        {
+          "name": "sexo_cod",
+          "type": "string",
+          "description": "Código que identifica el sexo registrado al nacer"
+        },
+        {
+          "name": "sexo_nom",
+          "type": "string",
+          "description": "Categoría de sexo registrado al nacer"
+        },
+        {
+          "name": "poblacion",
+          "type": "number",
+          "description": "Cantidad de habitantes estimada (2022) o proyectada (2023-2040) para la fecha de referencia"
+        },
+        {
+          "name": "fecha",
+          "type": "string",
+          "description": "Año correspondiente a la estimación o proyección de población, referida al 1 de julio"
+        }
+      ]
+    },
+    {
+      "path": "/proyecciones_poblacion_jurisdiccion_2022_2040",
+      "title": "Proyecciones de población por jurisdicción, sexo y edad",
+      "category": "Dirección de Estadísticas Poblacionales",
+      "description": "Estimaciones y proyecciones de población al 1° de julio de cada año calendario, por sexo y grupos de edad, con base en el Censo Nacional de Población, Hogares y Viviendas 2022. Jurisdicciones. Años 2022-2040.",
+      "primaryKey": [
+        "jurisdiccion_cod",
+        "sexo_cod",
+        "edad_cod",
+        "fecha"
+      ],
+      "fields": [
+        {
+          "name": "jurisdiccion_cod",
+          "type": "string",
+          "description": "Código de dos posiciones que identifica a la jurisdicción de la República Argentina"
+        },
+        {
+          "name": "jurisdiccion_nom",
+          "type": "string",
+          "description": "Nombre de la jurisdicción de la República Argentina"
+        },
+        {
+          "name": "sexo_cod",
+          "type": "string",
+          "description": "Código que identifica el sexo registrado al nacer"
+        },
+        {
+          "name": "sexo_nom",
+          "type": "string",
+          "description": "Categoría de sexo registrado al nacer"
+        },
+        {
+          "name": "edad_cod",
+          "type": "string",
+          "description": "Código que identifica al grupo quinquenal de edad"
+        },
+        {
+          "name": "edad_nom",
+          "type": "string",
+          "description": "Intervalo de edad de cinco años correspondiente al código informado"
+        },
+        {
+          "name": "poblacion",
+          "type": "number",
+          "description": "Cantidad de habitantes estimada (2022) o proyectada (2023-2040) para la fecha de referencia"
+        },
+        {
+          "name": "fecha",
+          "type": "string",
+          "description": "Año correspondiente a la estimación o proyección de población, referida al 1 de julio"
+        }
+      ]
+    },
+    {
+      "path": "/proyecciones_poblacion_nacional_2022_2040",
+      "title": "Proyecciones nacionales de población por sexo y edad",
+      "category": "Dirección de Estadísticas Poblacionales",
+      "description": "Estimaciones y proyecciones de población al 1° de julio de cada año calendario, por sexo y edad, con base en el Censo Nacional de Población, Hogares y Viviendas 2022. Total del país. Años 2022-2040.",
+      "primaryKey": [
+        "edad",
+        "sexo_cod",
+        "fecha"
+      ],
+      "fields": [
+        {
+          "name": "edad",
+          "type": "number",
+          "description": "Edad de las personas, expresada en años cumplidos"
+        },
+        {
+          "name": "sexo_cod",
+          "type": "string",
+          "description": "Código que identifica al sexo registrado al nacer"
+        },
+        {
+          "name": "sexo_nom",
+          "type": "string",
+          "description": "Categoría de sexo registrado al nacer"
+        },
+        {
+          "name": "poblacion",
+          "type": "number",
+          "description": "Cantidad de habitantes estimada (2022) o proyectada (2023-2040) para la fecha de referencia"
+        },
+        {
+          "name": "fecha",
+          "type": "number",
+          "description": "Año correspondiente a la estimación o proyección de población, referida al 1 de julio"
+        }
+      ]
+    },
+    {
+      "path": "/ipc_nacional",
+      "title": "Índice de Precios al Consumidor (IPC)",
+      "category": "Dirección de Índices de Precios de Consumo",
+      "description": "Índice de precios al consumidor (IPC) de la República Argentina, con aperturas por región, división, grupo, clase y subclase, desde diciembre de 2016.\nPara más información, se puede consultar la metodología INDEC N° 32, Índice de precios al consumidor (IPC). Base diciembre 2016=100, a través del siguiente enlace:\nhttps://www.indec.gob.ar/ftp/cuadros/economia/metodologia_ipc_nacional_2019.pdf",
+      "primaryKey": [
+        "clasificador",
+        "nivel",
+        "codigo",
+        "descripcion",
+        "periodo",
+        "anio",
+        "mes",
+        "indicador",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "region",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "codigo",
+          "type": "string",
+          "description": "Código asignado a la categoría de acuerdo con el clasificador utilizado"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio\n"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "Región estadística a la que corresponde el dato"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/valorizacion_canastas_cba_cbt",
+      "title": "Valorización de las canastas básicas (CBA y CBT)",
+      "category": "Dirección de Índices de Precios de Consumo",
+      "description": "Valorización mensual de la canasta básica alimentaria (CBA) y de la canasta básica total (CBT) desde abril de 2016. Gran Buenos Aires.\nPara más información, se puede consultar la metodología INDEC N° 22, La medición de la pobreza y la indigencia en la Argentina, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/sociedad/EPH_metodologia_22_pobreza.pdf",
+      "primaryKey": [
+        "clasificador",
+        "nivel",
+        "codigo",
+        "descripcion",
+        "periodo",
+        "anio",
+        "mes",
+        "indicador",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "region",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "codigo",
+          "type": "string",
+          "description": "Código asignado a la categoría de acuerdo con el clasificador utilizado"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "Región estadística a la que corresponde el dato"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/indice_salarios",
+      "title": "Índice de salarios",
+      "category": "Dirección de Índices de Precios de la Producción",
+      "description": "El índice de salarios estima la evolución de los salarios pagados en la economía aislando el indicador de variaciones relacionadas con conceptos tales como la cantidad de horas trabajadas, descuentos por ausentismo, premios por productividad y todo otro concepto asociado al desempeño o a las características de los individuos concretos.\n \nLa serie muestra la evolución de los salarios pagados en los sectores privado registrado y público desde noviembre de 2015. A partir de octubre de 2016 se incorporó la serie del sector privado no registrado y el cálculo del índice de salarios total, que resulta de la agregación de los índices de salarios de los componentes mencionados.\n \nPara más información, se puede consultar la metodología INDEC N° 16, Índice de salarios y coeficiente de variación salarial, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/sociedad/cvs_metodologia.pdf",
+      "primaryKey": [
+        "clasificador",
+        "nivel",
+        "codigo",
+        "descripcion",
+        "periodo",
+        "anio",
+        "mes",
+        "indicador",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "codigo",
+          "type": "string",
+          "description": "Código asignado a la categoría de acuerdo con el clasificador utilizado"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado "
+        }
+      ]
+    },
+    {
+      "path": "/icc_precios_construccion",
+      "title": "Índice del costo de la construcción",
+      "category": "Dirección de Índices de Precios de la Producción",
+      "description": "Índice del costo de la construcción (ICC) en el Gran Buenos Aires, base 1993. \nEste endpoint contiene información desde noviembre de 2015.\nPara más información, se puede consultar la metodología INDEC N°  9, Índice del Costo de la Construcción en el Gran Buenos Aires, base 1993, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/economia/metodologia_icc.pdf",
+      "primaryKey": [
+        "indicador",
+        "codigo_apertura",
+        "codigo_CPC_1",
+        "clasificador",
+        "nivel",
+        "descripcion",
+        "periodo",
+        "anio",
+        "mes",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "region",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "codigo_apertura",
+          "type": "string",
+          "description": "Código que identifica el nivel de apertura o desagregación del dato"
+        },
+        {
+          "name": "codigo_CPC_1",
+          "type": "string",
+          "description": "Código de la Clasificación Central Provisional de Productos (CPC) elaborada por la Organización de las Naciones Unidas. "
+        },
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "Región estadística a la que corresponde el dato"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado "
+        }
+      ]
+    },
+    {
+      "path": "/redeterminacion_precios_contratos_obras_publicas",
+      "title": "Redeterminación de precios de obras públicas",
+      "category": "Dirección de Índices de Precios de la Producción",
+      "description": "Aperturas del índice del costo de la construcción (ICC) y del índice de precios internos básicos al por mayor (IPIB) utilizadas para la redeterminación periódica de precios de contratos de obra pública, según el Decreto 1295/2002.\nTambién incluye indicadores requeridos por el Decreto 634/2003, relativo a las Ampliaciones de Transporte de Energía Eléctrica en Alta Tensión y por Distribución Troncal.\nEste endpoint contiene información desde diciembre de 2015.\nPara más información, se puede consultar la información disponible en el sitio web del INDEC :https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-112",
+      "primaryKey": [
+        "indicador",
+        "operativo",
+        "inciso",
+        "descripcion_inciso",
+        "codigo_apertura",
+        "clasificador",
+        "nivel",
+        "descripcion",
+        "origen",
+        "periodo",
+        "anio",
+        "mes",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "region",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "operativo",
+          "type": "string",
+          "description": "Operativo estadístico del que proviene el dato"
+        },
+        {
+          "name": "inciso",
+          "type": "string",
+          "description": "Código o denominación abreviada del inciso correspondiente al artículo 15 del Decreto 1295/2002"
+        },
+        {
+          "name": "descripcion_inciso",
+          "type": "string",
+          "description": "Denominación del inciso correspondiente al artículo 15 del Decreto 1295/2002"
+        },
+        {
+          "name": "codigo_apertura",
+          "type": "string",
+          "description": "Código que identifica el nivel de apertura o desagregación del dato"
+        },
+        {
+          "name": "codigo_CPC_1",
+          "type": "string",
+          "description": "Código de la Clasificación Central Provisional de Productos (CPC) elaborada por la Organización de las Naciones Unidas."
+        },
+        {
+          "name": "codigo_CIUU_3",
+          "type": "string",
+          "description": "Código de la Clasificación Industrial Internacional Uniforme (CIIU), revisión 3"
+        },
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "origen",
+          "type": "string",
+          "description": "Origen nacional o importado del producto de referencia"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "Región estadística a la que corresponde el dato"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/sipm_precios_mayoristas",
+      "title": "Sistema de índices de precios mayoristas",
+      "category": "Dirección de Índices de Precios de la Producción",
+      "description": "El Sistema de índices de precios mayoristas (SIPM) está compuesto por el índice de precios internos al por mayor (IPIM), el índice de precios internos básicos al por mayor (IPIB) y el índice de precios básicos del productor (IPP). Este endpoint contiene información desde diciembre de 2015.\nPara más información, se puede consultar la metodología INDEC N° 8, Sistema de Índices de Precios Mayoristas, base 1993, a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/economia/metodologia1_8_sipm.pdf",
+      "primaryKey": [
+        "operativo",
+        "indicador",
+        "clasificador",
+        "nivel",
+        "codigo_apertura",
+        "descripcion",
+        "periodo",
+        "anio",
+        "mes",
+        "tipo_de_indicador",
+        "tipo_de_indicador_descripcion",
+        "region",
+        "unidad_de_medida"
+      ],
+      "fields": [
+        {
+          "name": "operativo",
+          "type": "string",
+          "description": "Operativo estadístico del que proviene el dato"
+        },
+        {
+          "name": "indicador",
+          "type": "string",
+          "description": "Nombre del indicador estadístico"
+        },
+        {
+          "name": "clasificador",
+          "type": "string",
+          "description": "Clasificador utilizado para organizar y codificar las categorías del dato"
+        },
+        {
+          "name": "nivel",
+          "type": "string",
+          "description": "Nivel de desagregación de la categoría dentro de la estructura del clasificador"
+        },
+        {
+          "name": "codigo_apertura",
+          "type": "string",
+          "description": "Código que identifica el nivel de apertura o desagregación del dato"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o precio promedio"
+        },
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "Región estadística a la que corresponde el dato"
+        },
+        {
+          "name": "unidad_de_medida",
+          "type": "string",
+          "description": "Unidad en la que se expresa el valor del indicador"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/estimador-mensual-de-actividad-economica-nivel-general",
+      "title": "Estimador mensual de actividad económica. Nivel general",
+      "category": "Dirección Nacional de Cuentas Nacionales",
+      "description": "Estimador mensual de actividad económica (EMAE), nivel general, base 2004=100. Incluye la serie original, desestacionalizada y tendencia-ciclo, expresadas como números índice y variaciones porcentuales.",
+      "primaryKey": [
+        "tipo_de_indicador_descripcion",
+        "anio",
+        "mes",
+        "periodo",
+        "tipo_de_indicador"
+      ],
+      "fields": [
+        {
+          "name": "tipo_de_indicador_descripcion",
+          "type": "string",
+          "description": "Descripción del tipo de indicador"
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o peso promedio"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/estimador-mensual-de-actividad-economica-sectores",
+      "title": "Estimador mensual de actividad económica. Sectores",
+      "category": "Dirección Nacional de Cuentas Nacionales",
+      "description": "Estimador mensual de actividad económica (EMAE) por sector de actividad económica, base 2004=100 (serie original). Incluye números índice y variaciones porcentuales interanuales para cada sector desde enero de 2004.",
+      "primaryKey": [
+        "anio",
+        "mes",
+        "codigo",
+        "descripcion",
+        "periodo",
+        "tipo_de_indicador"
+      ],
+      "fields": [
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "codigo",
+          "type": "string",
+          "description": "Código letra de la Clasificación nacional de actividades económicas 2004 (ClaNAE04)"
+        },
+        {
+          "name": "descripcion",
+          "type": "string",
+          "description": "Denominación de la categoría correspondiente al código informado"
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "tipo_de_indicador",
+          "type": "string",
+          "description": "Tipo de cálculo o presentación del indicador, como índice, variación intermensual, variación interanual, variación acumulada, incidencia o peso promedio"
+        },
+        {
+          "name": "valor",
+          "type": "number",
+          "description": "Valor del indicador para el período y las categorías informadas"
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas necesarias para el valor informado"
+        }
+      ]
+    },
+    {
+      "path": "/pobreza_eph",
+      "title": "Incidencia de la pobreza y la indigencia (EPH)",
+      "category": "Dirección Nacional de Estadísticas de Condiciones de Vida",
+      "description": "Incidencia de la pobreza y la indigencia en hogares y personas a partir de la Encuesta Permanente de Hogares (EPH) para el total de 31 aglomerados urbanos. La información se presenta con frecuencia semestral desde el segundo semestre de 2016.",
+      "primaryKey": [
+        "area_geografica_nom",
+        "periodo"
+      ],
+      "fields": [
+        {
+          "name": "area_geografica_nom",
+          "type": "string",
+          "description": "Denominación del área geográfica a la que corresponde el dato."
+        },
+        {
+          "name": "area_geografica_cod",
+          "type": "number",
+          "description": "Código que identifica el área geográfica a la que corresponde el dato. Ver diseño de registros y estructura para las bases preliminares (hogares y personas) de EPH en https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos ."
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAANS (número de semestre)  "
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato."
+        },
+        {
+          "name": "semestre",
+          "type": "number",
+          "description": "Número del semestre correspondiente al año de referencia. Utiliza los valores 1 (primer semestre) y 2 (segundo semestre)."
+        },
+        {
+          "name": "tasa_pobreza_hogares",
+          "type": "number",
+          "description": "Porcentaje de hogares cuyos ingresos se encuentran por debajo de su respectiva línea de pobreza en relación con el total de hogares."
+        },
+        {
+          "name": "tasa_pobreza_personas",
+          "type": "number",
+          "description": "Porcentaje de personas que habitan en hogares cuyos ingresos se encuentran por debajo de su respectiva línea de pobreza en relación con el total de personas."
+        },
+        {
+          "name": "tasa_indigencia_hogares",
+          "type": "number",
+          "description": "Porcentaje de hogares cuyos ingresos se encuentran por debajo de su respectiva línea de indigencia en relación con el total de hogares."
+        },
+        {
+          "name": "tasa_indigencia_personas",
+          "type": "number",
+          "description": "Porcentaje de personas que habitan en hogares cuyos ingresos se encuentran por debajo de su respectiva línea de indigencia en relación con el total de personas."
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas vinculadas a los valores informados."
+        }
+      ]
+    },
+    {
+      "path": "/mercado_trabajo_eph",
+      "title": "Principales tasas del mercado de trabajo (EPH)",
+      "category": "Dirección Nacional de Estadísticas de Condiciones de Vida",
+      "description": "Principales tasas del mercado de trabajo estimadas a partir de la Encuesta Permanente de Hogares (EPH), correspondientes al total de 31 aglomerados urbanos. Incluye las tasas de actividad, empleo, empleo formal e informal, desocupación, ocupación demandante de empleo y subocupación. La información se presenta con frecuencia trimestral desde el segundo trimestre de 2016.\nPara más información, se puede consultar la metodología INDEC de la EPH a través del siguiente enlace: https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia_eph_continua.pdf\nY acceder a informes técnicos y datos complementarios en: https://www.indec.gob.ar/indec/web/Nivel4-Tema-4-31-58",
+      "primaryKey": [
+        "area_geografica_nom",
+        "periodo"
+      ],
+      "fields": [
+        {
+          "name": "area_geografica_nom",
+          "type": "string",
+          "description": "Denominación del área geográfica a la que corresponde el dato."
+        },
+        {
+          "name": "area_geografica_cod",
+          "type": "number",
+          "description": "Código que identifica el área geográfica a la que corresponde el dato. Ver diseño de registros y estructura para las bases preliminares (hogares y personas) de EPH en https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos ."
+        },
+        {
+          "name": "periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAANT (número de trimestre que utiliza valores comprendidos entre 1 Y 4)."
+        },
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato."
+        },
+        {
+          "name": "trimestre",
+          "type": "number",
+          "description": "Número del trimestre correspondiente al año de referencia. Utiliza valores comprendidos entre 1 (primer trimestre) y 4 (cuarto trimestre)."
+        },
+        {
+          "name": "tasa_de_actividad",
+          "type": "number",
+          "description": "Porcentaje de la población económicamente activa con respecto a la población total de referencia."
+        },
+        {
+          "name": "tasa_de_empleo",
+          "type": "number",
+          "description": "Porcentaje de la población ocupada con respecto a la población total de referencia."
+        },
+        {
+          "name": "tasa_de_empleo_formal",
+          "type": "number",
+          "description": "Porcentaje de la población ocupada con empleo formal con respecto a la población total de referencia."
+        },
+        {
+          "name": "tasa_de_empleo_informal",
+          "type": "number",
+          "description": "Porcentaje de la población ocupada con empleo informal con respecto a la población total de referencia."
+        },
+        {
+          "name": "tasa_de_desocupacion",
+          "type": "number",
+          "description": "Porcentaje de la población desocupada con respecto a la población económicamente activa."
+        },
+        {
+          "name": "tasa_de_ocupacion_demandante",
+          "type": "number",
+          "description": "Porcentaje de la población ocupada que busca activamente otra ocupación con respecto a la población económicamente activa."
+        },
+        {
+          "name": "tasa_de_subocupacion",
+          "type": "number",
+          "description": "Porcentaje de la población subocupada con respecto a la población económicamente activa."
+        },
+        {
+          "name": "tasa_de_subocupacion_demandante",
+          "type": "number",
+          "description": "Porcentaje de la población subocupada que busca activamente otra ocupación con respecto a la población económicamente activa."
+        },
+        {
+          "name": "tasa_de_subocupacion_no_demandante",
+          "type": "number",
+          "description": "Porcentaje de la población subocupada que busca activamente otra ocupación con respecto a la población económicamente activa."
+        },
+        {
+          "name": "observaciones",
+          "type": "string",
+          "description": "Notas vinculadas a los valores informados. "
+        }
+      ]
+    },
+    {
+      "path": "/canasta-crianza",
+      "title": "Valorización de la canasta de crianza",
+      "category": "Dirección Nacional de Estadísticas de Condiciones de Vida",
+      "description": "Valorización mensual de la canasta de crianza de la primera infancia, la niñez y la adolescencia. Está conformada por el costo de los bienes y servicios, y la valorización del tiempo de cuidado. La estimación se realiza para cuatro tramos de edad: menores de 1 año, de 1 a 3 años, de 4 a 5 años y de 6 a 12 años.",
+      "primaryKey": [
+        "Periodo"
+      ],
+      "fields": [
+        {
+          "name": "anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "Mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "Periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "bys_men1",
+          "type": "number",
+          "description": "Costo mensual de los bienes y servicios incluidos en la canasta de crianza para menores de 1 año, expresado en pesos argentinos"
+        },
+        {
+          "name": "cuid_men1",
+          "type": "number",
+          "description": "Valorización mensual del tiempo de cuidado requerido para menores de 1 año, expresado en pesos argentinos"
+        },
+        {
+          "name": "tot_men1",
+          "type": "number",
+          "description": "Valor mensual total de la canasta de crianza para menores de 1 año, expresado en pesos argentinos"
+        },
+        {
+          "name": "bys_1a3",
+          "type": "number",
+          "description": "Costo mensual de los bienes y servicios incluidos en la canasta de crianza para niñas y niños de 1 a 3 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "cuid_1a3",
+          "type": "number",
+          "description": "Valorización mensual del tiempo de cuidado requerido para niñas y niños de 1 a 3 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "tot_1a3",
+          "type": "number",
+          "description": "Valor mensual total de la canasta de crianza para niñas y niños de 1 a 3 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "bys_4a5",
+          "type": "number",
+          "description": "Costo mensual de los bienes y servicios incluidos en la canasta de crianza para niñas y niños de 4 a 5 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "cuid_4a5",
+          "type": "number",
+          "description": "Valorización mensual del tiempo de cuidado requerido para niñas y niños de 4 a 5 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "tot_4a5",
+          "type": "number",
+          "description": "Valor mensual total de la canasta de crianza para niñas y niños de 4 a 5 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "bys_6a12",
+          "type": "number",
+          "description": "Costo mensual de los bienes y servicios incluidos en la canasta de crianza para niñas, niños y adolescentes de 6 a 12 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "cuid_6a12",
+          "type": "number",
+          "description": "Valorización mensual del tiempo de cuidado requerido para niñas, niños y adolescentes de 6 a 12 años, expresado en pesos argentinos"
+        },
+        {
+          "name": "tot_6a12",
+          "type": "number",
+          "description": "Valor mensual total de la canasta de crianza para niñas, niños y adolescentes de 6 a 12 años, expresado en pesos argentinos"
+        }
+      ]
+    },
+    {
+      "path": "/comercio_exterior_nomenclaturas",
+      "title": "Códigos y denominaciones de comercio exterior",
+      "category": "Dirección Nacional de Estadísticas del Sector Externo y Cuentas Internacionales",
+      "description": "Diccionario de códigos y nomenclaturas utilizados en los servicios de datos de comercio exterior de la Dirección Nacional de Estadísticas del Sector Externo y Cuentas Internacionales.\nIncluye los códigos de país, grandes rubros y subrubros de las exportaciones, y los usos económicos y grandes categorías económicas de las importaciones.",
+      "primaryKey": [
+        "nombre_columna",
+        "codigo"
+      ],
+      "fields": [
+        {
+          "name": "nombre_columna",
+          "type": "string",
+          "description": "Nombre de la columna de los servicios de datos de comercio exterior en la que se utiliza el código"
+        },
+        {
+          "name": "codigo",
+          "type": "string",
+          "description": "Código utilizado en la columna indicada de los servicios de datos de comercio exterior"
+        },
+        {
+          "name": "codigo_descripcion",
+          "type": "string",
+          "description": "Denominación correspondiente al código informado"
+        }
+      ]
+    },
+    {
+      "path": "/comercio_exterior_exportacion_bienes",
+      "title": "Exportaciones de bienes por rubros y países de destino",
+      "category": "Dirección Nacional de Estadísticas del Sector Externo y Cuentas Internacionales",
+      "description": "Exportaciones argentinas de bienes por grandes rubros, subrubros y país de destino desde enero de 1986. Incluye el valor FOB expresado en dólares estadounidenses y el peso neto de las mercaderías expresado en kilogramos. \nLa información se presenta con frecuencia mensual. Se aplican criterios de supresión para resguardar el secreto estadístico y la confidencialidad de la información aduanera. El signo convencional “s” indica que se registraron operaciones, pero el número de operadores fue insuficiente para publicar el valor.",
+      "primaryKey": [
+        "Anio",
+        "Mes",
+        "Periodo",
+        "rubro_cod",
+        "subrubro_cod",
+        "pais_cod"
+      ],
+      "fields": [
+        {
+          "name": "Anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "Mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "Periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "rubro_cod",
+          "type": "string",
+          "description": "Código que identifica el rubro al que pertenece la exportación"
+        },
+        {
+          "name": "subrubro_cod",
+          "type": "string",
+          "description": "Código de tres posiciones que identifica el subrubro de exportación dentro del rubro correspondiente"
+        },
+        {
+          "name": "pais_cod",
+          "type": "string",
+          "description": "Código que identifica el país de origen de las importaciones o de destino de las exportaciones"
+        },
+        {
+          "name": "valor_FOB",
+          "type": "number",
+          "description": "Valor de las exportaciones a precios FOB, expresado en dólares estadounidenses"
+        },
+        {
+          "name": "Peso_Neto",
+          "type": "number",
+          "description": "Peso neto de los bienes que componen el rubro o subrubro informado, expresado en kilogramos"
+        }
+      ]
+    },
+    {
+      "path": "/comercio_exterior_importacion_bienes",
+      "title": "Importaciones de bienes por uso económico y país de origen",
+      "category": "Dirección Nacional de Estadísticas del Sector Externo y Cuentas Internacionales",
+      "description": "Importaciones argentinas de bienes por uso económico, grandes categorías económica y país de origen. Incluye el valor CIF expresado en dólares estadounidenses y el peso neto de las mercaderías expresado en kilogramos. La información se presenta con frecuencia mensual.",
+      "primaryKey": [
+        "Anio",
+        "Mes",
+        "Periodo",
+        "uso_economico_cod",
+        "gce_cod",
+        "pais_cod"
+      ],
+      "fields": [
+        {
+          "name": "Anio",
+          "type": "number",
+          "description": "Año correspondiente al período de referencia del dato"
+        },
+        {
+          "name": "Mes",
+          "type": "number",
+          "description": "Número del mes correspondiente al período de referencia. Utiliza valores comprendidos entre 1 (enero) y 12 (diciembre)"
+        },
+        {
+          "name": "Periodo",
+          "type": "string",
+          "description": "Período de referencia del dato, expresado en formato AAAAMM (meses)"
+        },
+        {
+          "name": "uso_economico_cod",
+          "type": "string",
+          "description": "Código que identifica el uso económico de las importaciones"
+        },
+        {
+          "name": "gce_cod",
+          "type": "string",
+          "description": "Código que identifica la gran categoría económica dentro del uso económico de importación correspondiente"
+        },
+        {
+          "name": "pais_cod",
+          "type": "string",
+          "description": "Código que identifica el país de origen de las importaciones o de destino de las exportaciones"
+        },
+        {
+          "name": "valor_CIF",
+          "type": "number",
+          "description": "Valor de las importaciones a precios CIF, expresado en dólares estadounidenses"
+        },
+        {
+          "name": "peso_neto",
+          "type": "number",
+          "description": "Peso neto de los bienes que componen el uso económico o categoría económica informada, expresado en kilogramos"
+        }
+      ]
+    }
+  ]
+}
