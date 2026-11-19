@@ -29,16 +29,10 @@ button{border:0}
   width:270px;padding:34px 22px 22px;background:var(--navy);color:#f5f6ff;
   box-shadow:12px 0 44px rgba(21,31,57,.07)
 }
-.brand{display:inline-flex;align-items:center;gap:11px;width:max-content;margin:0 0 42px 5px;color:#fff;text-decoration:none;font-family:var(--font-display);font-size:25px;font-weight:800;letter-spacing:-1.25px}
+.brand{display:inline-flex;align-items:center;gap:11px;width:max-content;margin:0 0 42px 5px;color:#fff;text-decoration:none;font-family:var(--font-display);font-size:23px;font-weight:800;letter-spacing:-1.05px}
 .brand-mark{display:grid;place-items:center;width:37px;height:37px;border-radius:12px;background:#8c78f6;color:#fff;box-shadow:0 8px 22px rgba(140,120,246,.3)}
 .brand-mark svg{width:25px;height:25px}
 .brand-period{color:#b7aaff}
-.workspace-label{display:flex;align-items:center;gap:11px;padding:12px 10px;margin-bottom:25px;border:1px solid rgba(255,255,255,.09);border-radius:13px;background:rgba(255,255,255,.055)}
-.workspace-avatar,.profile-avatar{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:11px;background:#f5c9b6;color:#513c40;font-family:var(--font-display);font-weight:800}
-.workspace-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
-.workspace-copy strong{font-size:13px;font-weight:700}
-.workspace-copy small{color:#aab3c9;font-size:8px;font-weight:700;letter-spacing:1.15px}
-.workspace-chevron{width:17px;height:17px;color:#9ba7c1}
 .create-note-button{display:flex;align-items:center;gap:11px;width:100%;height:48px;padding:0 13px;border-radius:12px;background:#9583fa;color:white;text-align:left;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 8px 20px rgba(113,93,231,.22);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
 .create-note-button:hover{transform:translateY(-2px);background:#a394ff;box-shadow:0 12px 25px rgba(113,93,231,.3)}
 .create-plus{display:grid;place-items:center;width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.18);font-size:22px;font-weight:400;line-height:1}
@@ -66,7 +60,6 @@ button{border:0}
 .sidebar-meta i{padding:0 3px;color:#ac9cff;font-style:normal}
 .main-content{min-height:100vh;margin-left:270px;padding:0 clamp(28px,5vw,76px) 28px;overflow:hidden}
 .topbar{display:flex;align-items:center;justify-content:space-between;min-height:82px;border-bottom:1px solid var(--line)}
-.date-label{color:#9198aa;font-size:10px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
 .topbar-actions{display:flex;align-items:center;gap:16px}
 .search-box{display:flex;align-items:center;gap:10px;width:min(300px,34vw);height:41px;padding:0 12px;border:1px solid #e7e9f0;border-radius:11px;background:white;color:#9299aa;transition:border .2s,box-shadow .2s}
 .search-box:focus-within{border-color:#b6a9ff;box-shadow:0 0 0 4px rgba(140,120,246,.09)}
@@ -75,7 +68,6 @@ button{border:0}
 .search-box input::placeholder{color:#a2a8b8}
 .search-box input::-webkit-search-cancel-button{cursor:pointer}
 .search-box kbd{flex:none;padding:3px 5px;border:1px solid #e9eaf0;border-radius:5px;color:#9aa0b0;font-family:inherit;font-size:9px}
-.profile-avatar{width:34px;height:34px;border-radius:50%;background:#d3c9ff;color:#5141a5;font-size:12px}
 .mobile-menu-button{display:none}
 .page-intro{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:224px;padding:38px 0 25px;isolation:isolate}
 .intro-copy{position:relative;z-index:2}
@@ -211,14 +203,12 @@ button{border:0}
   .brand{margin-bottom:31px}
   .main-content{margin-left:0;padding:0 20px 24px}
   .topbar{min-height:70px;gap:12px}
-  .date-label{display:none}
-  .mobile-menu-button{display:flex;flex-direction:column;justify-content:center;gap:5px;flex:none;width:36px;height:36px;padding:9px;border:1px solid #e6e8ef;border-radius:10px;background:#fff;cursor:pointer}
+    .mobile-menu-button{display:flex;flex-direction:column;justify-content:center;gap:5px;flex:none;width:36px;height:36px;padding:9px;border:1px solid #e6e8ef;border-radius:10px;background:#fff;cursor:pointer}
   .mobile-menu-button span{display:block;width:16px;height:1.5px;border-radius:2px;background:#4f5b76}
   .topbar-actions{flex:1;justify-content:flex-end;gap:9px}
   .search-box{width:min(300px,calc(100vw - 124px));height:38px;gap:7px;padding-inline:9px}
   .search-box kbd{display:none}
-  .profile-avatar{width:31px;height:31px}
-  .page-intro{min-height:190px;padding:30px 0 25px}
+    .page-intro{min-height:190px;padding:30px 0 25px}
   .page-intro h1{margin-top:12px;font-size:clamp(31px,8vw,42px);letter-spacing:-1.8px}
   .intro-subtitle{max-width:310px;font-size:12px}
   .desktop-break{display:none}
@@ -359,8 +349,6 @@ body{font-size:16px}
  
 /* Interface typography: larger UI labels and supporting copy; note title/body entry sizes stay untouched. */
 body{font-size:16px}
-.workspace-copy strong{font-size:14px}
-.workspace-copy small{font-size:9px}
 .create-note-button{font-size:15px}
 .create-note-button kbd{font-size:11px}
 .nav-caption,.section-overline,.eyebrow{font-size:10px;letter-spacing:1.25px}
@@ -369,7 +357,6 @@ body{font-size:16px}
 .storage-card strong{font-size:12px}
 .storage-card p{font-size:11px;line-height:1.55}
 .sidebar-meta{font-size:9px;letter-spacing:.85px}
-.date-label{font-size:11px}
 .search-box input{font-size:15px}
 .search-box kbd{font-size:10px}
 .intro-subtitle{font-size:16px;line-height:1.8}
@@ -395,9 +382,7 @@ body{font-size:16px}
   .stat-card span:not(.stat-icon){font-size:11px}
 }
 @media(max-width:760px){
-  .workspace-copy strong{font-size:14px}
-  .workspace-copy small{font-size:9px}
-  .create-note-button{font-size:15px}
+      .create-note-button{font-size:15px}
   .nav-caption,.section-overline,.eyebrow{font-size:10px}
   .nav-item{font-size:14px}
   .nav-count{font-size:12px}
