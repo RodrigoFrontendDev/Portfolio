@@ -25,18 +25,9 @@
 
   const progressBar = document.querySelector("#progress-bar");
   const journey = document.querySelector("#mission-journey");
-  const stage = document.querySelector("#journey-stage");
-  const entries = journey ? Array.from(journey.querySelectorAll("article.journey-entry")) : [];
-  const title = document.querySelector("#journey-stage-title");
-  const year = document.querySelector("#journey-stage-year");
-  const type = document.querySelector("#journey-stage-type");
-  const indexLabel = document.querySelector("#journey-stage-index");
-  const percentLabel = document.querySelector("#journey-stage-percent");
-  const progressFill = document.querySelector("#journey-stage-progress");
-  const layers = stage ? [stage.querySelector(".journey-art-a"), stage.querySelector(".journey-art-b")] : [];
+  const entries = journey ? Array.from(journey.querySelectorAll(".journey-entry")) : [];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Fuentes específicas para cada hito, con alternativas cuando una CDN falla.
   const sceneAssets = {
     "luna3": [
       "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/f/First_Luna1-1.jpg?fit=clip&h=1200&w=1200",
@@ -113,17 +104,10 @@
     const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000"><defs><linearGradient id="space" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#13233a"/><stop offset=".6" stop-color="#080e1a"/><stop offset="1" stop-color="#02050b"/></linearGradient><radialGradient id="halo"><stop stop-color="#6b9bbb" stop-opacity=".34"/><stop offset="1" stop-color="#6b9bbb" stop-opacity="0"/></radialGradient></defs><rect width="1600" height="1000" fill="url(#space)"/><ellipse cx="790" cy="520" rx="760" ry="520" fill="url(#halo)"/>' + stars + (fallbackArt[scene] || fallbackArt["voyager-pair"]) + '</svg>';
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   };
-  const imagePromises = new Map();
-  let activeLayer = 0;
-  let displayedScene = "";
-  let sceneRequest = 0;
-  let activeIndex = -1;
-  let ticking = false;
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const pad = value => String(value).padStart(2, "0");
 
+  const imagePromises = new Map();
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
   const loadImage = url => {
-    if (!url) return Promise.resolve(false);
     if (imagePromises.has(url)) return imagePromises.get(url);
     const promise = new Promise(resolve => {
       const image = new Image();
@@ -152,66 +136,98 @@
     return "";
   };
 
-  const applyScene = async scene => {
-    if (!stage || !layers[0] || !layers[1] || scene === displayedScene) return;
-    displayedScene = scene;
-    stage.dataset.scene = scene;
-    const request = ++sceneRequest;
-    const imageUrl = await loadSceneImage(scene);
-    if (request !== sceneRequest) return;
-    const nextIndex = 1 - activeLayer;
-    const next = layers[nextIndex];
-    const previous = layers[activeLayer];
-    const overlay = "linear-gradient(180deg,rgba(5,9,18,.08),rgba(5,9,18,.58))";
-    const visualUrl = imageUrl || makeFallbackImage(scene);
-    next.style.backgroundImage = overlay + ',url("' + visualUrl + '")';
-    next.dataset.imageState = imageUrl ? "loaded" : "illustrated-fallback";
-    requestAnimationFrame(() => {
-      if (request !== sceneRequest) return;
-      next.classList.add("is-visible");
-      previous.classList.remove("is-visible");
-      activeLayer = nextIndex;
+  // Every mission gets independent depth layers; photos load only near the viewport.
+  const buildMissionScenes = () => {
+    entries.forEach((entry, index) => {
+      const scene = entry.dataset.scene || "sputnik";
+      entry.dataset.chapter = String(index + 1).padStart(2, "0");
+      entry.classList.add("journey-cinematic");
+      if (entry.querySelector(".journey-entry-visual")) return;
+
+      const visual = document.createElement("div");
+      visual.className = "journey-entry-visual";
+      visual.setAttribute("aria-hidden", "true");
+
+      const fallback = document.createElement("img");
+      fallback.className = "journey-entry-fallback";
+      fallback.alt = "";
+      fallback.decoding = "async";
+      fallback.src = makeFallbackImage(scene);
+
+      const photo = document.createElement("img");
+      photo.className = "journey-entry-photo";
+      photo.alt = "";
+      photo.decoding = "async";
+      photo.loading = index < 2 ? "eager" : "lazy";
+      photo.draggable = false;
+
+      const atmosphere = document.createElement("div");
+      atmosphere.className = "journey-entry-atmosphere";
+      const stars = document.createElement("div");
+      stars.className = "journey-entry-stars";
+      const orbit = document.createElement("div");
+      orbit.className = "journey-entry-orbit";
+
+      visual.append(fallback, photo, atmosphere, stars, orbit);
+      entry.insertBefore(visual, entry.firstChild);
     });
   };
 
-  const activateMission = index => {
-    if (index < 0 || index >= entries.length || index === activeIndex) return;
-    activeIndex = index;
-    const entry = entries[index];
-    entries.forEach((item, itemIndex) => {
-      const active = itemIndex === index;
-      item.classList.toggle("is-active", active);
-      if (active) item.setAttribute("aria-current", "step");
-      else item.removeAttribute("aria-current");
+  const requestMissionPhoto = entry => {
+    if (entry.dataset.imageRequested === "true") return;
+    entry.dataset.imageRequested = "true";
+    const scene = entry.dataset.scene || "sputnik";
+    loadSceneImage(scene).then(url => {
+      if (!url) return; // The mission-specific illustrated fallback stays visible.
+      const photo = entry.querySelector(".journey-entry-photo");
+      if (!photo) return;
+      photo.onload = () => entry.classList.add("has-photo");
+      photo.onerror = () => {
+        photo.removeAttribute("src");
+        entry.classList.remove("has-photo");
+      };
+      photo.src = url;
+      if (photo.complete && photo.naturalWidth > 0) entry.classList.add("has-photo");
     });
-    if (title) title.textContent = entry.dataset.title || "";
-    if (year) year.textContent = entry.dataset.year || "";
-    if (type) type.textContent = entry.dataset.type || "";
-    const current = index + 1;
-    const count = entries.length || 1;
-    if (indexLabel) indexLabel.textContent = pad(current) + " / " + pad(count);
-    if (percentLabel) percentLabel.textContent = pad(Math.round(current / count * 100)) + "%";
-    if (progressFill) progressFill.style.transform = "scaleX(" + current / count + ")";
-    applyScene(entry.dataset.scene || "orbit");
   };
 
-  const updateActiveMission = () => {
-    if (!entries.length) return;
-    const focus = window.innerHeight * 0.53;
-    let nearestIndex = 0;
+  buildMissionScenes();
+  let activeEntry = -1;
+  let ticking = false;
+
+  const updateMissionDepth = () => {
+    const viewportHeight = window.innerHeight || 1;
+    let nearestIndex = -1;
     let nearestDistance = Infinity;
-    let currentDistance = Infinity;
+
     entries.forEach((entry, index) => {
       const rect = entry.getBoundingClientRect();
-      const distance = Math.abs(rect.top + rect.height / 2 - focus);
+      if (rect.bottom < -160 || rect.top > viewportHeight + 160) return;
+
+      const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
+      const depth = progress - 0.5;
+      entry.style.setProperty("--mission-image-shift", (depth * -280).toFixed(1) + "px");
+      entry.style.setProperty("--mission-atmosphere-shift", (depth * 150).toFixed(1) + "px");
+      entry.style.setProperty("--mission-stars-shift", (depth * -72).toFixed(1) + "px");
+      entry.style.setProperty("--mission-orbit-shift", (depth * 118).toFixed(1) + "px");
+      entry.style.setProperty("--mission-copy-shift", (depth * -48).toFixed(1) + "px");
+
+      const distance = Math.abs(rect.top + rect.height * 0.5 - viewportHeight * 0.52);
       if (distance < nearestDistance) {
         nearestDistance = distance;
         nearestIndex = index;
       }
-      if (index === activeIndex) currentDistance = distance;
     });
-    if (activeIndex < 0) activateMission(nearestIndex);
-    else if (nearestIndex !== activeIndex && currentDistance > nearestDistance + 72) activateMission(nearestIndex);
+
+    if (nearestIndex !== activeEntry && nearestIndex >= 0) {
+      entries.forEach((entry, index) => {
+        const active = index === nearestIndex;
+        entry.classList.toggle("is-active", active);
+        if (active) entry.setAttribute("aria-current", "step");
+        else entry.removeAttribute("aria-current");
+      });
+      activeEntry = nearestIndex;
+    }
   };
 
   const updateScroll = () => {
@@ -220,24 +236,34 @@
       const progress = scrollable > 0 ? window.scrollY / scrollable * 100 : 0;
       progressBar.style.width = clamp(progress, 0, 100) + "%";
     }
-    if (journey && stage && !reducedMotion) {
-      const rect = journey.getBoundingClientRect();
-      const usableRange = Math.max(1, rect.height - window.innerHeight * 0.3);
-      const progress = clamp((window.innerHeight * 0.65 - rect.top) / usableRange, 0, 1);
-      const movement = (progress - 0.5) * 280;
-      stage.style.setProperty("--journey-parallax", movement.toFixed(1) + "px");
-    }
-    updateActiveMission();
+    if (!reducedMotion) updateMissionDepth();
     ticking = false;
   };
 
-  window.addEventListener("scroll", () => {
+  const scheduleScrollUpdate = () => {
     if (!ticking) {
       requestAnimationFrame(updateScroll);
       ticking = true;
     }
-  }, { passive: true });
-  if (entries.length) activateMission(0);
+  };
+
+  if ("IntersectionObserver" in window) {
+    const missionObserver = new IntersectionObserver((changes, observer) => {
+      changes.forEach(change => {
+        if (!change.isIntersecting) return;
+        requestMissionPhoto(change.target);
+        change.target.classList.add("is-in-view");
+        observer.unobserve(change.target);
+      });
+    }, { rootMargin: "420px 0px", threshold: 0.01 });
+    entries.forEach(entry => missionObserver.observe(entry));
+  } else {
+    entries.forEach(requestMissionPhoto);
+  }
+
+  entries.slice(0, 2).forEach(requestMissionPhoto);
+  window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
+  window.addEventListener("resize", scheduleScrollUpdate, { passive: true });
   updateScroll();
 
   const revealItems = document.querySelectorAll(".reveal");
