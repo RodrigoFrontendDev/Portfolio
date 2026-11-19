@@ -451,7 +451,7 @@ function renderFilters(){const container=el("filters-list");container.innerHTML=
 function buildRequest(){
   const d=current();
   if(!d)return null;
-  const route=d.path.replace(/^\\/+/, "");
+  const route=d.path.startsWith("/") ? d.path.slice(1) : d.path;
   const url=new URL(route,API_ROOT);
   const proxyUrl=new URL("/api/indec/"+route,window.location.origin);
   const select=el("select-columns").value.trim();
