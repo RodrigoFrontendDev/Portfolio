@@ -21,12 +21,14 @@
   <link rel="canonical" href="https://rodrigoportfolio.free.nf/es/">
   <link rel="alternate" hreflang="en" href="https://rodrigoportfolio.free.nf/">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../vendor/nordify-liquid-glass/liquid-glass.css">
   <link rel="icon" href="../img/favicon32x32.webp" sizes="32x32" type="image/webp">
   <link rel="icon" href="../img/favicon16x16.webp" sizes="16x16" type="image/webp">
   <script src="https://kit.fontawesome.com/78f1411366.js" crossorigin="anonymous" defer></script>
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
   <script src="../js/index.js" defer></script>
   <script src="../js/contact-form.js" defer></script>
+  <script type="module" src="../js/liquid-glass-entry.js"></script>
   <title>Rodrigo Nickler | Desarrollador Frontend</title>
 </head>
 <body>
@@ -80,7 +82,7 @@
     </section>
 
     <section class="about section-shell" id="about" aria-labelledby="about-title">
-      <div class="section-label">01 / Sobre mí</div>
+      <div class="section-label">Sobre mí</div>
       <div class="about-layout">
         <div class="about-copy">
           <h2 class="section-title" id="about-title">Un poco <span>sobre mí.</span></h2>
@@ -97,7 +99,7 @@
     </section>
 
     <section class="skills section-shell" id="skills" aria-labelledby="skills-title">
-      <div class="section-label">02 / Herramientas</div>
+      <div class="section-label">Herramientas</div>
       <div class="section-heading">
         <h2 class="section-title" id="skills-title">Tecnologías con las que <span>trabajo.</span></h2>
         <p>Un conjunto de herramientas que sigo ampliando con proyectos prácticos.</p>
@@ -132,18 +134,19 @@
     </section>
 
     <section class="portfolio section-shell" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="section-label">03 / Proyectos seleccionados</div>
+      <div class="section-label">Proyectos seleccionados</div>
       <div class="section-heading projects-heading">
         <div>
           <h2 class="section-title" id="portfolio-title">Proyectos creados con <span>propósito.</span></h2>
           <p>Una selección de proyectos personales, desde prácticas puntuales hasta aplicaciones web completas.</p>
         </div>
-        <span class="project-count">07 proyectos</span>
+        <span class="project-count">08 proyectos</span>
       </div>
 
       <div class="project-grid">
         <article class="project-card project-card-featured">
-          <img class="project-media" src="../img/open-sound-preview.jpg" alt="Interfaz de descubrimiento musical de la aplicación Open Sound" loading="lazy" decoding="async">\n          <div class="project-content">
+          <img class="project-media" src="../img/open-sound-preview.jpg" alt="Interfaz de descubrimiento musical de la aplicación Open Sound" loading="lazy" decoding="async">
+          <div class="project-content">
             <div class="project-meta"><span class="project-type">Proyecto destacado</span><span class="project-year">Aplicación web</span></div>
             <h3>Open Sound</h3>
             <p>Una experiencia de streaming musical basada en el catálogo de Audius. Permite descubrir canciones y colecciones, escuchar música desde un reproductor compartido y gestionar una biblioteca personal con favoritos y playlists. Supabase se encarga de la autenticación y los datos de usuario.</p>
@@ -168,7 +171,8 @@
         </article>
 
         <article class="project-card project-card-featured">
-          <img class="project-media" src="../img/price-search-preview.jpg" alt="Interfaz de búsqueda y comparación de productos de Price Search" loading="lazy" decoding="async">\n          <div class="project-content">
+          <img class="project-media" src="../img/price-search-preview.jpg" alt="Interfaz de búsqueda y comparación de productos de Price Search" loading="lazy" decoding="async">
+          <div class="project-content">
             <div class="project-meta"><span class="project-type">Proyecto destacado</span><span class="project-year">Aplicación web</span></div>
             <h3>Price Search</h3>
             <p>Una plataforma para descubrir y comparar productos. Permite buscar en Mercado Libre, Amazon y AliExpress, consultar detalles y ajustar los resultados para comparar opciones disponibles. Las integraciones OAuth y las consultas a los marketplaces se gestionan desde el servidor.</p>
@@ -264,11 +268,29 @@
             <div class="project-actions"><a class="project-link project-link-primary" href="https://website-age-calculator.netlify.app/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/age-calculator" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
           </div>
         </article>
+
+        <article class="project-card">
+          <img class="project-media" src="../img/indec-explorer-preview.webp" alt="INDEC Explorer con servicios de datos, constructor de consultas y vista previa de la solicitud REST" loading="lazy" decoding="async">
+          <div class="project-content">
+            <div class="project-meta"><span class="project-type">Herramienta de datos</span><span class="project-year">Explorador de API REST</span></div>
+            <h3>INDEC Explorer</h3>
+            <p>Un explorador interactivo del catálogo oficial de API-INDEC. Permite recorrer 19 servicios de solo lectura, armar consultas REST con filtros y paginación, y revisar respuestas en JSON o tabla. Un proxy de Cloudflare Pages reenvía las solicitudes autenticadas sin almacenar el token.</p>
+            <ul class="project-tags" aria-label="Tecnologías">
+              <li data-tech="html">HTML</li>
+              <li data-tech="css">CSS</li>
+              <li data-tech="javascript">JavaScript</li>
+              <li data-tech="rest">REST API</li>
+              <li data-tech="openapi">OpenAPI</li>
+              <li data-tech="cloudflare">Cloudflare Pages Functions</li>
+            </ul>
+            <div class="project-actions"><a class="project-link project-link-primary" href="../indec-api-explorer/" target="_blank" rel="noopener noreferrer">Ver demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a class="project-link" href="https://github.com/RodrigoFrontendDev/Portfolio/tree/main/indec-api-explorer" target="_blank" rel="noopener noreferrer">Código <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
-      <div class="section-label">04 / Contacto</div>
+      <div class="section-label">Contacto</div>
       <div class="contact-layout">
         <div class="contact-copy">
           <h2 class="section-title" id="contact-title">¿Tenés un proyecto<br>en <span>mente?</span></h2>
@@ -301,9 +323,11 @@
   </main>
 
   <footer class="footer">
-    <a class="logo" href="#home">RN<span>.</span></a>
     <p>Diseñado y desarrollado por Rodrigo Nickler.</p>
-    <span class="footer-copy">© <span id="current-year">2026</span> Todos los derechos reservados.</span>
+    <a class="back-to-top" href="#home" aria-label="Volver al inicio">
+      <span>Volver al inicio</span>
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </a>
   </footer>
 </body>
 </html>

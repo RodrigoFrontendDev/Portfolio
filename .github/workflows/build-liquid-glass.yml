@@ -1,0 +1,52 @@
+name: Build Nordify Liquid Glass runtime
+
+on:
+  push:
+    paths:
+      - "vendor/nordify-liquid-glass/**"
+      - "js/liquid-glass-entry.js"
+      - ".github/workflows/build-liquid-glass.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: liquid-glass-build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - name: Compile the upstream TypeScript modules
+        run: >-
+          npx --yes --package typescript@5.8.3 tsc
+          vendor/nordify-liquid-glass/liquid-glass.ts
+          --target ES2022
+          --module ES2022
+          --moduleResolution bundler
+          --lib ES2023,DOM,DOM.Iterable
+          --skipLibCheck
+          --strict false
+          --rootDir vendor/nordify-liquid-glass
+          --outDir js/vendor
+      - name: Commit browser-ready modules
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/vendor/liquid-glass.js js/vendor/maps.js
+          if git diff --cached --quiet; then
+            echo "Liquid Glass runtime is already up to date."
+            exit 0
+          fi
+          git commit -m "Build Nordify Liquid Glass runtime"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
