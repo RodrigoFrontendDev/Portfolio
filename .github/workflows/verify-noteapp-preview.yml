@@ -51,7 +51,7 @@ jobs:
               page.on('pageerror', error => pageErrors.push(error.message));
 
               await page.addInitScript(() => {
-                localStorage.setItem('note-app', JSON.stringify([
+                if (!localStorage.getItem('note-app')) localStorage.setItem('note-app', JSON.stringify([
                   {
                     id: 'sample-1',
                     title: 'Ideas para el próximo proyecto',
