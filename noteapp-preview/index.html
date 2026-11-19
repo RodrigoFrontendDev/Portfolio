@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17233f">
+  <meta name="description" content="Un espacio personal para capturar ideas, ordenar pensamientos y guardar notas.">
+  <title>Nota — Tu espacio para pensar</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+      <a class="brand" href="#" aria-label="Nota, inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M8 5.5h10.5L24 11v15.5H8V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 5.8V12h5.8M12 17h8M12 21h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span>nota<span class="brand-period">.</span></span>
+      </a>
+
+      <div class="workspace-label">
+        <span class="workspace-avatar">R</span>
+        <span class="workspace-copy"><strong>Mi espacio</strong><small>PERSONAL WORKSPACE</small></span>
+        <svg class="workspace-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 8 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <button class="create-note-button" id="create-note" type="button">
+        <span class="create-plus" aria-hidden="true">+</span>
+        <span>Nueva nota</span>
+        <kbd>⌘ N</kbd>
+      </button>
+
+      <div class="nav-section">
+        <p class="nav-caption">BIBLIOTECA</p>
+        <nav class="nav-list">
+          <button class="nav-item is-active" type="button" data-filter="all" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.4" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="4" width="6" height="6" rx="1.4" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="14" width="6" height="6" rx="1.4" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="6" height="6" rx="1.4" stroke="currentColor" stroke-width="1.7"/></svg>
+            <span>Todas las notas</span><span class="nav-count" id="all-count">0</span>
+          </button>
+          <button class="nav-item" type="button" data-filter="pinned">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m16 4 4 4-3 2v4l-4 2-1 4-2-6-6-2 4-2V6l2-3 6 1Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Fijadas</span><span class="nav-count" id="pinned-count">0</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <span class="storage-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 16.5v-9Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <div><strong>Siempre a mano</strong><p>Tus notas se guardan en este dispositivo.</p></div>
+          <span class="storage-status" aria-label="Guardado local"></span>
+        </div>
+        <div class="sidebar-meta"><span>NOTA <i>·</i> SIMPLE POR NATURALEZA</span><span>v2.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu-button" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span>
+        </button>
+        <div class="date-label" id="date-label">TU ESPACIO PERSONAL</div>
+        <div class="topbar-actions">
+          <label class="search-box" for="search-input">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <input id="search-input" type="search" placeholder="Buscar una nota..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="profile-avatar" aria-label="Tu espacio personal">R</div>
+        </div>
+      </header>
+
+      <section class="page-intro">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> TU ESPACIO PERSONAL</p>
+          <h1>Tu lugar para <span>pensar.</span></h1>
+          <p class="intro-subtitle">Ideas sueltas, grandes planes o eso que no querés olvidar.<br class="desktop-break"> Todo empieza en una nota.</p>
+        </div>
+        <div class="intro-decoration" aria-hidden="true">
+          <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orbit-core"></span>
+          <span class="decoration-star star-one">✳</span><span class="decoration-star star-two">✦</span>
+        </div>
+      </section>
+
+      <section class="stats-row" aria-label="Resumen de tus notas">
+        <div class="stat-card"><span class="stat-icon stat-icon-violet">▤</span><div><strong id="stat-total">0</strong><span>Notas creadas</span></div></div>
+        <div class="stat-card"><span class="stat-icon stat-icon-coral">✳</span><div><strong id="stat-pinned">0</strong><span>Notas fijadas</span></div></div>
+        <div class="stat-card"><span class="stat-icon stat-icon-mint">Aa</span><div><strong id="stat-words">0</strong><span>Palabras guardadas</span></div></div>
+        <div class="stats-note"><span class="stats-note-mark">✦</span><span>Un pensamiento a la vez.<br><strong>Sin distracciones.</strong></span></div>
+      </section>
+
+      <section class="notes-section" aria-labelledby="notes-heading">
+        <div class="notes-toolbar">
+          <div class="notes-heading-group">
+            <div><p class="section-overline">TU BIBLIOTECA</p><h2 id="notes-heading">Todas las notas <span id="visible-count">0</span></h2></div>
+          </div>
+          <div class="notes-controls">
+            <label class="sort-control" for="sort-select">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 5v14m0 0-3-3m3 3 3-3M17 19V5m0 0 3 3m-3-3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <select id="sort-select" aria-label="Ordenar notas">
+                <option value="newest">Más recientes</option>
+                <option value="oldest">Más antiguas</option>
+              </select>
+            </label>
+            <button class="view-toggle" id="view-toggle" type="button" aria-label="Cambiar a vista de lista" title="Cambiar vista">
+              <svg class="grid-view-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="4" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="14" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.7"/></svg>
+              <svg class="list-view-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-tabs" role="group" aria-label="Filtrar notas">
+          <button class="filter-tab is-active" type="button" data-filter="all">Todas <span id="tab-all-count">0</span></button>
+          <button class="filter-tab" type="button" data-filter="pinned">Fijadas <span id="tab-pinned-count">0</span></button>
+        </div>
+
+        <div class="notes-grid" id="notes-grid" aria-live="polite"></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <div class="empty-illustration" aria-hidden="true"><span class="empty-paper"></span><span class="empty-pencil"></span><span class="empty-spark">✦</span></div>
+          <p class="empty-kicker">UN ESPACIO EN BLANCO</p>
+          <h3 id="empty-title">Las buenas ideas empiezan acá.</h3>
+          <p id="empty-description">Creá tu primera nota y empezá a darle forma a tus pensamientos.</p>
+          <button class="empty-create-button" id="empty-create" type="button">Crear mi primera nota <span>↗</span></button>
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <span>HECHO PARA PENSAR MEJOR <i>✳</i></span>
+        <span><b class="footer-save-dot"></b> GUARDADO LOCALMENTE</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="mobile-scrim" id="mobile-scrim" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <template id="note-template">
+    <article class="note-card" data-color="lavender">
+      <div class="note-card-top">
+        <span class="note-date"></span>
+        <div class="note-card-actions">
+          <button class="icon-button pin-button" type="button" data-action="pin" aria-label="Fijar nota" title="Fijar nota">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m16 4 4 4-3 2v4l-4 2-1 4-2-6-6-2 4-2V6l2-3 6 1Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="icon-button delete-button" type="button" data-action="delete" aria-label="Eliminar nota" title="Eliminar nota">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 7h15M9 7V4.5h6V7m-8.5 0 .8 12.5h9.4L17.5 7M10 10.5v5.5m4-5.5v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <input class="note-title" name="title" type="text" maxlength="90" placeholder="Título de la nota" aria-label="Título de la nota">
+      <textarea class="note-body" name="content" placeholder="Empezá a escribir algo..." aria-label="Contenido de la nota" spellcheck="true"></textarea>
+      <div class="note-card-bottom">
+        <div class="note-color-picker" role="group" aria-label="Color de la nota">
+          <button class="color-dot color-lavender" type="button" data-color="lavender" aria-label="Lila"></button>
+          <button class="color-dot color-peach" type="button" data-color="peach" aria-label="Durazno"></button>
+          <button class="color-dot color-mint" type="button" data-color="mint" aria-label="Menta"></button>
+          <button class="color-dot color-blue" type="button" data-color="blue" aria-label="Azul"></button>
+          <button class="color-dot color-cream" type="button" data-color="cream" aria-label="Crema"></button>
+        </div>
+        <span class="note-word-count">0 PALABRAS</span>
+      </div>
+    </article>
+  </template>
+</body>
+</html>
