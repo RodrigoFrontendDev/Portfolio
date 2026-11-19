@@ -1444,3 +1444,35 @@ ul { margin: 0; padding: 0; list-style: none; }
     transform: none !important;
   }
 }
+
+
+/* Continuous page atmosphere: one shared backdrop replaces the hard section fills. */
+main {
+  background-color: #080A12;
+  background-image:
+    radial-gradient(ellipse 76rem 54rem at 12% 7%, rgba(83, 246, 255, .095), transparent 76%),
+    radial-gradient(ellipse 72rem 60rem at 88% 23%, rgba(168, 85, 247, .13), transparent 77%),
+    radial-gradient(ellipse 66rem 58rem at 18% 47%, rgba(83, 246, 255, .065), transparent 78%),
+    radial-gradient(ellipse 76rem 66rem at 86% 76%, rgba(255, 79, 216, .065), transparent 78%),
+    linear-gradient(180deg, #080A12 0%, #0B0E1B 48%, #080A12 100%);
+}
+
+/* All sections share the same base; no opaque band interrupts the backdrop. */
+.home,
+.about,
+.skills,
+.portfolio,
+.contact {
+  background: transparent !important;
+}
+
+/* The hero's former isolated glow ended at its bottom edge; the page backdrop
+   now carries that light across the About transition. */
+.home::before {
+  background: none !important;
+}
+
+.footer {
+  background: linear-gradient(180deg, rgba(7, 9, 16, 0) 0%, #070910 78%) !important;
+  border-top-color: rgba(83, 246, 255, .08);
+}
