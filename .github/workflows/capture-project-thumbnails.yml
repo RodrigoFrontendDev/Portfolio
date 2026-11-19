@@ -56,6 +56,16 @@ jobs:
                 await page.waitForLoadState("networkidle", { timeout: 25000 }).catch(() => {});
                 await page.evaluate(() => document.fonts && document.fonts.ready);
                 await page.waitForTimeout(9000);
+
+                if (app.name === "Price Search") {
+                  await page.getByLabel("Amazon").check();
+                  await page.getByLabel("AliExpress").check();
+                  const search = page.getByRole("search").getByRole("searchbox");
+                  await search.fill("wireless headphones");
+                  await page.getByRole("search").getByRole("button", { name: "Buscar" }).click();
+                  await page.waitForTimeout(22000);
+                }
+
                 await page.evaluate(() => window.scrollTo(0, 0));
 
                 const info = await page.evaluate(() => ({
