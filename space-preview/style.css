@@ -1454,3 +1454,29 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
   .journey-nebula::before{animation:none!important;transform:none!important;will-change:auto!important}
   .journey-warp-lines{display:none}
 }
+
+ 
+/* Reading-copy scale: body text only; display headings remain unchanged. */
+.hero-description{font-size:clamp(17px,1.35vw,20px)}
+.section-intro{font-size:clamp(16px,1.15vw,18px)}
+.today-copy>p:not(.feature-kicker){font-size:clamp(16px,1.12vw,18px);line-height:1.8}
+.mission-content p,.timeline-copy p{font-size:clamp(15px,.98vw,17px);line-height:1.8}
+.player-card p,.universe-fact p,.next-item p{font-size:clamp(14px,.9vw,16px);line-height:1.75}
+.universe-lead,.closing-copy{font-size:clamp(16px,1.1vw,19px);line-height:1.8}
+.footer-top p{font-size:14px;line-height:1.75}
+.timeline-footnote,.journey-footnote{font-size:14px;line-height:1.8}
+.journey-instruction p{font-size:clamp(16px,1.12vw,18px);line-height:1.8}
+.journey-entry-copy p{font-size:clamp(17px,1.3vw,20px);line-height:1.8}
+
+@media(max-width:760px){
+  .hero-description{font-size:17px}
+  .section-intro{font-size:16px}
+  .today-copy>p:not(.feature-kicker){font-size:16px}
+  .mission-content p,.timeline-copy p{font-size:15px}
+  .player-card p,.universe-fact p,.next-item p{font-size:15px}
+  .universe-lead,.closing-copy{font-size:16px}
+  .footer-top p{font-size:14px}
+  .timeline-footnote,.journey-footnote{font-size:13px}
+  .journey-instruction p{font-size:16px}
+  .journey-entry-copy p{font-size:16px}
+}
