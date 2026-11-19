@@ -1382,3 +1382,65 @@ ul { margin: 0; padding: 0; list-style: none; }
     transform: none !important;
   }
 }
+
+
+/* Desktop navigation should be visually unboxed; the mobile drawer keeps its own panel. */
+@media (min-width: 901px) {
+  .header .navbar {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .header .nav-list,
+  .header .nav-list li,
+  .header .nav-list a,
+  .header .nav-list a:hover,
+  .header .nav-list a:focus-visible,
+  .header .nav-list a[aria-current="location"] {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Keep the About glass card's neon surface when hovered.
+   Older warm-theme hover rules were replacing its gradient with a flat brown fill. */
+.about-note,
+.about-note:hover,
+.about-note:focus-within {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, .18) 0%,
+    rgba(83, 246, 255, .085) 58%,
+    rgba(15, 23, 42, .72) 100%
+  ) !important;
+  border-color: rgba(168, 85, 247, .28);
+  --lg-tint: rgba(83, 246, 255, .045);
+}
+
+.about-note:hover,
+.about-note:focus-within {
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, .25) 0%,
+    rgba(83, 246, 255, .14) 58%,
+    rgba(15, 23, 42, .76) 100%
+  ) !important;
+  border-color: rgba(83, 246, 255, .48);
+  --lg-tint: rgba(83, 246, 255, .07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .16),
+    0 18px 46px rgba(0, 0, 0, .24),
+    0 0 26px rgba(168, 85, 247, .12);
+}
+
+/* The glass stays legible while its very small hover transform runs. */
+@media (prefers-reduced-motion: reduce) {
+  .about-note,
+  .about-note:hover,
+  .about-note:focus-within {
+    transform: none !important;
+  }
+}
