@@ -141,8 +141,40 @@
 
    <section class="section mission-journey-section" id="historia">
   <div class="section-heading reveal"><div><p class="eyebrow"><span class="eyebrow-line"></span> HITOS DE LA EXPLORACIÓN · 1957—2026</p><h2>LAS MISIONES<br><em>QUE CAMBIARON TODO.</em></h2></div><p class="section-intro">Una selección de las misiones que marcaron un antes y un después: desde el primer satélite hasta los viajes lunares, los telescopios espaciales y la frontera interestelar.</p></div>
-  <div class="journey-instruction reveal"><span class="journey-instruction-mark">19 HITOS · 1957—2026</span><p>19 escenas a pantalla completa. Deslizá para atravesar la historia: las imágenes se alejan, los planetas flotan y cada misión aparece en una capa distinta.</p></div>
+  <div class="journey-instruction reveal"><span class="journey-instruction-mark">19 HITOS · 1957—2026</span><p>Un solo viaje a través de 69 años de exploración. El scroll controla la cámara: acercate, atravesá órbitas y seguí cada señal hasta el espacio interestelar.</p></div>
   <div class="journey-layout" id="mission-journey">
+    <aside class="journey-stage" id="journey-stage" aria-hidden="true">
+      <div class="journey-camera" id="journey-camera">
+        <div class="journey-scene-layer journey-scene-a is-visible" id="journey-scene-a">
+          <img class="journey-scene-fallback" alt="" />
+          <img class="journey-scene-photo" alt="" />
+        </div>
+        <div class="journey-scene-layer journey-scene-b" id="journey-scene-b">
+          <img class="journey-scene-fallback" alt="" />
+          <img class="journey-scene-photo" alt="" />
+        </div>
+      </div>
+      <div class="journey-nebula journey-nebula-far"></div>
+      <div class="journey-nebula journey-nebula-near"></div>
+      <div class="journey-orbit journey-orbit-one"></div>
+      <div class="journey-orbit journey-orbit-two"></div>
+      <canvas class="journey-starfield" id="journey-starfield"></canvas>
+      <div class="journey-warp-lines"></div>
+      <div class="journey-lens-glow"></div>
+      <div class="journey-stage-vignette"></div>
+      <div class="journey-stage-hud">
+        <div class="journey-hud-top">
+          <span class="journey-hud-brand">THE SPACE <i>/ ARCHIVO DE EXPLORACIÓN</i></span>
+          <span class="journey-hud-counter"><b id="journey-current-index">01</b><i>/ 19</i></span>
+        </div>
+        <div class="journey-hud-bottom">
+          <div class="journey-hud-caption"><span>SEÑAL EN FOCO</span><strong id="journey-current-title">SPUTNIK 1</strong></div>
+          <div class="journey-hud-track"><span id="journey-current-progress"></span></div>
+          <span class="journey-hud-year" id="journey-current-year">1957</span>
+        </div>
+        <div class="journey-hud-side"><span>SCROLL TO TRAVEL</span><b>1957 — 2026</b></div>
+      </div>
+    </aside>
    <div class="journey-entries" id="journey-entries" aria-label="Hitos de la exploración espacial en orden cronológico"><article class="journey-entry is-active" data-scene="sputnik" data-title="Sputnik 1" data-year="04 OCT 1957" data-type="PRIMER SATÉLITE ARTIFICIAL">
     <div class="journey-entry-top"><span class="journey-number">01</span><span class="journey-year">04 OCT 1957</span></div>
     <div class="journey-entry-copy"><span class="journey-type">PRIMER SATÉLITE ARTIFICIAL</span><h3>Sputnik 1</h3><p>La Unión Soviética colocó en órbita el primer satélite artificial. Su señal de radio abrió la era espacial y dio inicio a la exploración humana más allá de la atmósfera.</p><a href="https://www.nasa.gov/history/dawn-of-the-space-age/" target="_blank" rel="noopener noreferrer">CONSULTAR FUENTE <span>↗</span></a></div>
