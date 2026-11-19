@@ -1,0 +1,163 @@
+name: Verify Noteapp visual preview
+
+on:
+  push:
+    branches:
+      - preview/noteapp-workspace
+    paths:
+      - .github/workflows/verify-noteapp-preview.yml
+
+permissions:
+  contents: write
+
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out preview branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Test the published app and capture screenshots
+        run: |
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+
+          const baseUrl = 'https://preview-noteapp-workspace.rodrigonickler.pages.dev/noteapp-preview/';
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const context = await browser.newContext({
+                viewport: { width: 1440, height: 1000 },
+                deviceScaleFactor: 1,
+                colorScheme: 'light',
+              });
+              const page = await context.newPage();
+              const pageErrors = [];
+              page.on('pageerror', error => pageErrors.push(error.message));
+
+              await page.addInitScript(() => {
+                localStorage.setItem('note-app', JSON.stringify([
+                  {
+                    id: 'sample-1',
+                    title: 'Ideas para el próximo proyecto',
+                    content: 'Explorar una identidad visual más simple.\nDefinir los objetivos principales y preparar referencias.',
+                    color: 'lavender',
+                    pinned: true,
+                    createdAt: new Date(Date.now() - 86400000).toISOString(),
+                    updatedAt: new Date(Date.now() - 3600000).toISOString(),
+                  },
+                  {
+                    id: 'sample-2',
+                    title: 'Cosas para recordar',
+                    content: 'Comprar café, terminar el libro y ordenar las tareas pendientes de esta semana.',
+                    color: 'peach',
+                    pinned: false,
+                    createdAt: new Date(Date.now() - 172800000).toISOString(),
+                    updatedAt: new Date(Date.now() - 7200000).toISOString(),
+                  },
+                  {
+                    id: 'sample-3',
+                    title: 'Inspiración',
+                    content: 'Menos ruido. Más intención. Crear un espacio para pensar con claridad.',
+                    color: 'mint',
+                    pinned: false,
+                    createdAt: new Date(Date.now() - 259200000).toISOString(),
+                    updatedAt: new Date(Date.now() - 10800000).toISOString(),
+                  },
+                ]));
+              });
+
+              const response = await page.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              assert.ok(response && response.ok(), 'The published preview must return HTTP 200');
+              await page.locator('.note-card').first().waitFor({ state: 'visible', timeout: 20000 });
+              assert.equal(await page.locator('.note-card').count(), 3, 'Three notes should render');
+              assert.equal(await page.locator('#stat-total').textContent(), '3');
+
+              // Search should narrow the visible cards.
+              await page.locator('#search-input').fill('próximo proyecto');
+              assert.equal(await page.locator('.note-card').count(), 1, 'Search should filter notes');
+              await page.locator('#search-input').fill('');
+
+              // Pin, color, and view controls should work.
+              const firstCard = page.locator('.note-card').filter({ has: page.locator('.note-title[value="Ideas para el próximo proyecto"]') }).first();
+              await firstCard.locator('[data-action="pin"]').click();
+              await firstCard.locator('[data-color="blue"]').click();
+              await page.locator('#view-toggle').click();
+              assert.ok(await page.locator('#notes-grid').evaluate(el => el.classList.contains('is-list')));
+
+              // Create and persist a new note.
+              await page.locator('#create-note').click();
+              const newId = await page.evaluate(() => JSON.parse(localStorage.getItem('note-app'))[0].id);
+              const newCard = page.locator('.note-card[data-id="' + newId + '"]');
+              await newCard.locator('.note-title').fill('Nota de prueba');
+              await newCard.locator('.note-body').fill('Este texto debe permanecer después de recargar la página.');
+              await page.reload({ waitUntil: 'domcontentloaded' });
+              const persistedCard = page.locator('.note-card[data-id="' + newId + '"]');
+              assert.equal(await persistedCard.locator('.note-title').inputValue(), 'Nota de prueba');
+              assert.match(await persistedCard.locator('.note-body').inputValue(), /permanecer después de recargar/);
+
+              // Return to the designed grid view for the screenshots.
+              if (await page.locator('#notes-grid').evaluate(el => el.classList.contains('is-list'))) {
+                await page.locator('#view-toggle').click();
+              }
+              await page.waitForTimeout(300);
+              await page.screenshot({ path: 'noteapp-preview/.qa-desktop.png', fullPage: true });
+
+              await page.setViewportSize({ width: 390, height: 844 });
+              await page.waitForTimeout(250);
+              const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
+              assert.equal(mobileOverflow, false, 'Mobile layout should not overflow horizontally');
+              await page.screenshot({ path: 'noteapp-preview/.qa-mobile.png', fullPage: true });
+
+              // Legacy records from the original app must migrate without losing text.
+              const legacyContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+              const legacyPage = await legacyContext.newPage();
+              await legacyPage.addInitScript(() => {
+                localStorage.setItem('note-app', JSON.stringify([
+                  { id: 42, content: 'Texto que ya existía en la versión anterior.' }
+                ]));
+              });
+              await legacyPage.goto(baseUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
+              await legacyPage.locator('.note-card').waitFor({ state: 'visible', timeout: 15000 });
+              const migrated = await legacyPage.evaluate(() => JSON.parse(localStorage.getItem('note-app')));
+              assert.equal(migrated.length, 1);
+              assert.equal(migrated[0].id, '42');
+              assert.equal(migrated[0].content, 'Texto que ya existía en la versión anterior.');
+              assert.equal(typeof migrated[0].color, 'string');
+
+              assert.deepEqual(pageErrors, [], 'The page should not produce JavaScript runtime errors');
+              console.log('PASS: preview HTTP response, search, pin, color, list/grid view, create, LocalStorage persistence, mobile overflow, and legacy-note migration.');
+              console.log('Screenshots: noteapp-preview/.qa-desktop.png and noteapp-preview/.qa-mobile.png');
+              await legacyContext.close();
+              await context.close();
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Commit visual QA screenshots for inspection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add noteapp-preview/.qa-desktop.png noteapp-preview/.qa-mobile.png
+          git commit -m "Add temporary Noteapp preview screenshots"
+          git push origin HEAD:refs/heads/preview/noteapp-workspace
