@@ -204,17 +204,23 @@
 
     entries.forEach((entry, index) => {
       const rect = entry.getBoundingClientRect();
-      if (rect.bottom < -160 || rect.top > viewportHeight + 160) return;
+      if (rect.bottom < -viewportHeight * 0.35 || rect.top > viewportHeight * 1.35) return;
 
+      // 0..1 across the whole chapter. The background travels almost one viewport.
       const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
       const depth = progress - 0.5;
-      entry.style.setProperty("--mission-image-shift", (depth * -280).toFixed(1) + "px");
-      entry.style.setProperty("--mission-atmosphere-shift", (depth * 150).toFixed(1) + "px");
-      entry.style.setProperty("--mission-stars-shift", (depth * -72).toFixed(1) + "px");
-      entry.style.setProperty("--mission-orbit-shift", (depth * 118).toFixed(1) + "px");
-      entry.style.setProperty("--mission-copy-shift", (depth * -48).toFixed(1) + "px");
+      const imageTravel = viewportHeight * 0.92;
+      const atmosphereTravel = viewportHeight * 0.46;
+      const foregroundTravel = viewportHeight * 0.22;
 
-      const distance = Math.abs(rect.top + rect.height * 0.5 - viewportHeight * 0.52);
+      entry.style.setProperty("--mission-image-shift", (depth * -imageTravel).toFixed(1) + "px");
+      entry.style.setProperty("--mission-atmosphere-shift", (depth * atmosphereTravel).toFixed(1) + "px");
+      entry.style.setProperty("--mission-stars-shift", (depth * -foregroundTravel).toFixed(1) + "px");
+      entry.style.setProperty("--mission-orbit-shift", (depth * (viewportHeight * 0.58)).toFixed(1) + "px");
+      entry.style.setProperty("--mission-copy-shift", (depth * -110).toFixed(1) + "px");
+      entry.style.setProperty("--mission-image-scale", (1.58 - progress * 0.25).toFixed(3));
+
+      const distance = Math.abs(rect.top + rect.height * 0.5 - viewportHeight * 0.5);
       if (distance < nearestDistance) {
         nearestDistance = distance;
         nearestIndex = index;
