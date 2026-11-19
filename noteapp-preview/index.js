@@ -23,6 +23,7 @@ const elements = {
   viewToggle: document.getElementById("view-toggle"),
   sidebar: document.getElementById("sidebar"),
   menuToggle: document.getElementById("menu-toggle"),
+  themeToggle: document.getElementById("theme-toggle"),
   mobileScrim: document.getElementById("mobile-scrim"),
   toast: document.getElementById("toast"),
 };
@@ -376,6 +377,36 @@ elements.viewToggle.addEventListener("click", () => {
   elements.viewToggle.setAttribute("aria-label", isListView ? "Cambiar a vista de cuadrícula" : "Cambiar a vista de lista");
   showToast(isListView ? "Vista de lista." : "Vista de cuadrícula.");
 });
+
+function applyTheme(theme, persist = false) {
+  const nextTheme = theme === "dark" ? "dark" : "light";
+  document.documentElement.dataset.theme = nextTheme;
+
+  const isDark = nextTheme === "dark";
+  elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+  elements.themeToggle.setAttribute("aria-label", isDark ? "Activar modo claro" : "Activar modo oscuro");
+  elements.themeToggle.title = isDark ? "Activar modo claro" : "Activar modo oscuro";
+
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute("content", isDark ? "#101827" : "#17233f");
+
+  if (persist) {
+    try {
+      localStorage.setItem("note-app-theme", nextTheme);
+    } catch (error) {
+      console.error("No se pudo guardar la preferencia de tema.", error);
+    }
+  }
+}
+
+function toggleTheme() {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(nextTheme, true);
+  showToast(nextTheme === "dark" ? "Modo oscuro activado." : "Modo claro activado.");
+}
+
+applyTheme(document.documentElement.dataset.theme || "light");
+elements.themeToggle.addEventListener("click", toggleTheme);
 
 elements.menuToggle.addEventListener("click", toggleMobileMenu);
 elements.mobileScrim.addEventListener("click", closeMobileMenu);
