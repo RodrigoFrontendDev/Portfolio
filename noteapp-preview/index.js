@@ -21,7 +21,6 @@ const elements = {
   search: document.getElementById("search-input"),
   sort: document.getElementById("sort-select"),
   viewToggle: document.getElementById("view-toggle"),
-  dateLabel: document.getElementById("date-label"),
   sidebar: document.getElementById("sidebar"),
   menuToggle: document.getElementById("menu-toggle"),
   mobileScrim: document.getElementById("mobile-scrim"),
@@ -132,16 +131,6 @@ function formatDate(dateValue) {
     day: "numeric",
     month: "short",
   }).format(date).replace(".", "").toUpperCase();
-}
-
-function updateDateLabel() {
-  const today = new Intl.DateTimeFormat("es-AR", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  }).format(new Date());
-
-  elements.dateLabel.textContent = today.toLocaleUpperCase("es-AR");
 }
 
 function getVisibleNotes() {
@@ -408,5 +397,4 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeMobileMenu();
 });
 
-updateDateLabel();
 renderNotes();
