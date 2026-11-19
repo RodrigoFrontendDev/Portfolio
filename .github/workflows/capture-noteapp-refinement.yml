@@ -82,6 +82,14 @@ jobs:
               console.log('Desktop editor metrics:', JSON.stringify(desktop));
               await page.screenshot({path:'noteapp-preview/.qa-editor-desktop.png',fullPage:true});
 
+              await page.locator('#create-note').click();
+              const newId = await page.evaluate(() => JSON.parse(localStorage.getItem('note-app'))[0].id);
+              await page.locator('.note-card[data-id="' + newId + '"] .note-title').fill('Prueba de escritura');
+              await page.locator('.note-card[data-id="' + newId + '"] .note-body').fill('El editor conserva el texto y lo guarda automáticamente.');
+              await page.reload({waitUntil:'domcontentloaded'});
+              assert.equal(await page.locator('.note-card[data-id="' + newId + '"] .note-title').inputValue(),'Prueba de escritura');
+              assert.match(await page.locator('.note-card[data-id="' + newId + '"] .note-body').inputValue(),/guarda automáticamente/);
+
               await page.setViewportSize({width:390,height:844});
               await page.waitForTimeout(200);
               const mobile = await page.locator('.note-card').first().evaluate(card => {
@@ -101,14 +109,6 @@ jobs:
               assert.ok(mobile.documentWidth <= 391, 'Mobile should not overflow horizontally');
               console.log('Mobile editor metrics:', JSON.stringify(mobile));
               await page.screenshot({path:'noteapp-preview/.qa-editor-mobile.png',fullPage:true});
-
-              await page.locator('#create-note').click();
-              const newId = await page.evaluate(() => JSON.parse(localStorage.getItem('note-app'))[0].id);
-              await page.locator('.note-card[data-id="' + newId + '"] .note-title').fill('Prueba de escritura');
-              await page.locator('.note-card[data-id="' + newId + '"] .note-body').fill('El editor conserva el texto y lo guarda automáticamente.');
-              await page.reload({waitUntil:'domcontentloaded'});
-              assert.equal(await page.locator('.note-card[data-id="' + newId + '"] .note-title').inputValue(),'Prueba de escritura');
-              assert.match(await page.locator('.note-card[data-id="' + newId + '"] .note-body').inputValue(),/guarda automáticamente/);
               assert.deepEqual(errors,[], 'No JavaScript runtime errors');
               console.log('PASS: editor size, desktop columns, mobile layout, no overflow, create and LocalStorage persistence.');
               await context.close();
