@@ -163,7 +163,6 @@
   let starData = [];
   let starTravel = 0;
   let starCameraX = 0;
-  let lastStarFrame = 0;
   let starAnimationFrame = 0;
   let cosmosVisible = false;
 
@@ -345,10 +344,7 @@
   const animateStarfield = timestamp => {
     starAnimationFrame = 0;
     if (!cosmosVisible || document.hidden || reducedMotion) return;
-    if (timestamp - lastStarFrame >= 40) {
-      drawStarfield(starTravel, scrollVelocity, timestamp, starCameraX);
-      lastStarFrame = timestamp;
-    }
+    drawStarfield(starTravel, scrollVelocity, timestamp, starCameraX);
     starAnimationFrame = requestAnimationFrame(animateStarfield);
   };
   const setCosmosVisibility = visible => {
