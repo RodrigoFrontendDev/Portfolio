@@ -605,24 +605,6 @@ ul { margin: 0; padding: 0; list-style: none; }
     filter .28s ease;
 }
 
-.project-tags li[data-tech]::after {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(
-    112deg,
-    transparent 22%,
-    rgba(255, 255, 255, .24) 42%,
-    rgba(255, 255, 255, .04) 52%,
-    transparent 68%
-  );
-  content: "";
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-125%);
-  transition: transform .7s cubic-bezier(.2, .7, .2, 1), opacity .25s ease;
-}
-
 .project-tags li[data-tech]:hover {
   z-index: 1;
   border-color: rgba(225, 240, 255, .42);
@@ -635,70 +617,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   transform: translateY(-2px) scale(1.035);
 }
 
-.project-tags li[data-tech]:hover::after {
-  opacity: 1;
-  transform: translateX(125%);
-}
-
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .project-tags li[data-tech] {
     background-image:
       radial-gradient(ellipse at 18% -22%, rgba(255, 255, 255, .2), transparent 68%),
       linear-gradient(138deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .055));
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-tags li[data-tech],
-  .project-tags li[data-tech]::after {
-    transition: none;
-  }
-
-  .project-tags li[data-tech]:hover {
-    transform: none;
-  }
-}
-
-/* Liquid-glass cards for the main technology toolkit. */
-.skill-item {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border: 1px solid rgba(218, 234, 255, .16);
-  border-radius: 18px;
-  background:
-    radial-gradient(ellipse at 16% -24%, rgba(255, 255, 255, .17), transparent 64%),
-    linear-gradient(138deg, rgba(255, 255, 255, .105), rgba(255, 255, 255, .028) 54%, rgba(87, 155, 255, .07));
-  -webkit-backdrop-filter: blur(18px) saturate(175%);
-  backdrop-filter: blur(18px) saturate(175%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .23),
-    inset 0 -1px 0 rgba(255, 255, 255, .045),
-    0 8px 24px rgba(0, 0, 0, .13);
-  transition:
-    transform .3s cubic-bezier(.2, .8, .2, 1),
-    border-color .3s ease,
-    background .3s ease,
-    box-shadow .3s ease,
-    color .3s ease;
-}
-
-.skill-item::before {
-  position: absolute;
-  z-index: -1;
-  inset: -30% -65%;
-  border-radius: inherit;
-  background: linear-gradient(
-    108deg,
-    transparent 38%,
-    rgba(255, 255, 255, .2) 50%,
-    transparent 62%
-  );
-  content: "";
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-30%);
-  transition: transform .75s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
 }
 
 .skill-item:hover {
@@ -714,49 +638,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   transform: translateY(-4px);
 }
 
-.skill-item:hover::before {
-  opacity: .85;
-  transform: translateX(30%);
-}
-
 .skill-item iconify-icon {
   filter: drop-shadow(0 2px 7px rgba(121, 179, 255, .12));
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-item,
-  .skill-item::before {
-    transition: none;
-  }
-
-  .skill-item:hover {
-    transform: none;
-  }
-}
-
-
-
-/* Unified liquid-glass treatment across every card-like surface. */
-.project-card,
-.skill-item,
-.about-note,
-.contact-form,
-.price-art-window,
-.marketplace-badges span,
-.project-count {
-  position: relative;
-  isolation: isolate;
-  border: 1px solid rgba(218, 234, 255, .17);
-  background-color: rgba(20, 32, 55, .52);
-  background-image:
-    radial-gradient(ellipse at 14% -18%, rgba(255, 255, 255, .17), transparent 62%),
-    linear-gradient(138deg, rgba(255, 255, 255, .095), rgba(255, 255, 255, .025) 56%, rgba(87, 155, 255, .075));
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .24),
-    inset 0 -1px 0 rgba(255, 255, 255, .045),
-    0 12px 34px rgba(0, 0, 0, .16);
 }
 
 .project-card,
@@ -764,43 +647,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .contact-form,
 .price-art-window {
   overflow: hidden;
-}
-
-.project-card::after,
-.skill-item::after,
-.about-note::after,
-.contact-form::after,
-.floating-card::after,
-.price-art-window::after,
-.marketplace-badges span::after {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    112deg,
-    transparent 18%,
-    rgba(255, 255, 255, .105) 38%,
-    rgba(255, 255, 255, .025) 49%,
-    transparent 68%
-  );
-  content: "";
-  opacity: .42;
-  pointer-events: none;
-  transform: translateX(-115%);
-  transition: transform .85s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
-}
-
-.project-card:hover::after,
-.project-card:focus-within::after,
-.skill-item:hover::after,
-.about-note:hover::after,
-.contact-form:focus-within::after,
-.floating-card:hover::after,
-.price-art-window:hover::after,
-.marketplace-badges span:hover::after {
-  opacity: .9;
-  transform: translateX(115%);
 }
 
 .project-card {
@@ -874,20 +720,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .marketplace-badges span,
   .project-count {
     background-color: rgba(22, 34, 57, .96);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-card::after,
-  .skill-item::after,
-  .about-note::after,
-  .contact-form::after,
-  .floating-card::after,
-  .price-art-window::after,
-  .marketplace-badges span::after {
-    transition: none;
-    transform: none;
-    opacity: .18;
   }
 }
 
