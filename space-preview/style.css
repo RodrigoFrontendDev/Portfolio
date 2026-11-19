@@ -665,7 +665,7 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
   max-width:1580px;
   margin:0 auto;
 }
-.journey-stage{display:none!important}
+
 .journey-entries{
   display:grid;
   grid-template-columns:minmax(0,1fr);
@@ -991,7 +991,7 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
   max-width:none;
   margin:0;
 }
-.journey-stage{display:none!important}
+
 .journey-entries{
   display:block;
   width:100%;
@@ -1283,6 +1283,7 @@ h1 em, h2 em, .today-copy h3 em, .closing-section h2 em { font-style: normal; co
 .mission-journey-section .journey-instruction{margin-top:-22px;margin-bottom:0;padding-bottom:22px;box-shadow:inset 0 -1px rgba(145,175,211,.13)}
 .journey-layout{position:relative;display:grid;grid-template-columns:minmax(0,1fr);isolation:isolate;width:100%;margin:0;overflow:visible}
 .journey-stage{
+  display:block!important;
   --camera-x:0px;--camera-y:0px;--camera-zoom:1.12;--camera-rotation:0deg;--nebula-x:0px;--nebula-y:0px;
   --orbit-x:0px;--orbit-y:0px;--orbit-rotation:0deg;--lens-x:50vw;--lens-y:50vh;--warp-intensity:0;
   grid-area:1/1;position:sticky;top:0;align-self:start;height:100svh;min-height:600px;width:100%;z-index:0;
